@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="grade_list">
+        <item>高中一年级</item>
+        <item>高中二年级</item>
+        <item>高中三年级</item>
+    </string-array>
+
+    <string-array name="course_list">
+        <item>语文</item>
+        <item>数学</item>
+        <item>英语</item>
+    </string-array>
+
+    <string-array name="study_location_list">
+        <item>罗湖区</item>
+        <item>福田区</item>
+        <item>龙岗区</item>
+    </string-array>
+
+    <string-array name="tutor_job_list">
+        <item>在职教师</item>
+        <item>兼职教师</item>
+        <item>大学生</item>
+    </string-array>
+
+    <string-array name="tutor_level_list">
+        <item>三星教员</item>
+        <item>二星教员</item>
+        <item>一星教员</item>
+        <item>认证教员</item>
+    </string-array>
+
+    <string-array name="search_tutor_mode_list">
+        <item>平台推荐</item>
+        <item>教员自荐</item>
+        <item>我来寻找</item>
+    </string-array>
+</resources>

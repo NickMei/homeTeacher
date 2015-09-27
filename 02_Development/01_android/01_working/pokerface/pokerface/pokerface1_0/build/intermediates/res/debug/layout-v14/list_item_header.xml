@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/header"
+    android:layout_width="match_parent"
+    android:layout_height="30dip">
+    <!--style="@style/ListItemHeader"-->
+
+    <TextView
+        android:id="@+id/header_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:textStyle="bold"/>
+        <!--style="@style/ListItemHeaderText" />-->
+         
+</RelativeLayout> 
+<!-- From: file:/C:/Users/cxm170/Desktop/homeTeacher/02_Development/01_android/01_working/pokerface/pokerface/pokerface1_0/src/main/res/layout-v14/list_item_header.xml -->

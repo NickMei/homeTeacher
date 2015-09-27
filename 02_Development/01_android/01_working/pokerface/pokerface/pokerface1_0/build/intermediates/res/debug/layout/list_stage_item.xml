@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medium Text"
+        android:id="@+id/stageLisItemTextView"
+        android:layout_margin="10dp"
+        android:textSize="12dp"
+        android:textIsSelectable="false"
+        android:textColorHighlight="@color/RED" />
+</LinearLayout><!-- From: file:/C:/Users/cxm170/Desktop/homeTeacher/02_Development/01_android/01_working/pokerface/pokerface/pokerface1_0/src/main/res/layout/list_stage_item.xml -->

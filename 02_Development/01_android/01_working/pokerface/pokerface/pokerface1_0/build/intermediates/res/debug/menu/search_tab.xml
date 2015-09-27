@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!-- Search, should appear as action button -->
+    <item android:id="@+id/action_search"
+        android:icon="@drawable/ic_search_white_48dp"
+        android:title="@string/action_search"
+        app:showAsAction="ifRoom"
+        android:orderInCategory="200"
+        app:actionViewClass="android.support.v7.widget.SearchView" />
+</menu><!-- From: file:/C:/Users/cxm170/Desktop/homeTeacher/02_Development/01_android/01_working/pokerface/pokerface/pokerface1_0/src/main/res/menu/search_tab.xml -->

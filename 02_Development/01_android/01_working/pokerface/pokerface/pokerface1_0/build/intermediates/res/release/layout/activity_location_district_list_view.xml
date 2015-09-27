@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/location_district_view_toolbar"
+        android:background="#2196F3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.Toolbar>
+
+    <ListView
+        android:id="@+id/location_district_list_View"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    </ListView>
+
+
+
+
+</LinearLayout><!-- From: file:/C:/Users/cxm170/Desktop/homeTeacher/02_Development/01_android/01_working/pokerface/pokerface/pokerface1_0/src/main/res/layout/activity_location_district_list_view.xml -->

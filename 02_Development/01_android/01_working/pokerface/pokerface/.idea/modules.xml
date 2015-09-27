@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/badgeView/badgeView.iml" filepath="$PROJECT_DIR$/badgeView/badgeView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pokerface.iml" filepath="$PROJECT_DIR$/pokerface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pokerface1_0/pokerface1_0.iml" filepath="$PROJECT_DIR$/pokerface1_0/pokerface1_0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/volley/volley.iml" filepath="$PROJECT_DIR$/volley/volley.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">i家教</string>
+    <string name="tutor_request_title">上传家教信息</string>
+    <string name="submit">提交</string>
+    <string name="action_settings">Setting</string>
+
+
+    <string name="user_name_key">姓名：</string>
+    <string name="user_mobile_key">手机：</string>
+    <string name="user_location_key">城市:</string>
+    <string name="user_grade_key">年级：</string>
+    <string name="user_course_key">科目：</string>
+
+    <string name="user_level_key">水平：</string>
+    <string name="user_level_low">提升</string>
+    <string name="user_level_high">培优</string>
+
+    <string name="study_location">位置：</string>
+    <string name="study_time">时段：</string>
+    <string name="study_total_time">时长：</string>
+    <string name="study_total_time_hint">预估学习时长(小时)</string>
+    <string name="student_extra_intro">简介：</string>
+    <string name="student_intro_hint">个人情况</string>
+    <string name="student_submit">提交</string>
+
+    <string name="sex">性别：</string>
+    <string name="male_tutor">女教员</string>
+    <string name="female_tutor">男教员</string>
+
+    <string name="tutor_job">职业：</string>
+    <string name="tutor_level">等级：</string>
+    <string name="salary">薪资：</string>
+    <string name="salary_hint">可接受薪资范围（每小时）</string>
+    <string name="search_tutor_mode">方式：</string>
+
+    <string name="student_info">学员信息</string>
+    <string name="tutor_requirement">教员要求</string>
+
+    <string name="news">消息</string>
+    <string name="transaction_record">交易记录</string>
+    <string name="setting">设置</string>
+
+    <string name="title_activity_register">RegisterActivity</string>
+
+    <string name="action_search">search</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_tutor_request">TutorRequestActivity</string>
+    <string name="title_activity_tutor_detail">TutorDetailActivity</string>
+    <string name="title_activity_tutor_detail_page">TutorDetailPageActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_location_list_view">LocationListViewActivity</string>
+    <string name="title_activity_order_view">OrderViewActivity</string>
+    <string name="user_profile_pic">userprofile</string>
+    <string name="applause_rate">好評率</string>
+    <string name="rating_count">評價數</string>
+    <string name="fav_count">贊贊贊</string>
+    <string name="teaching_hours">课时总数</string>
+    <string name="num_of_student">學生人數</string>
+    <string name="years_spent_teaching">教齡</string>
+    <string name="course_info">授課信息</string>
+    <string name="course_title">科目：</string>
+
+
+    <string-array name="gender_info_list">
+        <item>不限</item>
+        <item>男</item>
+        <item>女</item>
+    </string-array>
+
+    <string-array name="career_info_list">
+        <item>不限</item>
+        <item>在职老师</item>
+        <item>兼职老师</item>
+        <item>大学生</item>
+    </string-array>
+
+    <string-array name="day_list">
+        <item>不限</item>
+        <item>星期一</item>
+        <item>星期二</item>
+        <item>星期三</item>
+        <item>星期四</item>
+        <item>星期五</item>
+        <item>星期六</item>
+        <item>星期日</item>
+    </string-array>
+
+    <string-array name="time_list">
+        <item>不限</item>
+        <item>早上</item>
+        <item>下午</item>
+        <item>晚上</item>
+    </string-array>
+    <string name="title_activity_location_district_list_view">LocationDistrictListView</string>
+    <string name="title_activity_location_province_list_view">LocationProvinceListViewActivity
+    </string>
+    <string name="log_out">登出</string>
+    <string name="title_activity_user_detail">UserDetailActivity</string>
+    <string name="title_activity_user_transaction_record">UserTransactionRecordActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+
+</resources>
