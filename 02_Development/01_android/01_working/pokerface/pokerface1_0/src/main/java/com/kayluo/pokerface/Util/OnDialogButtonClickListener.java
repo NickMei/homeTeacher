@@ -1,0 +1,11 @@
+package com.kayluo.pokerface.util;
+
+import android.app.DialogFragment;
+
+/**
+ * Created by jiweili on 27/9/2015.
+ */
+public interface OnDialogButtonClickListener {
+    public void onDialogPositiveClick(DialogFragment dialog);
+    public void onDialogNegativeClick(DialogFragment dialog);
+}

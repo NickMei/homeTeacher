@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+   <RadioGroup
+       android:id="@+id/select_price_range_radio_group"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+   </RadioGroup>
+
+</LinearLayout><!-- From: file:/C:/Users/Nick/Desktop/homeTeacher/02_Development/01_android/01_working/pokerface/pokerface1_0/src/main/res/layout/dialog_select_price_range.xml -->

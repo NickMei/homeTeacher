@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/select_time_radio_group">
+
+    <RadioButton
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/all_day"
+        android:text="任意时间段"/>
+
+    <RadioButton
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/monday"
+        android:text="上午"/>
+
+    <RadioButton
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/tuesday"
+        android:text="下午"/>
+
+    <RadioButton
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/wednesday"
+        android:text="晚上"/>
+
+</RadioGroup>
+
