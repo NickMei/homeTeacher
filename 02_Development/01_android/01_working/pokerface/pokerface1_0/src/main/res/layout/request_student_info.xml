@@ -1,16 +1,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="0dp"
-    android:paddingRight="0dp"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:background="#e6e6e6">
 
     <LinearLayout
         android:layout_width="fill_parent"
+
+
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="#ffffff"
@@ -35,8 +32,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:textSize="15sp"
-                android:entries="@array/grade_list"/>
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -58,8 +54,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:textSize="15sp"
-                android:entries="@array/course_list"/>
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -112,8 +107,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:textSize="15sp"
-                android:entries="@array/study_location_list"/>
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout

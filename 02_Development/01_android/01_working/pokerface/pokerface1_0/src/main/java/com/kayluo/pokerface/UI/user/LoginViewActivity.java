@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kayluo.pokerface.R;
-import com.kayluo.pokerface.ui.user.Register.RegisterActivity;
+import com.kayluo.pokerface.ui.user.register.RegisterActivity;
 import com.kayluo.pokerface.api.auth.LoginRequestResponse;
 import com.kayluo.pokerface.api.RequestResponseBase;
 import com.kayluo.pokerface.core.AppManager;

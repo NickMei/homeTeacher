@@ -79,8 +79,7 @@
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            android:textSize="15sp"
-                            android:entries="@array/grade_list"/>
+                            android:textSize="15sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -102,8 +101,7 @@
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            android:textSize="15sp"
-                            android:entries="@array/course_list"/>
+                            android:textSize="15sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -156,8 +154,7 @@
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            android:textSize="15sp"
-                            android:entries="@array/study_location_list"/>
+                            android:textSize="15sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -304,8 +301,7 @@
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            android:textSize="15sp"
-                            android:entries="@array/tutor_job_list"/>
+                            android:textSize="15sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -327,8 +323,7 @@
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            android:textSize="15sp"
-                            android:entries="@array/tutor_level_list"/>
+                            android:textSize="15sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -373,8 +368,7 @@
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            android:textSize="15sp"
-                            android:entries="@array/search_tutor_mode_list"/>
+                            android:textSize="15sp" />
                     </LinearLayout>
 
                 </LinearLayout>

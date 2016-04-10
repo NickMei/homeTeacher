@@ -1,4 +1,4 @@
-package com.kayluo.pokerface.ui;
+package com.kayluo.pokerface.ui.tutor;
 
 import android.content.Intent;
 import android.os.Bundle;

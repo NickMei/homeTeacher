@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kayluo.pokerface.R;
-import com.kayluo.pokerface.ui.user.Register.RegisterActivity;
+import com.kayluo.pokerface.ui.user.register.RegisterActivity;
 import com.kayluo.pokerface.api.auth.LogoutRequestResponse;
 import com.kayluo.pokerface.common.ActivityRequestCode;
 import com.kayluo.pokerface.component.ChangePasswordDialog;

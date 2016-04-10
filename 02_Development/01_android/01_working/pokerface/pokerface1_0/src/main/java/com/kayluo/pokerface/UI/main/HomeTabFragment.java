@@ -15,7 +15,7 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.Poi;
 import com.kayluo.pokerface.R;
-import com.kayluo.pokerface.ui.LocationCityListViewActivity;
+import com.kayluo.pokerface.ui.home.LocationCityListViewActivity;
 import com.kayluo.pokerface.ui.search.SearchResultActivity;
 import com.kayluo.pokerface.util.LocationService;
 import com.kayluo.pokerface.common.ActivityRequestCode;

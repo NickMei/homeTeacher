@@ -1,4 +1,4 @@
-package com.kayluo.pokerface.ui.user.CommentRecord;
+package com.kayluo.pokerface.ui.user.commentRecord;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;

@@ -16,12 +16,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.kayluo.pokerface.R;
-import com.kayluo.pokerface.ui.user.Bookmark.BookmarkActivity;
-import com.kayluo.pokerface.ui.user.CommentRecord.CommentRecordActivity;
+import com.kayluo.pokerface.ui.user.myBookmark.BookmarkActivity;
+import com.kayluo.pokerface.ui.user.commentRecord.CommentRecordActivity;
 import com.kayluo.pokerface.ui.user.LoginViewActivity;
 import com.kayluo.pokerface.ui.user.SettingsActivity;
 import com.kayluo.pokerface.ui.user.UserDetailActivity;
-import com.kayluo.pokerface.ui.user.TransactionRecord.UserTransactionRecordActivity;
+import com.kayluo.pokerface.ui.user.transactionRecord.UserTransactionRecordActivity;
 import com.kayluo.pokerface.util.BitmapDownloaderTask;
 import com.kayluo.pokerface.util.Utils;
 import com.kayluo.pokerface.api.studentCenter.GetCommentListRequestResponse;

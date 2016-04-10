@@ -1,4 +1,4 @@
-package com.kayluo.pokerface.ui;
+package com.kayluo.pokerface.ui.tutor;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -15,7 +15,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.kayluo.pokerface.R;
-import com.kayluo.pokerface.ui.user.CommentRecord.CommentRecordActivity;
+import com.kayluo.pokerface.ui.user.commentRecord.CommentRecordActivity;
 import com.kayluo.pokerface.util.BitmapDownloaderTask;
 import com.kayluo.pokerface.util.Utils;
 import com.kayluo.pokerface.api.studentCenter.GetCommentListRequestResponse;
@@ -77,9 +77,29 @@ public class TutorDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor_detail);
         tutorId = this.getIntent().getStringExtra("tutorId");
+        initToolBar();
+        setUpViews();
+        getData();
+    }
+
+    private void initToolBar(){
+
         mToolbar = (Toolbar) findViewById(R.id.tutor_detail_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent returnIntent = new Intent();
+                setResult(RESULT_CANCELED, returnIntent);
+                finish();
+            }
+        });
+
+    }
+
+    private void setUpViews()
+    {
         tutorPic = (ImageView) this.findViewById(R.id.tutor_pic);
         tutorName = (TextView) this.findViewById(R.id.tutor_detail_name);
         career = (TextView) this.findViewById(R.id.tutor_detail_career);
@@ -115,18 +135,6 @@ public class TutorDetailActivity extends AppCompatActivity {
         progressDialog.setMessage("获取教师详情...");
         progressDialog.setCancelable(false);
         progressDialog.show();
-
-        getData();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem menuItem) {
-        if (menuItem.getItemId() == android.R.id.home) {
-            Intent returnIntent = new Intent();
-            setResult(RESULT_CANCELED,returnIntent);
-            finish();
-        }
-        return super.onOptionsItemSelected(menuItem);
     }
 
     private void getData()
@@ -226,7 +234,6 @@ public class TutorDetailActivity extends AppCompatActivity {
 
     private void createTableViewCell(ArrayList<TutorTimeTableInfo> timetable_info)
     {
-//        View view = findViewById(R.id.teaching_time_table);
 
         for(TutorTimeTableInfo tableInfo : timetable_info)
         {

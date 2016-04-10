@@ -1,4 +1,4 @@
-package com.kayluo.pokerface.ui;
+package com.kayluo.pokerface.ui.home;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

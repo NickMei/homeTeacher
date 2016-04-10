@@ -1,4 +1,4 @@
-package com.kayluo.pokerface.ui.user.Register;
+package com.kayluo.pokerface.ui.user.register;
 
 import android.content.Intent;
 import android.os.Bundle;

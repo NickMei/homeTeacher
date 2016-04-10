@@ -1,4 +1,4 @@
-package com.kayluo.pokerface.ui.user.Bookmark;
+package com.kayluo.pokerface.ui.user.myBookmark;
 
 import android.content.Intent;
 import android.os.Bundle;

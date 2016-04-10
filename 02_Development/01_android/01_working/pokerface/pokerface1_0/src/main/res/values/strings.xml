@@ -102,6 +102,7 @@
     <string name="title_activity_tutor_detail">教师详情</string>
     <string name="user_profile_pic">用户图片</string>
     <string name="title_activity_select_course">选择课程</string>
+    <string name="title_activity_confirm_booking">预约课程</string>
 
 
 </resources>

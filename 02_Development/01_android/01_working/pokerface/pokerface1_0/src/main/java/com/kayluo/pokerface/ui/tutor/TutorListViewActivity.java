@@ -1,4 +1,4 @@
-package com.kayluo.pokerface.ui.tutorList;
+package com.kayluo.pokerface.ui.tutor;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -24,7 +24,6 @@ import com.google.gson.Gson;
 import com.kayluo.pokerface.R;
 import com.kayluo.pokerface.adapter.SearchResultListAdapter;
 import com.kayluo.pokerface.ui.search.FilterViewActivity;
-import com.kayluo.pokerface.ui.TutorDetailActivity;
 import com.kayluo.pokerface.adapter.TutorListViewAdapter;
 import com.kayluo.pokerface.adapter.TutorViewHolder;
 import com.kayluo.pokerface.api.tutorInfo.GetTutorListRequestResponse;

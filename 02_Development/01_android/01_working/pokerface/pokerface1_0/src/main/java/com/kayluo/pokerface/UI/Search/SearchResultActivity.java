@@ -22,7 +22,7 @@ import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.core.UserConfig;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 import com.kayluo.pokerface.dataModel.TutorEntity;
-import com.kayluo.pokerface.ui.tutorList.TutorListViewActivity;
+import com.kayluo.pokerface.ui.tutor.TutorListViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;

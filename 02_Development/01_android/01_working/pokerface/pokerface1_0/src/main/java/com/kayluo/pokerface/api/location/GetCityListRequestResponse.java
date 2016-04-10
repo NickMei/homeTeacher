@@ -1,7 +1,6 @@
 package com.kayluo.pokerface.api.location;
 
 import android.util.Log;
-
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -10,9 +9,7 @@ import com.google.gson.reflect.TypeToken;
 import com.kayluo.pokerface.api.RequestResponseBase;
 import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.dataModel.City;
-import com.kayluo.pokerface.dataModel.Province;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;

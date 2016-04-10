@@ -1,4 +1,4 @@
-package com.kayluo.pokerface.ui;
+package com.kayluo.pokerface.component;
 
 import android.content.Context;
 import android.util.AttributeSet;

@@ -1,4 +1,4 @@
-package com.kayluo.pokerface.ui.user.TransactionRecord;
+package com.kayluo.pokerface.ui.user.transactionRecord;
 
 import android.content.Context;
 import android.content.Intent;
