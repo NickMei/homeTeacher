@@ -3,6 +3,7 @@ package com.kayluo.pokerface.core;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.kayluo.pokerface.dataModel.City;
 import com.kayluo.pokerface.dataModel.UserBasicInfo;
 import com.kayluo.pokerface.database.UserProfile;
 
@@ -17,14 +18,8 @@ import java.util.Set;
 public class UserConfig {
     public static String PREFS_NAME = "MyPrefsFile";
     public String userId = "0";
-    public String token = "0";
-    public String head_photo = "";
-    public String mobile = "";
-    public boolean isSignedIn = false;
-    public String city = "";
-    public String name = "";
-    public List<String> searchHistory;
     private UserProfile userProfile ;
+    public boolean isSignedIn = false;
 
     public void saveToStorage(Context context) {
         SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, 0);

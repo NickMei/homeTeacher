@@ -1,5 +1,6 @@
 package com.kayluo.pokerface.core;
 
+import com.kayluo.pokerface.dataModel.City;
 import com.kayluo.pokerface.dataModel.Stage;
 import com.kayluo.pokerface.dataModel.TutorEntity;
 
@@ -12,11 +13,8 @@ import java.util.List;
 public class AppConfig {
 
     public List<String> gradeList;
-    public List<String> cityList;
+    public List<City> cityList;
     public List<Stage> stageList;
-
-    public ArrayList<TutorEntity> tutorList;
-
-    public String deviceLocationCity;
+    public City currentCityByLocation;
 
 }

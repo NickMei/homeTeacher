@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import com.kayluo.pokerface.api.RequestResponseBase;
 import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.core.GsonRequest;
+import com.kayluo.pokerface.dataModel.City;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 
 import java.lang.reflect.Type;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
  */
 public class GetOpenCityListRequestResponse extends RequestResponseBase {
     @SerializedName(value = "city_list")
-    public ArrayList<String> cityList;
+    public ArrayList<City> cityList;
     public GetOpenCityListRequestResponse(ResponseListener responselistener) {
         super(responselistener);
 

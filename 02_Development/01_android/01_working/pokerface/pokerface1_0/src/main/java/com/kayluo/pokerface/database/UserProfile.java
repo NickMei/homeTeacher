@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.kayluo.pokerface.core.UserConfig;
+import com.kayluo.pokerface.dataModel.City;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +20,13 @@ import java.util.List;
 public final class UserProfile {
     // To prevent someone from accidentally instantiating the contract class,
     // give it an empty constructor.
+    public String token = "0";
+    public String head_photo = "";
+    public String mobile = "";
+    public City city;
+    public String name = "";
+    public List<String> searchHistoryList;
+
     private UserProfileDBHelper mDbHelper;
     public UserProfile(Context context)
     {
@@ -27,24 +37,34 @@ public final class UserProfile {
     public static abstract class UserEntity implements BaseColumns {
         public static final String TABLE_NAME = "userEntity";
         public static final String COLUMN_NAME_USER_ID = "user_id";
+        public static final String COLUMN_NAME_TOKEN = "token";
+        public static final String COLUMN_NAME_MOBILE = "mobile";
+        public static final String COLUMN_NAME_LOCATION_CITY = "location";
+        public static final String COLUMN_NAME_USER_NAME = "username";
         public static final String COLUMN_NAME_SEARCH_HISTORY = "searchHistory";
     }
 
-    public void insertOrUpdate(String userId, List<String> searchHistoryList)
+    public void insertOrUpdate(String userId)
     {
         // Gets the data repository in write mode
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
-        String searchHistory = new Gson().toJson(searchHistoryList);
+        Gson gson = new Gson();
+        String searchHistoryJsonString = gson.toJson(searchHistoryList);
+        String cityJsonString = gson.toJson(city);
         // Create a new map of values, where column names are the keys
 
 
-        if (querySearchHistory(userId) == null)
+        if ((userId) == null)
         {
 
             ContentValues values = new ContentValues();
             values.put(UserEntity.COLUMN_NAME_USER_ID, userId);
-            values.put(UserEntity.COLUMN_NAME_SEARCH_HISTORY, searchHistory);
+            values.put(UserEntity.COLUMN_NAME_TOKEN, token);
+            values.put(UserEntity.COLUMN_NAME_MOBILE, mobile);
+            values.put(UserEntity.COLUMN_NAME_LOCATION_CITY, cityJsonString);
+            values.put(UserEntity.COLUMN_NAME_USER_NAME, name);
+            values.put(UserEntity.COLUMN_NAME_SEARCH_HISTORY, searchHistoryJsonString);
+
             // Insert the new row, returning the primary key value of the new row
              db.insert(
                     UserEntity.TABLE_NAME,
@@ -54,7 +74,12 @@ public final class UserProfile {
         else
         {
             ContentValues values = new ContentValues();
-            values.put(UserEntity.COLUMN_NAME_SEARCH_HISTORY, searchHistory);
+            values.put(UserEntity.COLUMN_NAME_USER_ID, userId);
+            values.put(UserEntity.COLUMN_NAME_TOKEN, token);
+            values.put(UserEntity.COLUMN_NAME_MOBILE, mobile);
+            values.put(UserEntity.COLUMN_NAME_LOCATION_CITY, cityJsonString);
+            values.put(UserEntity.COLUMN_NAME_USER_NAME, name);
+            values.put(UserEntity.COLUMN_NAME_SEARCH_HISTORY, searchHistoryJsonString);
             String strFilter = UserEntity.COLUMN_NAME_USER_ID + "=" + userId ;
             db.update(UserEntity.TABLE_NAME,
                     values,
@@ -65,13 +90,17 @@ public final class UserProfile {
 
     }
 
-    public List<String> querySearchHistory(String userID)
+    private void queryUserProfile(String userID)
     {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
         List<String> searchHistoryList = null;
         // Define a projection that specifies which columns from the database
         // you will actually use after this query.
         String[] projection = {
+                UserEntity.COLUMN_NAME_TOKEN,
+                UserEntity.COLUMN_NAME_MOBILE,
+                UserEntity.COLUMN_NAME_LOCATION_CITY,
+                UserEntity.COLUMN_NAME_USER_NAME,
                 UserEntity.COLUMN_NAME_SEARCH_HISTORY,
         };
 
@@ -99,18 +128,20 @@ public final class UserProfile {
             if(cursor.getCount() <= 0)
             {
                 cursor.close();
-                return searchHistoryList;
             }
 
             cursor.moveToFirst();
-            String searchHistory = cursor.getString(
-                    cursor.getColumnIndexOrThrow(UserEntity.COLUMN_NAME_SEARCH_HISTORY)
-            );
-            cursor.close();
+            this.token = cursor.getString(cursor.getColumnIndexOrThrow(UserEntity.COLUMN_NAME_TOKEN));
+            this.mobile = cursor.getString(cursor.getColumnIndexOrThrow(UserEntity.COLUMN_NAME_MOBILE));
+            this.name = cursor.getString(cursor.getColumnIndexOrThrow(UserEntity.COLUMN_NAME_USER_NAME));
+            String searchHistory = cursor.getString(cursor.getColumnIndexOrThrow(UserEntity.COLUMN_NAME_SEARCH_HISTORY));
             Type listType = new TypeToken<ArrayList<String>>(){}.getType();
-            searchHistoryList = new Gson().fromJson(searchHistory,listType);
+            this.searchHistoryList = new Gson().fromJson(searchHistory,listType);
+            String locationJsobString  = cursor.getString(cursor.getColumnIndexOrThrow(UserEntity.COLUMN_NAME_LOCATION_CITY));
+            this.city = new Gson().fromJson(locationJsobString,City.class);
+            cursor.close();
+
         }
-        return searchHistoryList;
 
     }
 

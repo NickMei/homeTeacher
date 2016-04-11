@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import com.kayluo.pokerface.R;
+import com.kayluo.pokerface.dataModel.City;
 
 import java.util.List;
 
@@ -17,21 +18,21 @@ import java.util.List;
 public class LocationListAdapter extends BaseAdapter {
 
     LayoutInflater inflater;
-    private List<String> locationList;
+    private List<City> cityList;
 
-    public LocationListAdapter(Context mContext, List<String> cityList) {
-        this.locationList = cityList;
+    public LocationListAdapter(Context mContext, List<City> cityList) {
+        this.cityList = cityList;
         this.inflater = LayoutInflater.from(mContext);
     }
 
     @Override
     public int getCount() {
-        return locationList.size();
+        return cityList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return locationList.get(position);
+        return cityList.get(position);
     }
 
     @Override
@@ -44,9 +45,9 @@ public class LocationListAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.item_view_simple_list, null);
         }
-        String city = locationList.get(position);
+        City city = cityList.get(position);
         TextView textView = (TextView) convertView.findViewById(R.id.simple_list_view_item_text_view);
-        textView.setText(city);
+        textView.setText(city.cityName);
         return convertView;
     }
 

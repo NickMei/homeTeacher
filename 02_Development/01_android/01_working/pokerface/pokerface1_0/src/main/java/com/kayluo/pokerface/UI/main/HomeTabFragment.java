@@ -94,7 +94,8 @@ public class HomeTabFragment extends Fragment
 			StringBuffer sb = new StringBuffer(256);
 			if (null != bdLocation && bdLocation.getLocType() != BDLocation.TypeServerError) {
 				AppConfig appConfig = AppManager.shareInstance().settingManager.getAppConfig();
-				appConfig.deviceLocationCity = bdLocation.getCity().replace("市","");
+
+				appConfig.currentCityByLocation.cityName = bdLocation.getCity().replace("市","");
 				UserConfig userConfig = AppManager.shareInstance().settingManager.getUserConfig();
 				if(userConfig.isSignedIn)
 				{
