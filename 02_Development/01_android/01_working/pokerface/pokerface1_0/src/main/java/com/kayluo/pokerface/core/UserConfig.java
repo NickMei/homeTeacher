@@ -18,21 +18,17 @@ import java.util.Set;
 public class UserConfig {
     public static String PREFS_NAME = "MyPrefsFile";
     public String userId = "0";
-    private UserProfile userProfile ;
+    public UserProfile profile ;
     public boolean isSignedIn = false;
 
     public void saveToStorage(Context context) {
         SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString("userId", userId);
-        editor.putString("token", token);
-        editor.putString("mobile", mobile);
         editor.putBoolean("isSignedIn", isSignedIn);
-        editor.putString("city", city);
-        editor.putString("name", name);
         editor.commit();
         // insert Database
-        userProfile.insertOrUpdate(userId,searchHistory);
+        profile.insertOrUpdate(userId);
 
     }
 
@@ -40,27 +36,15 @@ public class UserConfig {
         super();
         SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, 0);
         userId = settings.getString("userId", "0");
-        token = settings.getString("token", "0");
-        mobile = settings.getString("mobile","");
-        city = settings.getString("city","");
-        name = settings.getString("name", "");
         isSignedIn = settings.getBoolean("isSignedIn", false);
-
         // query Database
-        userProfile = new UserProfile(context);
-        searchHistory = userProfile.querySearchHistory(userId);
+        profile = new UserProfile(context,userId);
     }
 
     public void logout(Context context)
     {
         userId = "0";
-        token = "0";
-        head_photo = "";
-        mobile = "";
         isSignedIn = false;
-        city = "";
-        name = "";
-        searchHistory = new ArrayList<String>();
         this.saveToStorage(context);
     }
 

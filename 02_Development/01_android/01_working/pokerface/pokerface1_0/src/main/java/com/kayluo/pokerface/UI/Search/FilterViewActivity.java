@@ -12,8 +12,9 @@ import android.widget.RadioGroup;
 
 import com.google.gson.Gson;
 import com.kayluo.pokerface.R;
+import com.kayluo.pokerface.api.location.GetDistrictListRequestResponse;
+import com.kayluo.pokerface.database.UserProfile;
 import com.kayluo.pokerface.util.OnDialogButtonClickListener;
-import com.kayluo.pokerface.api.location.GetDistrictByCityNameRequestResponse;
 import com.kayluo.pokerface.api.tutorInfo.GetPriceRangeListRequestResponse;
 import com.kayluo.pokerface.api.tutorInfo.GetTutorListRequestResponse;
 import com.kayluo.pokerface.api.RequestResponseBase;
@@ -23,7 +24,6 @@ import com.kayluo.pokerface.component.SelectDistrictDialog;
 import com.kayluo.pokerface.component.SelectPriceRangeDialog;
 import com.kayluo.pokerface.component.SelectTimeDialog;
 import com.kayluo.pokerface.core.AppManager;
-import com.kayluo.pokerface.core.UserConfig;
 import com.kayluo.pokerface.dataModel.Course;
 import com.kayluo.pokerface.dataModel.District;
 import com.kayluo.pokerface.dataModel.PriceRange;
@@ -63,7 +63,7 @@ public class FilterViewActivity extends AppCompatActivity implements OnDialogBut
     private SelectPriceRangeDialog selectPriceRangeDialog;
 
     GetTutorListRequestResponse getTutorListRequestResponse;
-    GetDistrictByCityNameRequestResponse getDistrictByCityNameRequestResponse;
+    GetDistrictListRequestResponse getDistrictListRequestResponse;
     GetPriceRangeListRequestResponse getPriceRangeListRequestResponse;
 
     int stageIndex;
@@ -100,7 +100,7 @@ public class FilterViewActivity extends AppCompatActivity implements OnDialogBut
                 List<Stage> stageList = AppManager.shareInstance().settingManager.getAppConfig().stageList;
                 params.stage = "";
                 params.course = "";
-                params.subCourse = "";
+                params.sub_course = "";
                 if (stageIndex != 0)
                 {
                     Stage stage = stageList.get(stageIndex);
@@ -112,7 +112,7 @@ public class FilterViewActivity extends AppCompatActivity implements OnDialogBut
                         if (subCourseIndex != 0 && course.subCourseList.size() > 0)
                         {
                             SubCourse subCourse = course.subCourseList.get(subCourseIndex);
-                            params.subCourse = subCourse.name;
+                            params.sub_course = subCourse.name;
                         }
                     }
                 }
@@ -367,15 +367,15 @@ public class FilterViewActivity extends AppCompatActivity implements OnDialogBut
 
     public void loadUserDistrictInfo()
     {
-        UserConfig userConfig = AppManager.shareInstance().settingManager.getUserConfig();
-        getDistrictByCityNameRequestResponse = new GetDistrictByCityNameRequestResponse(userConfig.city, new RequestResponseBase.ResponseListener() {
+        UserProfile profile = AppManager.shareInstance().settingManager.getUserConfig().profile;
+        getDistrictListRequestResponse = new GetDistrictListRequestResponse(profile.city.cityID, new RequestResponseBase.ResponseListener() {
             @Override
             public void onCompleted(ResponseInfo response) {
                 if (response.returnCode == 0)
                 {
                     ArrayList<String> list = new ArrayList<String>();
                     list.add("全部");
-                    for (District district: getDistrictByCityNameRequestResponse.districtList) {
+                    for (District district: getDistrictListRequestResponse.districtList) {
                         list.add(district.name);
                         if (params.district.equals(district.name))
                         {
@@ -464,7 +464,7 @@ public class FilterViewActivity extends AppCompatActivity implements OnDialogBut
             RadioButton radioButton = (RadioButton) radioGroup.findViewById(selectedId);
             districtInfoSelectorBtn.setText(radioButton.getText());
             int index = radioGroup.indexOfChild(radioButton);
-            if (getDistrictByCityNameRequestResponse.districtList != null)
+            if (getDistrictListRequestResponse.districtList != null)
             {
                 if (index == 0)
                 {
@@ -472,7 +472,7 @@ public class FilterViewActivity extends AppCompatActivity implements OnDialogBut
                 }
                 else
                 {
-                    District district = getDistrictByCityNameRequestResponse.districtList.get(index);
+                    District district = getDistrictListRequestResponse.districtList.get(index);
                     params.district  = district.name;
                 }
 
@@ -515,25 +515,25 @@ public class FilterViewActivity extends AppCompatActivity implements OnDialogBut
         {
             text = "全部";
             params.course = "";
-            params.subCourse = "";
+            params.sub_course = "";
         }
         else
         {
             if (params.course.equals(""))
             {
                 text = params.stage;
-                params.subCourse = "";
+                params.sub_course = "";
             }
             else
             {
-                if (params.subCourse.equals("全部") || params.subCourse.equals(""))
+                if (params.sub_course.equals("全部") || params.sub_course.equals(""))
                 {
                     text = params.stage + "/" + params.course;
-                    params.subCourse = "";
+                    params.sub_course = "";
                 }
                 else
                 {
-                    text = params.stage + "/" + params.course + "/" + params.subCourse;
+                    text = params.stage + "/" + params.course + "/" + params.sub_course;
                 }
             }
         }

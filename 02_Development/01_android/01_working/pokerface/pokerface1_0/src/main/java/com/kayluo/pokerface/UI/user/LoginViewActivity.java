@@ -168,8 +168,8 @@ public class LoginViewActivity extends AppCompatActivity {
                     if (responseInfo.returnCode == 0) {
                         UserConfig userConfig = AppManager.shareInstance().settingManager.getUserConfig();
                         userConfig.isSignedIn = true;
-                        userConfig.mobile = authRequestResponse.mobile;
-                        userConfig.token = authRequestResponse.token;
+                        userConfig.profile.mobile = authRequestResponse.mobile;
+                        userConfig.profile.token = authRequestResponse.token;
                         userConfig.userId = authRequestResponse.user_id;
                         userConfig.saveToStorage(LoginViewActivity.this);
                         Toast.makeText(LoginViewActivity.this, responseInfo.message, Toast.LENGTH_SHORT).show();

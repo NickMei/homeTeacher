@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.kayluo.pokerface.api.RequestResponseBase;
 import com.kayluo.pokerface.core.AppManager;
+import com.kayluo.pokerface.core.GsonRequest;
 import com.kayluo.pokerface.dataModel.District;
 import com.kayluo.pokerface.dataModel.Province;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
@@ -22,22 +23,21 @@ import java.util.List;
  */
 public class GetDistrictListRequestResponse extends RequestResponseBase {
     public List<District> districtList;
-    public GetDistrictListRequestResponse(ResponseListener responseListener)
-    {
+    public GetDistrictListRequestResponse(String cityID,ResponseListener responseListener) {
         super(responseListener);
         districtList = new ArrayList<District>();
-        String tag_json_obj = "json_obj_req";
+        this.url = this.domain + "location/getDistrictList?cityID=" + cityID;
 
-        String url = domain +"location/getProvinceList";
-
-        StringRequest jsonObjReq = new StringRequest(url, new Response.Listener<String>() {
+        Type jsonType = new TypeToken<ResponseInfo<GetDistrictListRequestResponse>>() {}.getType();
+        GsonRequest gsonRequest = new GsonRequest(url, jsonType, null, requestJsonMap, new Response.Listener() {
             @Override
-            public void onResponse(String response) {
-                Gson gson = new Gson();
-                Type listType = new TypeToken<List<District>>(){}.getType();
-                districtList = gson.fromJson(response.toString(),listType);
-                Log.e("tutorList", "size :" + districtList.size());
-                listener.onCompleted(new ResponseInfo());
+            public void onResponse(Object response) {
+                ResponseInfo responseInfo = (ResponseInfo) response;
+                if (responseInfo.returnCode == 0) {
+                    GetDistrictListRequestResponse mResponse = (GetDistrictListRequestResponse) responseInfo.response;
+                    districtList = mResponse.districtList;
+                }
+                listener.onCompleted(responseInfo);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -45,6 +45,7 @@ public class GetDistrictListRequestResponse extends RequestResponseBase {
 
             }
         });
-        AppManager.shareInstance().addToRequestQueue(jsonObjReq, this.url);
+
+        AppManager.shareInstance().addToRequestQueue(gsonRequest, this.url);
     }
 }

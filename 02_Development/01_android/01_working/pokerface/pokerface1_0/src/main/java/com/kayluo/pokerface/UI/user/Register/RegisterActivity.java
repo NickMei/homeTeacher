@@ -88,7 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
                         if (response.returnCode == 0)
                         {
                             UserConfig config = AppManager.shareInstance().settingManager.getUserConfig();
-                            config.mobile = mobile;
+                            config.profile.mobile = mobile;
                             config.saveToStorage(RegisterActivity.this);
                             if(createNewAccount)
                             {

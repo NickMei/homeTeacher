@@ -5,8 +5,10 @@ import com.android.volley.VolleyError;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.kayluo.pokerface.api.RequestResponseBase;
+import com.kayluo.pokerface.core.AppConfig;
 import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.core.GsonRequest;
+import com.kayluo.pokerface.core.UserConfig;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 import com.kayluo.pokerface.dataModel.TutorEntity;
 
@@ -26,10 +28,6 @@ public class GetTutorListRequestResponse extends RequestResponseBase {
     public GetTutorListRequestResponse()
     {
         super(null);
-    }
-    public GetTutorListRequestResponse(ResponseListener listener)
-    {
-        super(listener);
     }
     public GetTutorListRequestResponse(Params params,ResponseListener responseListener)
     {
@@ -63,12 +61,21 @@ public class GetTutorListRequestResponse extends RequestResponseBase {
 
     public class Params
     {
+        public Params() {
+            UserConfig userConfig = AppManager.shareInstance().settingManager.getUserConfig();
+            AppConfig appConfig = AppManager.shareInstance().settingManager.getAppConfig();
+            if (userConfig.isSignedIn) {
+                city_id = userConfig.profile.city.cityID;
+            } else
+            {
+                city_id = appConfig.locationCity.cityID;
+            }
+    }
         public int is_app_query = 1;
         //course type
         public String stage = "";
         public String course = "";
-        @SerializedName(value = "sub_course")
-        public String subCourse = "";
+        public String sub_course = "";
         public String tutor_name = "";
         //paging
         public String page = "1";
@@ -81,7 +88,7 @@ public class GetTutorListRequestResponse extends RequestResponseBase {
         public String price_max = "";
         public String day_eng = "all";
         public String period_eng = "all";
-        public String city = "";
+        public String city_id = "";
         // by order
         public String order_by = "general";
         public String order_direc = "";

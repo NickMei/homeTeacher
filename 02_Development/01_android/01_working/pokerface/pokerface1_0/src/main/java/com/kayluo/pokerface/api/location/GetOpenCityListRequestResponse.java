@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * Created by cxm170 on 2015/9/20.
  */
 public class GetOpenCityListRequestResponse extends RequestResponseBase {
-    @SerializedName(value = "city_list")
+    @SerializedName(value = "open_city_list")
     public ArrayList<City> cityList;
     public GetOpenCityListRequestResponse(ResponseListener responselistener) {
         super(responselistener);

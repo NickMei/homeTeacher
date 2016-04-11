@@ -25,12 +25,13 @@ public final class UserProfile {
     public String mobile = "";
     public City city;
     public String name = "";
-    public List<String> searchHistoryList;
+    public List<String> searchHistoryList =  new ArrayList<String>();
 
     private UserProfileDBHelper mDbHelper;
-    public UserProfile(Context context)
+    public UserProfile(Context context,String userID)
     {
         mDbHelper = new UserProfileDBHelper(context);
+        this.queryUserProfile(userID);
     }
 
     /* Inner class that defines the table contents */
@@ -87,7 +88,6 @@ public final class UserProfile {
                     null);
         }
 
-
     }
 
     private void queryUserProfile(String userID)
@@ -128,6 +128,7 @@ public final class UserProfile {
             if(cursor.getCount() <= 0)
             {
                 cursor.close();
+                return;
             }
 
             cursor.moveToFirst();

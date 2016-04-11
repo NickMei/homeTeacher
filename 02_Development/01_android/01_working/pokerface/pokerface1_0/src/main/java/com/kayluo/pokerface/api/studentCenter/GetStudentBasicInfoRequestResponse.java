@@ -32,7 +32,9 @@ public class GetStudentBasicInfoRequestResponse extends RequestResponseBase {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                ResponseInfo responseInfo = new ResponseInfo();
+                responseInfo.returnCode = -1;
+                listener.onCompleted(responseInfo);
             }
         });
 

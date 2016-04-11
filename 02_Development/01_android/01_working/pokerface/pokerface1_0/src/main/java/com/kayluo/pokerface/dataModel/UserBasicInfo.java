@@ -8,7 +8,7 @@ public class UserBasicInfo {
     public String nickname = "";
     public String gender;
     public String grade;
-    public String city;
+    public City city;
     public String address;
     public String head_photo;
     public String self_intro = "";

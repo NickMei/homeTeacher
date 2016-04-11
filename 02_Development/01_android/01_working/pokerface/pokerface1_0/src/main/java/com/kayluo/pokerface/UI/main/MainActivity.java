@@ -27,6 +27,7 @@ import com.kayluo.pokerface.core.AppConfig;
 import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.core.UserConfig;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
+import com.kayluo.pokerface.database.UserProfile;
 
 public class MainActivity extends AppCompatActivity {
 	private NoScrollViewPager mViewPager;
@@ -79,10 +80,10 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public void onCompleted(ResponseInfo responseInfo) {
 				if (responseInfo.returnCode == 0) {
-					UserConfig userConfig = AppManager.shareInstance().settingManager.getUserConfig();
-					userConfig.city = getStudentBasicInfoRequestResponse.basicInfo.city;
-					userConfig.name = getStudentBasicInfoRequestResponse.basicInfo.name;
-					userConfig.head_photo = getStudentBasicInfoRequestResponse.basicInfo.head_photo;
+					UserProfile userProfile = AppManager.shareInstance().settingManager.getUserConfig().profile;
+					userProfile.city = getStudentBasicInfoRequestResponse.basicInfo.city;
+					userProfile.name = getStudentBasicInfoRequestResponse.basicInfo.name;
+					userProfile.head_photo = getStudentBasicInfoRequestResponse.basicInfo.head_photo;
 				} else {
 					AppManager.shareInstance().settingManager.getUserConfig().logout(MainActivity.this);
 				}
@@ -166,9 +167,15 @@ public class MainActivity extends AppCompatActivity {
 		} else if (requestCode == ActivityRequestCode.SELECT_LOCATION) {
 			// Make sure the request was successful
 			if (resultCode == RESULT_OK) {
-				String locationName = data.getStringExtra("location");
 				HomeTabFragment tabHome = (HomeTabFragment) mDatas.get(0);
-				tabHome.setLocation(locationName);
+				UserConfig userConfig = AppManager.shareInstance().settingManager.getUserConfig();
+				AppConfig appConfig = AppManager.shareInstance().settingManager.getAppConfig();
+				if (userConfig.isSignedIn)
+				{
+					userConfig.profile.city = appConfig.locationCity;
+					userConfig.saveToStorage(this);
+				}
+				tabHome.setLocation(appConfig.locationCity);
 			}
 		}
 		else if (requestCode ==  ActivityRequestCode.SETTINGS)

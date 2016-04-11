@@ -42,7 +42,6 @@ public class UserDetailActivity extends AppCompatActivity {
     private EditText cityEditText;
     private EditText preferredAddressEditText;
     private ArrayAdapter<String> gradeSpinnerAdapter;
-    private ArrayAdapter<String> citySpinnerAdapter;
     private View view;
     private Boolean editable = false;
     private ProgressDialog progressDialog;
@@ -148,10 +147,6 @@ public class UserDetailActivity extends AppCompatActivity {
         gradeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         gradeSpinner.setAdapter(gradeSpinnerAdapter);
 
-        citySpinnerAdapter = new ArrayAdapter<String>(UserDetailActivity.this, R.layout.spinner_item, appConfig.cityList);
-        citySpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        citySpinner.setAdapter(citySpinnerAdapter);
-
         setSubviewsEditable(false);
 
         this.loadUserBasicInfo();
@@ -167,13 +162,11 @@ public class UserDetailActivity extends AppCompatActivity {
                 usernameEditText.setText(basicInfo.name);
                 genderEditText.setText(basicInfo.gender);
                 gradeEditText.setText(basicInfo.grade);
-                cityEditText.setText(basicInfo.city);
+                cityEditText.setText(basicInfo.city.cityName);
                 preferredAddressEditText.setText(basicInfo.address);
                 new BitmapDownloaderTask(headPhotoImageView).execute(basicInfo.head_photo);
                 int selection = gradeSpinnerAdapter.getPosition(basicInfo.grade);
                 gradeSpinner.setSelection(selection);
-                int citySelection = citySpinnerAdapter.getPosition(basicInfo.city);
-                citySpinner.setSelection(citySelection);
                 progressDialog.dismiss();
             }
         });
@@ -184,7 +177,7 @@ public class UserDetailActivity extends AppCompatActivity {
         basicInfo.name = usernameEditText.getText().toString() ;
         basicInfo.gender = genderEditText.getText().toString() ;
         basicInfo.grade = gradeSpinner.getSelectedItem().toString();
-        basicInfo.city = citySpinner.getSelectedItem().toString() ;
+        basicInfo.city = AppManager.shareInstance().settingManager.getUserConfig().profile.city;
         basicInfo.address = preferredAddressEditText.getText().toString() ;
 
         new SaveStudentBasicInfoRequestResponse(basicInfo, new RequestResponseBase.ResponseListener() {

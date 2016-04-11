@@ -23,7 +23,7 @@ public class RegisterAccountRequestResponse extends RequestResponseBase {
         UserConfig userConfig = AppManager.shareInstance().settingManager.getUserConfig();
         requestJsonMap.put("password", MD5Hash.md5(password));
         requestJsonMap.put("identity", "student");
-        requestJsonMap.put("mobile", userConfig.mobile);
+        requestJsonMap.put("mobile", userConfig.profile.mobile);
         requestJsonMap.put("token", token);
         this.url = domain +"auth/registerAccount";
         Type jsonType = new TypeToken<ResponseInfo<ReAuthRequestResponse>>() {}.getType();

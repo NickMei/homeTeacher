@@ -143,9 +143,9 @@ public class SearchResultActivity extends Activity {
                     query = tutorEntity.getName();
                 }
                 // check duplicate record
-                if (!userConfig.searchHistory.contains(query))
+                if (!userConfig.profile.searchHistoryList.contains(query))
                 {
-                    userConfig.searchHistory.add(query);
+                    userConfig.profile.searchHistoryList.add(query);
                     userConfig.saveToStorage(SearchResultActivity.this);
                 }
                 Intent intent = new Intent(SearchResultActivity.this, TutorListViewActivity.class);
@@ -160,7 +160,7 @@ public class SearchResultActivity extends Activity {
             public void onClick(View view) {
                 searchHistoryView.removeAllViews();
                 UserConfig userConfig =  AppManager.shareInstance().settingManager.getUserConfig();
-                userConfig.searchHistory = new ArrayList<String>();
+                userConfig.profile.searchHistoryList = new ArrayList<String>();
                 userConfig.saveToStorage(SearchResultActivity.this);
 
             }
@@ -170,7 +170,7 @@ public class SearchResultActivity extends Activity {
 
     private void createSearchResultItems()
     {
-        List<String> searchHistory = AppManager.shareInstance().settingManager.getUserConfig().searchHistory;
+        List<String> searchHistory = AppManager.shareInstance().settingManager.getUserConfig().profile.searchHistoryList;
         for (String history : searchHistory)
         {
             TextView textView = createTextView(history);

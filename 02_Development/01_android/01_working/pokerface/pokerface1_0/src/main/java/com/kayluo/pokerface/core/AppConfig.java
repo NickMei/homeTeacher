@@ -15,6 +15,6 @@ public class AppConfig {
     public List<String> gradeList;
     public List<City> cityList;
     public List<Stage> stageList;
-    public City currentCityByLocation;
+    public City locationCity;
 
 }

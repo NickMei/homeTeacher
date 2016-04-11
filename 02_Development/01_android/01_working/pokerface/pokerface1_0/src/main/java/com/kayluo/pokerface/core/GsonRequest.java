@@ -64,7 +64,7 @@ public class GsonRequest<T> extends Request<T> {
 
             Map<String,Object> hashedMap = new LinkedHashMap<String,Object>();
             hashedMap.put("request_str","111111");
-            hashedMap.put("token",userConfig.token);
+            hashedMap.put("token",userConfig.profile.token);
             hashedMap.put("request_data", gson.toJson(jsonMap));
             String checkSumString = gson.toJson(hashedMap);
 
@@ -114,6 +114,7 @@ public class GsonRequest<T> extends Request<T> {
             return Response.error(new ParseError(e));
         } catch (JsonSyntaxException e) {
             Log.e("JsonException message",e.getMessage());
+            Log.e("JsonException message","API name" + getUrl());
             return Response.error(new ParseError(e));
         }
     }

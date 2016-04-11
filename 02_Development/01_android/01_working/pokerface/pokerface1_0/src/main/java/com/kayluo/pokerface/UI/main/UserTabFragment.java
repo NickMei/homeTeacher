@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.kayluo.pokerface.R;
+import com.kayluo.pokerface.database.UserProfile;
 import com.kayluo.pokerface.ui.user.myBookmark.BookmarkActivity;
 import com.kayluo.pokerface.ui.user.commentRecord.CommentRecordActivity;
 import com.kayluo.pokerface.ui.user.LoginViewActivity;
@@ -219,12 +220,12 @@ public class UserTabFragment extends Fragment
 			@Override
 			public void onCompleted(ResponseInfo responseInfo) {
 				if (responseInfo.returnCode == 0) {
-					UserConfig userConfig = AppManager.shareInstance().settingManager.getUserConfig();
-					userConfig.city = getStudentBasicInfoRequestResponse.basicInfo.city;
-					userConfig.name = getStudentBasicInfoRequestResponse.basicInfo.name;
-					userConfig.head_photo = getStudentBasicInfoRequestResponse.basicInfo.head_photo;
-					username.setText(userConfig.name);
-					new BitmapDownloaderTask(headPhoto).execute(userConfig.head_photo);
+					UserProfile profile = AppManager.shareInstance().settingManager.getUserConfig().profile;
+//					userConfig.city = getStudentBasicInfoRequestResponse.basicInfo.city;
+					profile.name = getStudentBasicInfoRequestResponse.basicInfo.name;
+					profile.head_photo = getStudentBasicInfoRequestResponse.basicInfo.head_photo;
+					username.setText(profile.name);
+					new BitmapDownloaderTask(headPhoto).execute(profile.head_photo);
 				}
 
 

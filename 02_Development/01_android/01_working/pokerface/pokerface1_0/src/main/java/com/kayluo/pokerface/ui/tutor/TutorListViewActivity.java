@@ -289,13 +289,13 @@ public class TutorListViewActivity extends AppCompatActivity implements TutorVie
             }
             else
             {
-                if (params.subCourse.equals("全部") || params.subCourse.equals(""))
+                if (params.sub_course.equals("全部") || params.sub_course.equals(""))
                 {
                     text = params.stage + "/" + params.course;
                 }
                 else
                 {
-                    text = params.stage + "/" + params.course + "/" + params.subCourse;
+                    text = params.stage + "/" + params.course + "/" + params.sub_course;
                 }
             }
         }

@@ -52,14 +52,22 @@ public class LocationCityListViewActivity extends AppCompatActivity {
         cityList =  new ArrayList<City>();
         AppConfig appConfig = AppManager.shareInstance().settingManager.getAppConfig();
         deviceLocationTextView = (TextView) findViewById(R.id.location_view_device_location_city);
-        deviceLocationTextView.setText(appConfig.currentCityByLocation.cityName);
+        if (appConfig.locationCity == null)
+        {
+            deviceLocationTextView.setText("定位失败");
+        }
+        else
+        {
+            deviceLocationTextView.setText(appConfig.locationCity.cityName);
+        }
         for (City city : appConfig.cityList)
         {
-            if (city.cityID == appConfig.currentCityByLocation.cityID)
+            if (appConfig.locationCity == null || city.cityID != appConfig.locationCity.cityID)
             {
                 cityList.add(city);
             }
         }
+
         LocationListAdapter adapter = new LocationListAdapter(this,cityList);
         mListView = (ListView) findViewById(R.id.city_header_list_view);
         mListView.setAdapter(adapter);
@@ -68,7 +76,7 @@ public class LocationCityListViewActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 City city = cityList.get(position);
                 AppConfig appConfig = AppManager.shareInstance().settingManager.getAppConfig();
-                appConfig.currentCityByLocation = city;
+                appConfig.locationCity = city;
                 Intent returnIntent = new Intent();
                 setResult(RESULT_OK,returnIntent);
                 finish();

@@ -84,7 +84,7 @@ public class SettingsActivity extends AppCompatActivity implements OnDialogButto
         logoutView = (LinearLayout) findViewById(R.id.tab_user_logout);
         logoutView.setVisibility(isMemberSignedIn?View.VISIBLE : View.GONE);
         phoneNumTextView = (TextView) findViewById(R.id.settings_phone_num);
-        phoneNumTextView.setText(AppManager.shareInstance().settingManager.getUserConfig().mobile);
+        phoneNumTextView.setText(AppManager.shareInstance().settingManager.getUserConfig().profile.mobile);
         changePhoneNumView = findViewById(R.id.change_phone_num_view);
         changePhoneNumView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,7 +132,7 @@ public class SettingsActivity extends AppCompatActivity implements OnDialogButto
             if (requestCode == RESULT_OK)
             {
                 UserConfig config = AppManager.shareInstance().settingManager.getUserConfig();
-                phoneNumTextView.setText(config.mobile);
+                phoneNumTextView.setText(config.profile.mobile);
             }
         }
     }
@@ -149,7 +149,7 @@ public class SettingsActivity extends AppCompatActivity implements OnDialogButto
                     if (response.returnCode == 0)
                     {
                         UserConfig config = AppManager.shareInstance().settingManager.getUserConfig();
-                        config.token = changePasswordRequestResponse.token;
+                        config.profile.token = changePasswordRequestResponse.token;
                         config.saveToStorage(SettingsActivity.this);
                         Toast.makeText(SettingsActivity.this,"修改成功",Toast.LENGTH_SHORT).show();
                     }

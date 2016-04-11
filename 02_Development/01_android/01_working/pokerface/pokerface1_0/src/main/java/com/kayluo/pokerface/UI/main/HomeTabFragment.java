@@ -15,6 +15,7 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.Poi;
 import com.kayluo.pokerface.R;
+import com.kayluo.pokerface.dataModel.City;
 import com.kayluo.pokerface.ui.home.LocationCityListViewActivity;
 import com.kayluo.pokerface.ui.search.SearchResultActivity;
 import com.kayluo.pokerface.util.LocationService;
@@ -43,12 +44,9 @@ public class HomeTabFragment extends Fragment
 		return v;
 	}
 
-	public void setLocation(String location)
+	public void setLocation(City location)
 	{
-		UserConfig userConfig = AppManager.shareInstance().settingManager.getUserConfig();
-		userConfig.city = location;
-		userConfig.saveToStorage(mContext);
-		selectLocationBtn.setText("[ " + userConfig.city + " ]");
+		selectLocationBtn.setText("[ " + location.cityName + " ]");
 	}
 
 	public void initViews() {
@@ -95,15 +93,31 @@ public class HomeTabFragment extends Fragment
 			if (null != bdLocation && bdLocation.getLocType() != BDLocation.TypeServerError) {
 				AppConfig appConfig = AppManager.shareInstance().settingManager.getAppConfig();
 
-				appConfig.currentCityByLocation.cityName = bdLocation.getCity().replace("市","");
+				String locationCity = bdLocation.getCity();
 				UserConfig userConfig = AppManager.shareInstance().settingManager.getUserConfig();
 				if(userConfig.isSignedIn)
 				{
-					selectLocationBtn.setText("[ " + userConfig.city + " ]");
+					selectLocationBtn.setText("[ " + userConfig.profile.city + " ]");
 				}
 				else
 				{
-					selectLocationBtn.setText("[ " + appConfig.deviceLocationCity + " ]");
+					for (City city : appConfig.cityList)
+					{
+						if(city.cityName.contains(locationCity))
+						{
+							appConfig.locationCity = city;
+						}
+					}
+
+					if (appConfig.locationCity != null)
+					{
+						selectLocationBtn.setText("[ " + appConfig.locationCity.cityName + " ]");
+					}
+					else
+					{
+						selectLocationBtn.setText("[定位失败]");
+					}
+
 					locationService.unregisterListener(mListener); //注销掉监听
 					locationService.stop(); //停止定位服务
 				}

@@ -16,6 +16,10 @@ public class UserProfileDBHelper extends SQLiteOpenHelper
             "CREATE TABLE " + UserProfile.UserEntity.TABLE_NAME + " (" +
                     UserProfile.UserEntity._ID + " INTEGER PRIMARY KEY," +
                     UserProfile.UserEntity.COLUMN_NAME_USER_ID + TEXT_TYPE + COMMA_SEP +
+                    UserProfile.UserEntity.COLUMN_NAME_TOKEN + TEXT_TYPE + COMMA_SEP +
+                    UserProfile.UserEntity.COLUMN_NAME_MOBILE + TEXT_TYPE + COMMA_SEP +
+                    UserProfile.UserEntity.COLUMN_NAME_LOCATION_CITY + TEXT_TYPE + COMMA_SEP +
+                    UserProfile.UserEntity.COLUMN_NAME_USER_NAME + TEXT_TYPE + COMMA_SEP +
                     UserProfile.UserEntity.COLUMN_NAME_SEARCH_HISTORY + TEXT_TYPE +
             " )";
 
