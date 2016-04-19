@@ -1,4 +1,4 @@
-package com.kayluo.pokerface.core;
+package com.kayluo.pokerface.util.geoLocation;
 
 import android.app.AlertDialog;
 import android.app.Service;

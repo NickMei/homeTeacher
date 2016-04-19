@@ -22,7 +22,7 @@ import android.widget.Toast;
 import com.kayluo.pokerface.R;
 import com.kayluo.pokerface.util.BitmapDownloaderTask;
 import com.kayluo.pokerface.api.studentCenter.GetStudentBasicInfoRequestResponse;
-import com.kayluo.pokerface.api.RequestResponseBase;
+import com.kayluo.pokerface.api.base.RequestResponseBase;
 import com.kayluo.pokerface.api.studentCenter.SaveStudentBasicInfoRequestResponse;
 import com.kayluo.pokerface.core.AppConfig;
 import com.kayluo.pokerface.core.AppManager;

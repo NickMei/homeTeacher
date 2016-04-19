@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.RadioGroup;
 
 import com.kayluo.pokerface.R;
-import com.kayluo.pokerface.util.OnDialogButtonClickListener;
+import com.kayluo.pokerface.component.dialog.OnDialogButtonClickListener;
 
 /**
  * Created by Nick on 2016-01-06.

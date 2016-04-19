@@ -1,4 +1,4 @@
-package com.kayluo.pokerface.api;
+package com.kayluo.pokerface.api.base;
 
 import com.google.gson.Gson;
 import com.kayluo.pokerface.core.AppManager;

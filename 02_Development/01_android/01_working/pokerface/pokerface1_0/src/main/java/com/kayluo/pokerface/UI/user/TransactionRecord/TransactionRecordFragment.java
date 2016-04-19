@@ -14,7 +14,7 @@ import com.kayluo.pokerface.R;
 import com.kayluo.pokerface.adapter.TransactionRecordListAdapter;
 import com.kayluo.pokerface.adapter.TransactionRecordViewHolder;
 import com.kayluo.pokerface.api.studentCenter.GetStudentOrderListRequestResponse;
-import com.kayluo.pokerface.api.RequestResponseBase;
+import com.kayluo.pokerface.api.base.RequestResponseBase;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 import com.kayluo.pokerface.dataModel.TransactionRecord;
 

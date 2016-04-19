@@ -1,4 +1,4 @@
-package com.kayluo.pokerface.util;
+package com.kayluo.pokerface.component.dialog;
 
 import android.app.DialogFragment;
 

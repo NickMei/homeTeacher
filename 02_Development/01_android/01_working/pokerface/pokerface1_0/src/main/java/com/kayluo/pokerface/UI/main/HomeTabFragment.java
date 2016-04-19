@@ -17,7 +17,7 @@ import com.kayluo.pokerface.R;
 import com.kayluo.pokerface.dataModel.City;
 import com.kayluo.pokerface.ui.home.LocationCityListViewActivity;
 import com.kayluo.pokerface.ui.search.SearchResultActivity;
-import com.kayluo.pokerface.util.LocationService;
+import com.kayluo.pokerface.util.geoLocation.LocationService;
 import com.kayluo.pokerface.common.EActivityRequestCode;
 import com.kayluo.pokerface.core.AppConfig;
 import com.kayluo.pokerface.core.AppManager;

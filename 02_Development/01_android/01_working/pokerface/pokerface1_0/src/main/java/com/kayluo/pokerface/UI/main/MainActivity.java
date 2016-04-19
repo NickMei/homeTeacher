@@ -20,7 +20,7 @@ import com.kayluo.pokerface.api.GetAllCourseListRequestResponse;
 import com.kayluo.pokerface.api.location.GetOpenCityListRequestResponse;
 import com.kayluo.pokerface.api.studentCenter.GetStudentBasicInfoRequestResponse;
 import com.kayluo.pokerface.api.studentCenter.GetStudentGradeListRequestResponse;
-import com.kayluo.pokerface.api.RequestResponseBase;
+import com.kayluo.pokerface.api.base.RequestResponseBase;
 import com.kayluo.pokerface.common.EActivityRequestCode;
 import com.kayluo.pokerface.component.NoScrollViewPager;
 import com.kayluo.pokerface.core.AppConfig;

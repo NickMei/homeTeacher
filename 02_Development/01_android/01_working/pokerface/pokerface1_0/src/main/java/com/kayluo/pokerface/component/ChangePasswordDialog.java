@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.kayluo.pokerface.R;
-import com.kayluo.pokerface.util.OnDialogButtonClickListener;
+import com.kayluo.pokerface.component.dialog.OnDialogButtonClickListener;
 
 
 /**

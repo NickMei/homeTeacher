@@ -27,7 +27,7 @@ import com.kayluo.pokerface.ui.search.FilterViewActivity;
 import com.kayluo.pokerface.adapter.TutorListViewAdapter;
 import com.kayluo.pokerface.adapter.TutorViewHolder;
 import com.kayluo.pokerface.api.tutorInfo.GetTutorListRequestResponse;
-import com.kayluo.pokerface.api.RequestResponseBase;
+import com.kayluo.pokerface.api.base.RequestResponseBase;
 import com.kayluo.pokerface.common.EActivityRequestCode;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 import com.kayluo.pokerface.dataModel.TutorEntity;

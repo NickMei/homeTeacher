@@ -12,7 +12,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.kayluo.pokerface.R;
-import com.kayluo.pokerface.util.OnDialogButtonClickListener;
+import com.kayluo.pokerface.component.dialog.OnDialogButtonClickListener;
 import com.kayluo.pokerface.util.Utils;
 
 import java.util.ArrayList;

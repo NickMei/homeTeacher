@@ -1,4 +1,4 @@
-package com.kayluo.pokerface.core;
+package com.kayluo.pokerface.api.base;
 
 import android.util.Log;
 
@@ -11,6 +11,8 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+import com.kayluo.pokerface.core.AppManager;
+import com.kayluo.pokerface.core.UserConfig;
 import com.kayluo.pokerface.util.MD5Hash;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 

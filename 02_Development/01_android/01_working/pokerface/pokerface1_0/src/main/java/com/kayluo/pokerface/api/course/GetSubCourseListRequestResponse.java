@@ -5,10 +5,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
-import com.kayluo.pokerface.api.RequestResponseBase;
+import com.kayluo.pokerface.api.base.RequestResponseBase;
 import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.common.EReturnCode;
-import com.kayluo.pokerface.core.GsonRequest;
+import com.kayluo.pokerface.api.base.GsonRequest;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 import com.kayluo.pokerface.dataModel.SubCourse;
 

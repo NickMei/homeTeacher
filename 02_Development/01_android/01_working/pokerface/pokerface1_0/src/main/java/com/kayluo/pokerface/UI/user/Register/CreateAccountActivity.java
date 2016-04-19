@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.kayluo.pokerface.R;
 import com.kayluo.pokerface.api.auth.RegisterAccountRequestResponse;
-import com.kayluo.pokerface.api.RequestResponseBase;
+import com.kayluo.pokerface.api.base.RequestResponseBase;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 
 public class CreateAccountActivity extends AppCompatActivity {

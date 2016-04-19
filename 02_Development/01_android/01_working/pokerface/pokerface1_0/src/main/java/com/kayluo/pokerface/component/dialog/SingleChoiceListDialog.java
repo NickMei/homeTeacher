@@ -1,4 +1,4 @@
-package com.kayluo.pokerface.component;
+package com.kayluo.pokerface.component.dialog;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,7 +12,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.kayluo.pokerface.R;
-import com.kayluo.pokerface.util.OnDialogButtonClickListener;
 import com.kayluo.pokerface.util.Utils;
 
 import java.util.ArrayList;

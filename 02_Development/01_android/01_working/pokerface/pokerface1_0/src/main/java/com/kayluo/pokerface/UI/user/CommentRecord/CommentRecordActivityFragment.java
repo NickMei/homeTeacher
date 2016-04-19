@@ -14,7 +14,7 @@ import com.kayluo.pokerface.R;
 import com.kayluo.pokerface.adapter.CommentRecordListAdapter;
 import com.kayluo.pokerface.adapter.CommentRecordViewHolder;
 import com.kayluo.pokerface.api.studentCenter.GetCommentListRequestResponse;
-import com.kayluo.pokerface.api.RequestResponseBase;
+import com.kayluo.pokerface.api.base.RequestResponseBase;
 import com.kayluo.pokerface.dataModel.CommentRecord;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 

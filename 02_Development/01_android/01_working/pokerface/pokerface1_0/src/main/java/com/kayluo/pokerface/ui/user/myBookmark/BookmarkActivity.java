@@ -13,7 +13,7 @@ import com.kayluo.pokerface.R;
 import com.kayluo.pokerface.adapter.TutorListViewAdapter;
 import com.kayluo.pokerface.adapter.TutorViewHolder;
 import com.kayluo.pokerface.api.studentCenter.GetStudentBookmarkListRequestResponse;
-import com.kayluo.pokerface.api.RequestResponseBase;
+import com.kayluo.pokerface.api.base.RequestResponseBase;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 import com.kayluo.pokerface.dataModel.TutorEntity;
 

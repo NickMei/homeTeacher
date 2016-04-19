@@ -1,4 +1,4 @@
-package com.kayluo.pokerface.core;
+package com.kayluo.pokerface.util;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;

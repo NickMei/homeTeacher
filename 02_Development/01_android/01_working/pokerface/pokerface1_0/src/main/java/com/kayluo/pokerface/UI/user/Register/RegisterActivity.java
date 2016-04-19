@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.kayluo.pokerface.R;
 import com.kayluo.pokerface.api.auth.AuthMsgCodeRequestResponse;
-import com.kayluo.pokerface.api.RequestResponseBase;
+import com.kayluo.pokerface.api.base.RequestResponseBase;
 import com.kayluo.pokerface.api.SendVerifyMessageRequestResponse;
 import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.core.UserConfig;

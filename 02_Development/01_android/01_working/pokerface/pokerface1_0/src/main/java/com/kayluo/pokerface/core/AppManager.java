@@ -9,7 +9,8 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
-import com.kayluo.pokerface.util.LocationService;
+import com.kayluo.pokerface.util.LruBitmapCache;
+import com.kayluo.pokerface.util.geoLocation.LocationService;
 
 /**
  * Created by cxm170 on 2015/3/15.

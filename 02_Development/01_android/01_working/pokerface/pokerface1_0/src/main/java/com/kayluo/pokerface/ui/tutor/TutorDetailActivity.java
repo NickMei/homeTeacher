@@ -20,7 +20,7 @@ import com.kayluo.pokerface.util.BitmapDownloaderTask;
 import com.kayluo.pokerface.util.Utils;
 import com.kayluo.pokerface.api.studentCenter.GetCommentListRequestResponse;
 import com.kayluo.pokerface.api.tutorInfo.GetTutorDetailRequestResponse;
-import com.kayluo.pokerface.api.RequestResponseBase;
+import com.kayluo.pokerface.api.base.RequestResponseBase;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 import com.kayluo.pokerface.dataModel.TutorDetail.TutorDetail;
 import com.kayluo.pokerface.dataModel.TutorDetail.TutorEduInfo;

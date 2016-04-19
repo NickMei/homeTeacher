@@ -1,4 +1,4 @@
-package com.kayluo.pokerface.util;
+package com.kayluo.pokerface.util.geoLocation;
 
 import android.content.Context;
 

@@ -18,7 +18,7 @@ import com.kayluo.pokerface.common.EReturnCode;
 import com.kayluo.pokerface.util.Utils;
 import com.kayluo.pokerface.adapter.SearchResultListAdapter;
 import com.kayluo.pokerface.api.tutorInfo.GetTutorListRequestResponse;
-import com.kayluo.pokerface.api.RequestResponseBase;
+import com.kayluo.pokerface.api.base.RequestResponseBase;
 import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.core.UserConfig;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
