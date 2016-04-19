@@ -9,8 +9,10 @@ import com.kayluo.pokerface.common.EReturnCode;
 import com.kayluo.pokerface.api.base.GsonRequest;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 import com.kayluo.pokerface.dataModel.TutorDetail.TutorDetail;
+import com.kayluo.pokerface.dataModel.TutorEntity;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 /**
  * Created by cxm170 on 2015/8/9.
@@ -40,7 +42,7 @@ public class GetTutorDetailRequestResponse extends RequestResponseBase {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                onVolleyError(error);
             }
         });
 

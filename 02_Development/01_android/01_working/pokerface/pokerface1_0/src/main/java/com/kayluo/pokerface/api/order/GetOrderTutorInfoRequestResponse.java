@@ -47,9 +47,7 @@ public class GetOrderTutorInfoRequestResponse extends RequestResponseBase {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                ResponseInfo responseInfo = new ResponseInfo();
-                responseInfo.returnCode = EReturnCode.UNKNOWN_ERROR.getValue();
-                listener.onCompleted(responseInfo);
+                onVolleyError(error);
             }
         });
 

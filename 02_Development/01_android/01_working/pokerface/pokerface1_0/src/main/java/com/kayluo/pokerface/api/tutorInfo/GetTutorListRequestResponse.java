@@ -50,10 +50,8 @@ public class GetTutorListRequestResponse extends RequestResponseBase {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                ResponseInfo responseInfo = new ResponseInfo();
-                responseInfo.returnCode = EReturnCode.UNKNOWN_ERROR.getValue();
                 tutorList = new ArrayList<TutorEntity>();
-                listener.onCompleted(responseInfo);
+                onVolleyError(error);
             }
         });
 
@@ -74,30 +72,57 @@ public class GetTutorListRequestResponse extends RequestResponseBase {
             {
                 city_id = appConfig.locationCity.cityID;
             }
-    }
+
+            is_app_query = 1;
+            //course type
+            stage = "";
+            course = "";
+            sub_course = "";
+            tutor_name = "";
+            //pagination
+            page = "1";
+            limit = "6";
+            // by filter
+            gender_eng = "";
+            career = "";
+            district = "";
+            price_min = "";
+            price_max = "";
+            day_eng = "all";
+            period_eng = "all";
+            city_id = "";
+            // by order
+            order_by = "general";
+            order_direc = "";
+            longitude = "";
+            latitude = "";
+
+        }
         public int is_app_query = 1;
         //course type
-        public String stage = "";
-        public String course = "";
-        public String sub_course = "";
-        public String tutor_name = "";
+        public String stage;
+        public String course;
+        public String sub_course;
+        public String tutor_name;
         //paging
-        public String page = "1";
-        public String limit = "6";
+        public String page;
+        public String limit;
         // by filter
-        public String gender_eng = "";
-        public String career = "";
-        public String district = "";
-        public String price_min = "";
-        public String price_max = "";
-        public String day_eng = "all";
-        public String period_eng = "all";
-        public String city_id = "";
+        public String gender_eng ;
+        public String career;
+        public String district;
+        public String price_min;
+        public String price_max;
+        public String day_eng;
+        public String period_eng;
+        public String city_id;
         // by order
-        public String order_by = "general";
-        public String order_direc = "";
-        public String longitude = "";
-        public String latitude = "";
+        public String order_by;
+
+
+        public String order_direc;
+        public String longitude;
+        public String latitude;
 
     }
 

@@ -1,6 +1,8 @@
 package com.kayluo.pokerface.api.base;
 
+import com.android.volley.VolleyError;
 import com.google.gson.Gson;
+import com.kayluo.pokerface.common.EReturnCode;
 import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 
@@ -32,6 +34,13 @@ public class RequestResponseBase {
     public static interface ResponseListener {
         public abstract void onCompleted(ResponseInfo response);
 
+    }
+
+    protected void onVolleyError(VolleyError error)
+    {
+        ResponseInfo responseInfo = new ResponseInfo();
+        responseInfo.returnCode = EReturnCode.UNKNOWN_ERROR.getValue();
+        listener.onCompleted(responseInfo);
     }
 
 }

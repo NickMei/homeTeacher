@@ -36,7 +36,6 @@ public class GetCommentListRequestResponse extends RequestResponseBase {
         requestJsonMap.put("target", targetType.toString());
         requestJsonMap.put("comment_type", commentType);
         requestJsonMap.put("tutor_id",tutorID);
-
         this.url = domain +"studentcenter/getCommentList";
         Type jsonType = new TypeToken<ResponseInfo<MyResponse>>() {}.getType();
         GsonRequest gsonRequest = new GsonRequest(url, jsonType, requestJsonMap, new Response.Listener() {
@@ -52,7 +51,7 @@ public class GetCommentListRequestResponse extends RequestResponseBase {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                onVolleyError(error);
             }
         });
 

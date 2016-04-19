@@ -42,7 +42,7 @@ public class RegisterAccountRequestResponse extends RequestResponseBase {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                onVolleyError(error);
             }
         });
 

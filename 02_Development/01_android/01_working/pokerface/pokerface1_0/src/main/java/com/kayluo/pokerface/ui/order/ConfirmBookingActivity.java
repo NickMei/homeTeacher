@@ -83,6 +83,7 @@ public class ConfirmBookingActivity extends AppCompatActivity implements OnDialo
                     bookingRemarksTextView.setText(order.extraInfo);
                     bookingRemarksTextView.setVisibility(order.extraInfo.equals("")? View.GONE:View.VISIBLE);
                 }
+                break;
 
             }
             case TEACHING_ADDRESS:
@@ -92,6 +93,7 @@ public class ConfirmBookingActivity extends AppCompatActivity implements OnDialo
                     teachingAddressTextView.setText(order.classAddress);
                     teachingAddressTextView.setVisibility(order.classAddress.equals("") ? View.GONE : View.VISIBLE);
                 }
+                break;
             }
         }
 

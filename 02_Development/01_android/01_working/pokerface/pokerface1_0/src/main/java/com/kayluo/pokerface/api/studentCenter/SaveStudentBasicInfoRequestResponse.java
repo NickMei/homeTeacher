@@ -4,6 +4,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.google.gson.reflect.TypeToken;
 import com.kayluo.pokerface.api.base.RequestResponseBase;
+import com.kayluo.pokerface.common.EReturnCode;
 import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.api.base.GsonRequest;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
@@ -30,7 +31,7 @@ public class SaveStudentBasicInfoRequestResponse extends RequestResponseBase {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                onVolleyError(error);
             }
         });
 

@@ -7,6 +7,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.kayluo.pokerface.api.base.RequestResponseBase;
+import com.kayluo.pokerface.common.EReturnCode;
 import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.dataModel.City;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
@@ -43,7 +44,7 @@ public class GetCityListRequestResponse  extends RequestResponseBase {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                onVolleyError(error);
             }
         });
         AppManager.shareInstance().addToRequestQueue(jsonObjReq, this.url);
