@@ -104,10 +104,13 @@
         <activity
             android:name=".ui.search.SelectCourseActivity"
             android:label="@string/title_activity_select_course" />
-        <activity android:name=".ui.tutor.TutorListViewActivity"/>
-        <activity android:name=".ui.search.SearchResultActivity"/>
-        <activity android:name=".ui.confirmBooking.ConfirmBookingActivity"
-            android:label="@string/title_activity_confirm_booking"/>
+        <activity android:name=".ui.tutor.TutorListViewActivity" />
+        <activity android:name=".ui.search.SearchResultActivity" />
+        <activity
+            android:name=".ui.order.ConfirmBookingActivity"
+            android:label="@string/title_activity_confirm_booking" />
+        <activity android:name=".ui.order.RemarksActivity" />
+        <activity android:name=".ui.order.TeachingAddressActivity"></activity>
     </application>
 
 </manifest>

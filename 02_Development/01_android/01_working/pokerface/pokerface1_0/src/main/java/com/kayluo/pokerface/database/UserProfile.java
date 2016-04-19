@@ -7,9 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.kayluo.pokerface.core.UserConfig;
 import com.kayluo.pokerface.dataModel.City;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,16 +18,22 @@ import java.util.List;
 public final class UserProfile {
     // To prevent someone from accidentally instantiating the contract class,
     // give it an empty constructor.
-    public String token = "0";
-    public String head_photo = "";
-    public String mobile = "";
+    public String token;
+    public String head_photo;
+    public String mobile;
     public City city;
-    public String name = "";
-    public List<String> searchHistoryList =  new ArrayList<String>();
-
+    public String name;
+    public List<String> searchHistoryList;
     private UserProfileDBHelper mDbHelper;
+
     public UserProfile(Context context,String userID)
     {
+        token = "0";
+        head_photo = "";
+        mobile = "";
+        city = new City();
+        name = "";
+        searchHistoryList =  new ArrayList<String>();
         mDbHelper = new UserProfileDBHelper(context);
         this.queryUserProfile(userID);
     }

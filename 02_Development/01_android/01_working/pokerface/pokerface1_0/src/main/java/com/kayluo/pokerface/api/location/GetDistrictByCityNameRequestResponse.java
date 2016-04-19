@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.kayluo.pokerface.api.RequestResponseBase;
 import com.kayluo.pokerface.core.AppManager;
+import com.kayluo.pokerface.common.EReturnCode;
 import com.kayluo.pokerface.core.GsonRequest;
 import com.kayluo.pokerface.dataModel.District;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
@@ -29,7 +30,7 @@ public class GetDistrictByCityNameRequestResponse extends RequestResponseBase {
             @Override
             public void onResponse(Object response) {
                 ResponseInfo responseInfo = (ResponseInfo) response;
-                if (responseInfo.returnCode == 0) {
+                if (responseInfo.returnCode == EReturnCode.SUCCESS.getValue()) {
                     GetDistrictByCityNameRequestResponse mResponse = (GetDistrictByCityNameRequestResponse) responseInfo.response;
                     districtList = mResponse.districtList;
                 }

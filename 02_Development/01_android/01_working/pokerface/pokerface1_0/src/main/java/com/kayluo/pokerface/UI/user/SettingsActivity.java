@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.kayluo.pokerface.R;
 import com.kayluo.pokerface.ui.user.register.RegisterActivity;
 import com.kayluo.pokerface.api.auth.LogoutRequestResponse;
-import com.kayluo.pokerface.common.ActivityRequestCode;
+import com.kayluo.pokerface.common.EActivityRequestCode;
 import com.kayluo.pokerface.component.ChangePasswordDialog;
 import com.kayluo.pokerface.util.OnDialogButtonClickListener;
 import com.kayluo.pokerface.api.auth.ModifyPasswordRequestResponse;
@@ -91,7 +91,7 @@ public class SettingsActivity extends AppCompatActivity implements OnDialogButto
             public void onClick(View v) {
                 Intent intent = new Intent(SettingsActivity.this, RegisterActivity.class);
                 intent.putExtra("createNewAccount",false);
-                SettingsActivity.this.startActivityForResult(intent, ActivityRequestCode.CHANGE_PASSWORD);
+                SettingsActivity.this.startActivityForResult(intent, EActivityRequestCode.CHANGE_PASSWORD.getValue());
             }
         });
 
@@ -127,7 +127,7 @@ public class SettingsActivity extends AppCompatActivity implements OnDialogButto
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == ActivityRequestCode.CHANGE_PASSWORD)
+        if (requestCode == EActivityRequestCode.CHANGE_PASSWORD.getValue())
         {
             if (requestCode == RESULT_OK)
             {

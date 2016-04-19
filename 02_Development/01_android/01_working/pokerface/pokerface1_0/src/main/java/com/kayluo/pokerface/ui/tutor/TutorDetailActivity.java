@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,6 +14,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.kayluo.pokerface.R;
+import com.kayluo.pokerface.ui.order.ConfirmBookingActivity;
 import com.kayluo.pokerface.ui.user.commentRecord.CommentRecordActivity;
 import com.kayluo.pokerface.util.BitmapDownloaderTask;
 import com.kayluo.pokerface.util.Utils;
@@ -69,6 +69,9 @@ public class TutorDetailActivity extends AppCompatActivity {
 
     private Button moreCommentsButton;
 
+
+    private TextView bookmarkButton;
+    private TextView confirmBookingButton;
 
     private GetTutorDetailRequestResponse getTutorDetailRequestResponse;
 
@@ -130,6 +133,9 @@ public class TutorDetailActivity extends AppCompatActivity {
         verfTeacher = (TextView) this.findViewById(R.id.verf_teacher);
 
         moreCommentsButton = (Button) this.findViewById(R.id.more_comments);
+
+        bookmarkButton = (TextView) this.findViewById(R.id.tutor_detail_bookmark_tutor_button);
+        confirmBookingButton = (TextView) this.findViewById(R.id.tutor_detail_confirm_booking_button);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("获取教师详情...");
@@ -222,8 +228,23 @@ public class TutorDetailActivity extends AppCompatActivity {
                     }
                 });
 
-
                 createTableViewCell(detail.timetable_info);
+
+                bookmarkButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
+
+                confirmBookingButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(TutorDetailActivity.this, ConfirmBookingActivity.class);
+                        intent.putExtra("tutorID", tutorId);
+                        startActivity(intent);
+                    }
+                });
 
                 progressDialog.dismiss();
             }

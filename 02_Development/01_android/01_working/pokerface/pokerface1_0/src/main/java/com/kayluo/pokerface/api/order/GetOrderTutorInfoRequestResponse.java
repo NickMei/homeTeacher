@@ -1,32 +1,46 @@
-package com.kayluo.pokerface.api.studentCenter;
+package com.kayluo.pokerface.api.order;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.kayluo.pokerface.api.RequestResponseBase;
 import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.common.EReturnCode;
 import com.kayluo.pokerface.core.GsonRequest;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
+import com.kayluo.pokerface.dataModel.TeachInfo;
+import com.kayluo.pokerface.dataModel.TutorDetail.TutorBasicInfo;
 import com.kayluo.pokerface.dataModel.UserBasicInfo;
 
 import java.lang.reflect.Type;
 
 /**
- * Created by cxm170 on 9/6/2015.
+ * Created by Nick on 2016-04-12.
  */
-public class GetStudentBasicInfoRequestResponse extends RequestResponseBase {
-    public UserBasicInfo basicInfo;
-    public GetStudentBasicInfoRequestResponse(ResponseListener responselistener) {
-        super(responselistener);
-        this.url = domain +"studentcenter/getStudentBasicInfo";
-        Type jsonType = new TypeToken<ResponseInfo<UserBasicInfo>>() {}.getType();
+public class GetOrderTutorInfoRequestResponse extends RequestResponseBase {
+
+    @SerializedName(value = "student_info")
+    public UserBasicInfo studentBasicInfo;
+    @SerializedName(value = "tutor_info")
+    public TutorBasicInfo tutorBasicInfo;
+    @SerializedName(value = "teach_info")
+    public TeachInfo teachInfo;
+
+    public GetOrderTutorInfoRequestResponse(String tutorID,ResponseListener responseListener) {
+        super(responseListener);
+        this.url = domain +"order/getOrderTutorInfo";
+        requestJsonMap.put("tutor_id",tutorID);
+        Type jsonType = new TypeToken<ResponseInfo<GetOrderTutorInfoRequestResponse>>() {}.getType();
         GsonRequest gsonRequest = new GsonRequest(url, jsonType, requestJsonMap, new Response.Listener() {
             @Override
             public void onResponse(Object response) {
                 ResponseInfo responseInfo = (ResponseInfo) response;
                 if (responseInfo.returnCode == EReturnCode.SUCCESS.getValue()) {
-                    basicInfo = (UserBasicInfo) responseInfo.response;
+                    GetOrderTutorInfoRequestResponse mResponse = (GetOrderTutorInfoRequestResponse) responseInfo.response;
+                    studentBasicInfo = mResponse.studentBasicInfo;
+                    tutorBasicInfo = mResponse.tutorBasicInfo;
+                    teachInfo = mResponse.teachInfo;
                 }
                 listener.onCompleted(responseInfo);
             }
@@ -41,5 +55,4 @@ public class GetStudentBasicInfoRequestResponse extends RequestResponseBase {
 
         AppManager.shareInstance().addToRequestQueue(gsonRequest, this.url);
     }
-
 }

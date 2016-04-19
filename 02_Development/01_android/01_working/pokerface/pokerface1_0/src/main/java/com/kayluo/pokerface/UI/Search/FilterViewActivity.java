@@ -18,7 +18,7 @@ import com.kayluo.pokerface.util.OnDialogButtonClickListener;
 import com.kayluo.pokerface.api.tutorInfo.GetPriceRangeListRequestResponse;
 import com.kayluo.pokerface.api.tutorInfo.GetTutorListRequestResponse;
 import com.kayluo.pokerface.api.RequestResponseBase;
-import com.kayluo.pokerface.common.ActivityRequestCode;
+import com.kayluo.pokerface.common.EActivityRequestCode;
 import com.kayluo.pokerface.component.SelectDayDialog;
 import com.kayluo.pokerface.component.SelectDistrictDialog;
 import com.kayluo.pokerface.component.SelectPriceRangeDialog;
@@ -90,7 +90,7 @@ public class FilterViewActivity extends AppCompatActivity implements OnDialogBut
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if (requestCode == ActivityRequestCode.SELECT_COURSE)
+        if (requestCode == EActivityRequestCode.SELECT_COURSE.getValue())
         {
             if (resultCode == RESULT_OK)
             {
@@ -177,7 +177,7 @@ public class FilterViewActivity extends AppCompatActivity implements OnDialogBut
                 intent.putExtra("stageIndex",stageIndex);
                 intent.putExtra("courseIndex",courseIndex);
                 intent.putExtra("subCourseIndex",subCourseIndex);
-                startActivityForResult(intent, ActivityRequestCode.SELECT_COURSE);
+                startActivityForResult(intent, EActivityRequestCode.SELECT_COURSE.getValue());
             }
         });
         selectDayDialog = new SelectDayDialog();

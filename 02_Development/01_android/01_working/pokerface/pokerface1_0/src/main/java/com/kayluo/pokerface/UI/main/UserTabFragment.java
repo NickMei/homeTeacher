@@ -29,7 +29,7 @@ import com.kayluo.pokerface.api.studentCenter.GetCommentListRequestResponse;
 import com.kayluo.pokerface.api.studentCenter.GetStudentBasicInfoRequestResponse;
 import com.kayluo.pokerface.api.studentCenter.GetStudentCourseRecordRequestResponse;
 import com.kayluo.pokerface.api.RequestResponseBase;
-import com.kayluo.pokerface.common.ActivityRequestCode;
+import com.kayluo.pokerface.common.EActivityRequestCode;
 import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.core.UserConfig;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
@@ -77,7 +77,7 @@ public class UserTabFragment extends Fragment
 	public Boolean checkMemberInfo(){
 		if (!isMemberSignedIn){
 			Intent intent = new Intent(mContext, LoginViewActivity.class);
-			getActivity().startActivityForResult(intent, ActivityRequestCode.DISPLAY_LOGIN);
+			getActivity().startActivityForResult(intent, EActivityRequestCode.DISPLAY_LOGIN.getValue());
 		}
 		return isMemberSignedIn;
 	}
@@ -104,7 +104,7 @@ public class UserTabFragment extends Fragment
 			public void onClick(View v) {
 				if(checkMemberInfo()){
 					Intent intent = new Intent(mContext, UserDetailActivity.class);
-					startActivityForResult(intent, ActivityRequestCode.SHOW_USER_DETAIL);
+					startActivityForResult(intent, EActivityRequestCode.SHOW_USER_DETAIL.getValue());
 				}
 			}
 
@@ -126,7 +126,7 @@ public class UserTabFragment extends Fragment
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(mContext, SettingsActivity.class);
-				getActivity().startActivityForResult(intent, ActivityRequestCode.SETTINGS);
+				getActivity().startActivityForResult(intent, EActivityRequestCode.SETTINGS.getValue());
 			}
 		});
 

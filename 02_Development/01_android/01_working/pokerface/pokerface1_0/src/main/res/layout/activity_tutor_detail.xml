@@ -657,7 +657,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="收藏老師"
-            android:id="@+id/contact_tutor"
+            android:id="@+id/tutor_detail_bookmark_tutor_button"
+            android:clickable="true"
             android:layout_weight="0.5" />
 
         <TextView
@@ -670,6 +671,7 @@
             android:text="馬上訂課"
             android:id="@+id/tutor_detail_confirm_booking_button"
             android:layout_weight="0.5"
+            android:clickable="true"
             style="@style/textViewButton"
              />
     </LinearLayout>

@@ -5,6 +5,7 @@ import com.android.volley.VolleyError;
 import com.google.gson.reflect.TypeToken;
 import com.kayluo.pokerface.api.RequestResponseBase;
 import com.kayluo.pokerface.core.AppManager;
+import com.kayluo.pokerface.common.EReturnCode;
 import com.kayluo.pokerface.core.GsonRequest;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 
@@ -24,7 +25,7 @@ public class GetStudentGradeListRequestResponse extends RequestResponseBase {
             @Override
             public void onResponse(Object response) {
                 ResponseInfo responseInfo = (ResponseInfo) response;
-                if (responseInfo.returnCode == 0) {
+                if (responseInfo.returnCode == EReturnCode.SUCCESS.getValue()) {
                     GetStudentGradeListRequestResponse mResponse = (GetStudentGradeListRequestResponse) responseInfo.response;
                     grade_list = mResponse.grade_list;
                 }

@@ -87,6 +87,7 @@
         <item>下午</item>
         <item>晚上</item>
     </string-array>
+
     <string name="title_activity_location_district_list_view">地区列表</string>
     <string name="title_activity_location_province_list_view">省份列表</string>
     <string name="title_activity_location_list_view">城市列表</string>

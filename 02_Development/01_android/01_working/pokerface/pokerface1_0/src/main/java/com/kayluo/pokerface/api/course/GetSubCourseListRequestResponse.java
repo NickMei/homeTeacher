@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import com.kayluo.pokerface.api.RequestResponseBase;
 import com.kayluo.pokerface.core.AppManager;
+import com.kayluo.pokerface.common.EReturnCode;
 import com.kayluo.pokerface.core.GsonRequest;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 import com.kayluo.pokerface.dataModel.SubCourse;
@@ -31,7 +32,7 @@ public class GetSubCourseListRequestResponse extends RequestResponseBase {
             @Override
             public void onResponse(Object response) {
                 ResponseInfo responseInfo = (ResponseInfo) response;
-                if (responseInfo.returnCode == 0) {
+                if (responseInfo.returnCode == EReturnCode.SUCCESS.getValue()) {
                     GetSubCourseListRequestResponse mResponse = (GetSubCourseListRequestResponse) responseInfo.response;
                     subCourseList = mResponse.subCourseList;
                 }

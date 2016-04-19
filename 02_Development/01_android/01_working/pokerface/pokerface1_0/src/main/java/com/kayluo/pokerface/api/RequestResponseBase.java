@@ -20,9 +20,8 @@ public class RequestResponseBase {
 
     protected ResponseListener listener;
 
-    public RequestResponseBase(ResponseListener listener) {
-
-        this.listener = listener;
+    public RequestResponseBase(ResponseListener responseListener) {
+        this.listener = responseListener;
     }
 
     public void cancelPendingRequest()

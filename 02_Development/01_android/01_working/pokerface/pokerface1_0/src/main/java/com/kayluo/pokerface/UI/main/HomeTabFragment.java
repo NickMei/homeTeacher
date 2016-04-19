@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.Poi;
@@ -19,7 +18,7 @@ import com.kayluo.pokerface.dataModel.City;
 import com.kayluo.pokerface.ui.home.LocationCityListViewActivity;
 import com.kayluo.pokerface.ui.search.SearchResultActivity;
 import com.kayluo.pokerface.util.LocationService;
-import com.kayluo.pokerface.common.ActivityRequestCode;
+import com.kayluo.pokerface.common.EActivityRequestCode;
 import com.kayluo.pokerface.core.AppConfig;
 import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.core.UserConfig;
@@ -56,7 +55,7 @@ public class HomeTabFragment extends Fragment
 			@Override
 			public void onClick(View view) {
 				Intent intent = new Intent(mContext, SearchResultActivity.class);
-				getActivity().startActivityForResult(intent, ActivityRequestCode.SEARCH_RESULTS);
+				getActivity().startActivityForResult(intent, EActivityRequestCode.SEARCH_RESULTS.getValue());
 				getActivity().overridePendingTransition(R.anim.hold, R.anim.fade_in);
 			}
 		});
@@ -66,7 +65,7 @@ public class HomeTabFragment extends Fragment
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(mContext, LocationCityListViewActivity.class);
-				getActivity().startActivityForResult(intent, ActivityRequestCode.SELECT_LOCATION);
+				getActivity().startActivityForResult(intent, EActivityRequestCode.SELECT_LOCATION.getValue());
 			}
 		});
 
@@ -109,14 +108,12 @@ public class HomeTabFragment extends Fragment
 						}
 					}
 
-					if (appConfig.locationCity != null)
+					if (appConfig.locationCity == null)
 					{
-						selectLocationBtn.setText("[ " + appConfig.locationCity.cityName + " ]");
+						appConfig.locationCity = appConfig.cityList.get(0); // set default value
 					}
-					else
-					{
-						selectLocationBtn.setText("[定位失败]");
-					}
+
+					selectLocationBtn.setText("[ " + appConfig.locationCity.cityName + " ]");
 
 					locationService.unregisterListener(mListener); //注销掉监听
 					locationService.stop(); //停止定位服务

@@ -5,6 +5,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.google.gson.reflect.TypeToken;
 import com.kayluo.pokerface.api.RequestResponseBase;
+import com.kayluo.pokerface.common.EReturnCode;
 import com.kayluo.pokerface.util.MD5Hash;
 import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.core.GsonRequest;
@@ -38,7 +39,7 @@ public class LoginRequestResponse extends RequestResponseBase {
             @Override
             public void onResponse(Object response) {
                 ResponseInfo responseInfo = (ResponseInfo) response;
-                if (responseInfo.returnCode == 0) {
+                if (responseInfo.returnCode == EReturnCode.SUCCESS.getValue()) {
                     LoginRequestResponse authResponse = (LoginRequestResponse) responseInfo.response;
                     head_photo = authResponse.head_photo;
                     token = authResponse.token;

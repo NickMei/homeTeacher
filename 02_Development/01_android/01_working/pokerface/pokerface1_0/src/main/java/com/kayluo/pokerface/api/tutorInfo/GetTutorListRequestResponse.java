@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import com.kayluo.pokerface.api.RequestResponseBase;
 import com.kayluo.pokerface.core.AppConfig;
 import com.kayluo.pokerface.core.AppManager;
+import com.kayluo.pokerface.common.EReturnCode;
 import com.kayluo.pokerface.core.GsonRequest;
 import com.kayluo.pokerface.core.UserConfig;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
@@ -40,7 +41,7 @@ public class GetTutorListRequestResponse extends RequestResponseBase {
             @Override
             public void onResponse(Object response) {
                 ResponseInfo responseInfo = (ResponseInfo) response;
-                if (responseInfo.returnCode == 0) {
+                if (responseInfo.returnCode == EReturnCode.SUCCESS.getValue()) {
                     GetTutorListRequestResponse mResponse = (GetTutorListRequestResponse) responseInfo.response;
                     tutorList = mResponse.tutorList;
                 }
@@ -50,7 +51,7 @@ public class GetTutorListRequestResponse extends RequestResponseBase {
             @Override
             public void onErrorResponse(VolleyError error) {
                 ResponseInfo responseInfo = new ResponseInfo();
-                responseInfo.returnCode = -999;
+                responseInfo.returnCode = EReturnCode.UNKNOWN_ERROR.getValue();
                 tutorList = new ArrayList<TutorEntity>();
                 listener.onCompleted(responseInfo);
             }
@@ -64,9 +65,12 @@ public class GetTutorListRequestResponse extends RequestResponseBase {
         public Params() {
             UserConfig userConfig = AppManager.shareInstance().settingManager.getUserConfig();
             AppConfig appConfig = AppManager.shareInstance().settingManager.getAppConfig();
-            if (userConfig.isSignedIn) {
-                city_id = userConfig.profile.city.cityID;
-            } else
+            if (userConfig.isSignedIn)
+            {
+//                city_id = userConfig.profile.city.cityID;
+                city_id = appConfig.locationCity.cityID; // TODO: should be removed after API request is updated
+            }
+            else
             {
                 city_id = appConfig.locationCity.cityID;
             }

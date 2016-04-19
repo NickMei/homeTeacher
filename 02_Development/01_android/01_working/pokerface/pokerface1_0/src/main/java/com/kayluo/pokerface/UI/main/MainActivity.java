@@ -21,7 +21,7 @@ import com.kayluo.pokerface.api.location.GetOpenCityListRequestResponse;
 import com.kayluo.pokerface.api.studentCenter.GetStudentBasicInfoRequestResponse;
 import com.kayluo.pokerface.api.studentCenter.GetStudentGradeListRequestResponse;
 import com.kayluo.pokerface.api.RequestResponseBase;
-import com.kayluo.pokerface.common.ActivityRequestCode;
+import com.kayluo.pokerface.common.EActivityRequestCode;
 import com.kayluo.pokerface.component.NoScrollViewPager;
 import com.kayluo.pokerface.core.AppConfig;
 import com.kayluo.pokerface.core.AppManager;
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 			public void onCompleted(ResponseInfo responseInfo) {
 				if (responseInfo.returnCode == 0) {
 					UserProfile userProfile = AppManager.shareInstance().settingManager.getUserConfig().profile;
-					userProfile.city = getStudentBasicInfoRequestResponse.basicInfo.city;
+					userProfile.city.cityName = getStudentBasicInfoRequestResponse.basicInfo.city_name;
 					userProfile.name = getStudentBasicInfoRequestResponse.basicInfo.name;
 					userProfile.head_photo = getStudentBasicInfoRequestResponse.basicInfo.head_photo;
 				} else {
@@ -159,12 +159,12 @@ public class MainActivity extends AppCompatActivity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-		if (requestCode == ActivityRequestCode.DISPLAY_LOGIN) {
+		if (requestCode == EActivityRequestCode.DISPLAY_LOGIN.getValue()) {
 			if (resultCode == RESULT_OK) {
 				UserTabFragment tabUser = (UserTabFragment) mDatas.get(3);
 				tabUser.loadData();
 			}
-		} else if (requestCode == ActivityRequestCode.SELECT_LOCATION) {
+		} else if (requestCode == EActivityRequestCode.SELECT_LOCATION.getValue()) {
 			// Make sure the request was successful
 			if (resultCode == RESULT_OK) {
 				HomeTabFragment tabHome = (HomeTabFragment) mDatas.get(0);
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
 				tabHome.setLocation(appConfig.locationCity);
 			}
 		}
-		else if (requestCode ==  ActivityRequestCode.SETTINGS)
+		else if (requestCode ==  EActivityRequestCode.SETTINGS.getValue())
 		{
 			if (resultCode == RESULT_OK)
 			{

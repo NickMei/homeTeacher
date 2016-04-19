@@ -28,7 +28,7 @@ import com.kayluo.pokerface.adapter.TutorListViewAdapter;
 import com.kayluo.pokerface.adapter.TutorViewHolder;
 import com.kayluo.pokerface.api.tutorInfo.GetTutorListRequestResponse;
 import com.kayluo.pokerface.api.RequestResponseBase;
-import com.kayluo.pokerface.common.ActivityRequestCode;
+import com.kayluo.pokerface.common.EActivityRequestCode;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 import com.kayluo.pokerface.dataModel.TutorEntity;
 
@@ -78,7 +78,7 @@ public class TutorListViewActivity extends AppCompatActivity implements TutorVie
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode ==  ActivityRequestCode.TUTOR_LIST_FILTER)
+        if (requestCode ==  EActivityRequestCode.TUTOR_LIST_FILTER.getValue())
         {
             if (resultCode == RESULT_OK)
             {
@@ -242,7 +242,7 @@ public class TutorListViewActivity extends AppCompatActivity implements TutorVie
                 intent.putExtra("stageIndex",stageIndex);
                 intent.putExtra("courseIndex",courseIndex);
                 intent.putExtra("subCourseIndex",subCourseIndex);
-                startActivityForResult(intent, ActivityRequestCode.TUTOR_LIST_FILTER);
+                startActivityForResult(intent, EActivityRequestCode.TUTOR_LIST_FILTER.getValue());
             }
         });
         searchResultEditText.clearFocus();
@@ -328,7 +328,7 @@ public class TutorListViewActivity extends AppCompatActivity implements TutorVie
     public void onItemClick(TutorEntity entity) {
         Intent intent = new Intent(TutorListViewActivity.this, TutorDetailActivity.class);
         intent.putExtra("tutorId", entity.getTutor_id());
-        startActivityForResult(intent, ActivityRequestCode.DISPLAY_TUTOR_DETAIL);
+        startActivityForResult(intent, EActivityRequestCode.DISPLAY_TUTOR_DETAIL.getValue());
     }
 
 

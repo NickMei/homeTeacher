@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.kayluo.pokerface.R;
+import com.kayluo.pokerface.common.EReturnCode;
 import com.kayluo.pokerface.util.Utils;
 import com.kayluo.pokerface.adapter.SearchResultListAdapter;
 import com.kayluo.pokerface.api.tutorInfo.GetTutorListRequestResponse;
@@ -111,7 +112,7 @@ public class SearchResultActivity extends Activity {
                     return;
                 }
                 ResponseInfo responseInfo = (ResponseInfo) data;
-                if (responseInfo.returnCode == 0) {
+                if (responseInfo.returnCode == EReturnCode.SUCCESS.getValue()) {
                     GetTutorListRequestResponse mResponse = (GetTutorListRequestResponse) responseInfo.response;
                     tutor_list = mResponse.tutorList;
                     TutorEntity tutorEntity = new TutorEntity();

@@ -1,17 +1,13 @@
 package com.kayluo.pokerface.api.location;
 
-import android.util.Log;
-
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.kayluo.pokerface.api.RequestResponseBase;
 import com.kayluo.pokerface.core.AppManager;
+import com.kayluo.pokerface.common.EReturnCode;
 import com.kayluo.pokerface.core.GsonRequest;
 import com.kayluo.pokerface.dataModel.District;
-import com.kayluo.pokerface.dataModel.Province;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 
 import java.lang.reflect.Type;
@@ -33,7 +29,7 @@ public class GetDistrictListRequestResponse extends RequestResponseBase {
             @Override
             public void onResponse(Object response) {
                 ResponseInfo responseInfo = (ResponseInfo) response;
-                if (responseInfo.returnCode == 0) {
+                if (responseInfo.returnCode == EReturnCode.SUCCESS.getValue()) {
                     GetDistrictListRequestResponse mResponse = (GetDistrictListRequestResponse) responseInfo.response;
                     districtList = mResponse.districtList;
                 }
