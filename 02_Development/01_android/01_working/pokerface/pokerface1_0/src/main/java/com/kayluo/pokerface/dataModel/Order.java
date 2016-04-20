@@ -14,7 +14,7 @@ public class Order {
     @SerializedName(value = "course_id")
     public String courseId;
     @SerializedName(value = "way_id")
-    public String wayId;
+    public String methodId;
     @SerializedName(value = "price")
     public String price;
     @SerializedName(value = "class_address")

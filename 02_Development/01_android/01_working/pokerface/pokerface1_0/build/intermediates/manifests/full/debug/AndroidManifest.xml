@@ -64,51 +64,54 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.kayluo.pokerface.ui.user.Register.RegisterActivity"
+            android:name="com.kayluo.pokerface.ui.user.register.RegisterActivity"
             android:label="@string/title_activity_register" />
         <activity
-            android:name="com.kayluo.pokerface.ui.TutorDetailActivity"
+            android:name="com.kayluo.pokerface.ui.tutor.TutorDetailActivity"
             android:label="@string/title_activity_tutor_detail"
             android:theme="@style/AppCompatSkyBlueLight" />
         <activity
-            android:name="com.kayluo.pokerface.ui.LocationCityListViewActivity"
+            android:name="com.kayluo.pokerface.ui.home.LocationCityListViewActivity"
             android:label="@string/title_activity_location_list_view" />
         <activity
-            android:name="com.kayluo.pokerface.ui.TutorRequestActivity"
+            android:name="com.kayluo.pokerface.ui.tutor.TutorRequestActivity"
             android:label="@string/title_activity_tutor_request" />
         <activity
             android:name="com.kayluo.pokerface.ui.user.LoginViewActivity"
             android:label="登录" />
         <activity
-            android:name="com.kayluo.pokerface.ui.LocationDistrictListViewActivity"
+            android:name="com.kayluo.pokerface.ui.home.LocationDistrictListViewActivity"
             android:label="@string/title_activity_location_district_list_view" />
         <activity
             android:name="com.kayluo.pokerface.ui.user.UserDetailActivity"
             android:label="@string/title_activity_user_detail" />
         <activity
-            android:name="com.kayluo.pokerface.ui.user.TransactionRecord.UserTransactionRecordActivity"
+            android:name="com.kayluo.pokerface.ui.user.transactionRecord.UserTransactionRecordActivity"
             android:label="@string/title_activity_user_transaction_record" />
         <activity
             android:name="com.kayluo.pokerface.ui.user.SettingsActivity"
             android:label="@string/title_activity_settings" />
         <activity
-            android:name="com.kayluo.pokerface.ui.user.CommentRecord.CommentRecordActivity"
+            android:name="com.kayluo.pokerface.ui.user.commentRecord.CommentRecordActivity"
             android:label="@string/title_activity_comment_record" />
         <activity
-            android:name="com.kayluo.pokerface.ui.user.Register.CreateAccountActivity"
+            android:name="com.kayluo.pokerface.ui.user.register.CreateAccountActivity"
             android:label="@string/title_activity_create_account" />
         <activity
-            android:name="com.kayluo.pokerface.ui.user.Bookmark.BookmarkActivity"
+            android:name="com.kayluo.pokerface.ui.user.myBookmark.BookmarkActivity"
             android:label="@string/title_activity_bookmark" />
         <activity android:name="com.kayluo.pokerface.ui.search.FilterViewActivity" />
         <activity
             android:name="com.kayluo.pokerface.ui.search.SelectCourseActivity"
             android:label="@string/title_activity_select_course" />
-        <activity android:name="com.kayluo.pokerface.ui.tutorList.TutorListViewActivity" >
-        </activity>
-        <activity android:name="com.kayluo.pokerface.ui.search.SearchResultActivity" >
-        </activity>
->
+        <activity android:name="com.kayluo.pokerface.ui.tutor.TutorListViewActivity" />
+        <activity android:name="com.kayluo.pokerface.ui.search.SearchResultActivity" />
+        <activity
+            android:name="com.kayluo.pokerface.ui.order.ConfirmBookingActivity"
+            android:label="@string/title_activity_confirm_booking" />
+        <activity android:name="com.kayluo.pokerface.ui.order.RemarksActivity" />
+        <activity android:name="com.kayluo.pokerface.ui.order.TeachingAddressActivity" />
+        <activity android:name="com.kayluo.pokerface.ui.base.BaseActivity" />
     </application>
 
 </manifest>

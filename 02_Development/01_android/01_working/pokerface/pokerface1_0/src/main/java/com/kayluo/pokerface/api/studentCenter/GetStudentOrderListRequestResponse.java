@@ -23,7 +23,7 @@ public class GetStudentOrderListRequestResponse extends RequestResponseBase {
         super(responselistener);
 
         this.requestJsonMap.put("order_type", orderType);
-        this.url = domain +"studentcenter/getOrderList";
+        this.url = domain +"studentcenter/getStudentOrderList";
         Type jsonType = new TypeToken<ResponseInfo<MyResponse>>() {}.getType();
         GsonRequest gsonRequest = new GsonRequest(this.url, jsonType, this.requestJsonMap, new Response.Listener() {
             @Override

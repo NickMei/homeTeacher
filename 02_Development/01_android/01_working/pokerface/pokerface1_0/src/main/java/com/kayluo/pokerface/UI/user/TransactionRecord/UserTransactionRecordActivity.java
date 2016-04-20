@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -15,11 +14,12 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.kayluo.pokerface.R;
+import com.kayluo.pokerface.ui.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserTransactionRecordActivity extends AppCompatActivity {
+public class UserTransactionRecordActivity extends BaseActivity {
 
     private Toolbar mToolbar;
     private ViewPager viewPager;

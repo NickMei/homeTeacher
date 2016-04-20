@@ -14,11 +14,12 @@ import com.kayluo.pokerface.adapter.LocationListAdapter;
 import com.kayluo.pokerface.core.AppConfig;
 import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.dataModel.City;
+import com.kayluo.pokerface.ui.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LocationCityListViewActivity extends AppCompatActivity {
+public class LocationCityListViewActivity extends BaseActivity {
 
     private ListView mListView;
     private Toolbar mToolbar;

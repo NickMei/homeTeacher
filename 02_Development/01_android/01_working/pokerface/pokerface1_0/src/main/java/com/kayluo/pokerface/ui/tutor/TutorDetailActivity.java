@@ -14,6 +14,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.kayluo.pokerface.R;
+import com.kayluo.pokerface.ui.base.BaseActivity;
 import com.kayluo.pokerface.ui.order.ConfirmBookingActivity;
 import com.kayluo.pokerface.ui.user.commentRecord.CommentRecordActivity;
 import com.kayluo.pokerface.util.BitmapDownloaderTask;
@@ -30,7 +31,7 @@ import com.kayluo.pokerface.dataModel.TutorDetail.TutorTimeTableInfo;
 
 import java.util.ArrayList;
 
-public class TutorDetailActivity extends AppCompatActivity {
+public class TutorDetailActivity extends BaseActivity {
 
     public String tutorId;
     private ImageView tutorPic;

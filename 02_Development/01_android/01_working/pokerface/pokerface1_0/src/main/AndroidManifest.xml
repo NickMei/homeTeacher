@@ -110,7 +110,8 @@
             android:name=".ui.order.ConfirmBookingActivity"
             android:label="@string/title_activity_confirm_booking" />
         <activity android:name=".ui.order.RemarksActivity" />
-        <activity android:name=".ui.order.TeachingAddressActivity"></activity>
+        <activity android:name=".ui.order.TeachingAddressActivity" />
+        <activity android:name=".ui.base.BaseActivity"></activity>
     </application>
 
 </manifest>

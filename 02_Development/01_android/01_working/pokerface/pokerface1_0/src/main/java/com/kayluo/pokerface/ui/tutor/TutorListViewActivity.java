@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.kayluo.pokerface.R;
 import com.kayluo.pokerface.adapter.SearchResultListAdapter;
+import com.kayluo.pokerface.ui.base.BaseActivity;
 import com.kayluo.pokerface.ui.search.FilterViewActivity;
 import com.kayluo.pokerface.adapter.TutorListViewAdapter;
 import com.kayluo.pokerface.adapter.TutorViewHolder;
@@ -34,7 +35,7 @@ import com.kayluo.pokerface.dataModel.TutorEntity;
 
 import java.util.ArrayList;
 
-public class TutorListViewActivity extends AppCompatActivity implements TutorViewHolder.OnItemClickListener{
+public class TutorListViewActivity extends BaseActivity implements TutorViewHolder.OnItemClickListener{
 
     ArrayList<TutorEntity> tutorList = new ArrayList<TutorEntity>();
     ArrayList<TutorEntity> suggestionlist = new ArrayList<TutorEntity>();

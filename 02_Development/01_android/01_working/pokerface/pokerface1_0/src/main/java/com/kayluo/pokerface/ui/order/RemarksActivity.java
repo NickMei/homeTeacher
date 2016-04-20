@@ -11,8 +11,9 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.kayluo.pokerface.R;
+import com.kayluo.pokerface.ui.base.BaseActivity;
 
-public class RemarksActivity extends AppCompatActivity {
+public class RemarksActivity extends BaseActivity {
 
     public final static String INTENT_KEY_MESSAGE = "message";
     private Toolbar mToolbar;

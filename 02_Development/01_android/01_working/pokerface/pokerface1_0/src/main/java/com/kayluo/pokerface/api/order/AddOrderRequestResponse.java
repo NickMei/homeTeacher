@@ -25,7 +25,7 @@ public class AddOrderRequestResponse extends RequestResponseBase {
         this.url = domain +"order/addOrder";
         String jsonString = gson.toJson(order);
         requestJsonMap = (Map<String, Object>) gson.fromJson(jsonString, requestJsonMap.getClass());
-        Type jsonType = new TypeToken<ResponseInfo<GetOrderTutorInfoRequestResponse>>() {}.getType();
+        Type jsonType = new TypeToken<ResponseInfo<AddOrderRequestResponse>>() {}.getType();
         GsonRequest gsonRequest = new GsonRequest(url, jsonType, requestJsonMap, new Response.Listener() {
             @Override
             public void onResponse(Object response) {

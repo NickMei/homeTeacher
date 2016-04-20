@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 
 import com.kayluo.pokerface.R;
+import com.kayluo.pokerface.ui.base.BaseActivity;
 import com.kayluo.pokerface.util.BitmapDownloaderTask;
 import com.kayluo.pokerface.api.studentCenter.GetStudentBasicInfoRequestResponse;
 import com.kayluo.pokerface.api.base.RequestResponseBase;
@@ -29,7 +30,7 @@ import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 import com.kayluo.pokerface.dataModel.UserBasicInfo;
 
-public class UserDetailActivity extends AppCompatActivity {
+public class UserDetailActivity extends BaseActivity {
 
     private Context context;
     private Toolbar mToolbar;

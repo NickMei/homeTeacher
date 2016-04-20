@@ -28,8 +28,9 @@ import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.core.UserConfig;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 import com.kayluo.pokerface.database.UserProfile;
+import com.kayluo.pokerface.ui.base.BaseActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 	private NoScrollViewPager mViewPager;
 	private FragmentPagerAdapter mAdapter;
 	private List<Fragment> mDatas;

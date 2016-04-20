@@ -5,8 +5,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.kayluo.pokerface.R;
+import com.kayluo.pokerface.ui.base.BaseActivity;
 
-public class LocationDistrictListViewActivity extends AppCompatActivity {
+public class LocationDistrictListViewActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

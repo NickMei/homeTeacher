@@ -267,22 +267,24 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/confirm_booking_price_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/add_order_button"
+        android:layout_above="@+id/confirm_booking_add_order_button"
         android:padding="10dp"
-        android:text="费用:"
+        android:text=""
         android:textColor="@color/RED"
         android:textSize="14dp" />
 
     <TextView
-        android:id="@+id/add_order_button"
+        android:id="@+id/confirm_booking_add_order_button"
         style="@style/textViewButton"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:background="@color/primaryColor"
         android:gravity="center"
+        android:clickable="true"
         android:text="确定订单" />
 
 

@@ -18,7 +18,7 @@ public class TeachInfo {
     public class CourseInfo
     {
         @SerializedName(value = "teach_course_id")
-        public String teachCourseId;
+        public String courseId;
         public String stage;
         public String course;
         @SerializedName(value = "sub_course")
@@ -35,12 +35,15 @@ public class TeachInfo {
 
     public class TeachingMethod
     {
+        public final static String TEACHING_METHOD_DISCUSSABLE = "discuss_place";
+        public final static String TEACHING_METHOD_TEACHER = "teacher_go";
+        public final static String TEACHING_METHOD_STUDENT = "student_go";
         @SerializedName(value = "way_id")
-        public int methodId;
+        public String methodId;
         @SerializedName(value = "way_key")
         public String methodKey;
         @SerializedName(value = "way_name")
-        public String MethodName;
+        public String methodName;
 
     }
 }

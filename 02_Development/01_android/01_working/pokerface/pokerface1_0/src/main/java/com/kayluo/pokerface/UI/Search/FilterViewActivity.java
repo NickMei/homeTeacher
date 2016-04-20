@@ -30,11 +30,12 @@ import com.kayluo.pokerface.dataModel.PriceRange;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 import com.kayluo.pokerface.dataModel.Stage;
 import com.kayluo.pokerface.dataModel.SubCourse;
+import com.kayluo.pokerface.ui.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FilterViewActivity extends AppCompatActivity implements OnDialogButtonClickListener {
+public class FilterViewActivity extends BaseActivity implements OnDialogButtonClickListener {
 
     GetTutorListRequestResponse.Params params;
     private RequestResponseBase.ResponseListener responseListener;

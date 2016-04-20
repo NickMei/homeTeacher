@@ -13,8 +13,9 @@ import com.kayluo.pokerface.R;
 import com.kayluo.pokerface.api.auth.RegisterAccountRequestResponse;
 import com.kayluo.pokerface.api.base.RequestResponseBase;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
+import com.kayluo.pokerface.ui.base.BaseActivity;
 
-public class CreateAccountActivity extends AppCompatActivity {
+public class CreateAccountActivity extends BaseActivity {
 
     private Toolbar mToolbar;
     private EditText passwordTextEdit;

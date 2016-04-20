@@ -17,10 +17,11 @@ import com.kayluo.pokerface.core.AppConfig;
 import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.dataModel.Course;
 import com.kayluo.pokerface.dataModel.Stage;
+import com.kayluo.pokerface.ui.base.BaseActivity;
 
 import java.util.List;
 
-public class SelectCourseActivity extends AppCompatActivity {
+public class SelectCourseActivity extends BaseActivity {
 
     private ListView listView;
     private ListView subListView;

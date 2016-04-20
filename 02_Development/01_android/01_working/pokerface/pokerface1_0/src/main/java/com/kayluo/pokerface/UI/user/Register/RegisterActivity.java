@@ -17,9 +17,10 @@ import com.kayluo.pokerface.api.SendVerifyMessageRequestResponse;
 import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.core.UserConfig;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
+import com.kayluo.pokerface.ui.base.BaseActivity;
 
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends BaseActivity {
 
     private Boolean createNewAccount;
     private Toolbar mToolbar;

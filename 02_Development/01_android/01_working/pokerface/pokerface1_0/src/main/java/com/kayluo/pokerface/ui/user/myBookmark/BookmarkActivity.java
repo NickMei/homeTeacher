@@ -16,10 +16,11 @@ import com.kayluo.pokerface.api.studentCenter.GetStudentBookmarkListRequestRespo
 import com.kayluo.pokerface.api.base.RequestResponseBase;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 import com.kayluo.pokerface.dataModel.TutorEntity;
+import com.kayluo.pokerface.ui.base.BaseActivity;
 
 import java.util.ArrayList;
 
-public class BookmarkActivity extends AppCompatActivity implements TutorViewHolder.OnItemClickListener {
+public class BookmarkActivity extends BaseActivity implements TutorViewHolder.OnItemClickListener {
 
     ArrayList<TutorEntity> tutor_list = new ArrayList<TutorEntity>();
     TutorListViewAdapter recListAdapter;

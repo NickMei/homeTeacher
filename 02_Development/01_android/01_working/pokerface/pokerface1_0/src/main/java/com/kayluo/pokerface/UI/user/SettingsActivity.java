@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kayluo.pokerface.R;
+import com.kayluo.pokerface.ui.base.BaseActivity;
 import com.kayluo.pokerface.ui.user.register.RegisterActivity;
 import com.kayluo.pokerface.api.auth.LogoutRequestResponse;
 import com.kayluo.pokerface.common.EActivityRequestCode;
@@ -24,7 +25,7 @@ import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.core.UserConfig;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 
-public class SettingsActivity extends AppCompatActivity implements OnDialogButtonClickListener {
+public class SettingsActivity extends BaseActivity implements OnDialogButtonClickListener {
 
     private Toolbar mToolbar;
     private View changePasswordView;

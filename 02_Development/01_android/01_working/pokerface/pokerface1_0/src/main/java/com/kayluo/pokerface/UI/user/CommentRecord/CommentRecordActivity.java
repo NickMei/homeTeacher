@@ -16,11 +16,12 @@ import android.view.View;
 
 import com.kayluo.pokerface.R;
 import com.kayluo.pokerface.api.studentCenter.GetCommentListRequestResponse;
+import com.kayluo.pokerface.ui.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CommentRecordActivity extends AppCompatActivity {
+public class CommentRecordActivity extends BaseActivity {
 
     private Toolbar mToolbar;
     private ViewPager viewPager;

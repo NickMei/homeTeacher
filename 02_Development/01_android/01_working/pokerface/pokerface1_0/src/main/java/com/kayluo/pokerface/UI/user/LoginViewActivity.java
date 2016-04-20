@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kayluo.pokerface.R;
+import com.kayluo.pokerface.ui.base.BaseActivity;
 import com.kayluo.pokerface.ui.user.register.RegisterActivity;
 import com.kayluo.pokerface.api.auth.LoginRequestResponse;
 import com.kayluo.pokerface.api.base.RequestResponseBase;
@@ -23,7 +24,7 @@ import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.core.UserConfig;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 
-public class LoginViewActivity extends AppCompatActivity {
+public class LoginViewActivity extends BaseActivity {
 
 
 

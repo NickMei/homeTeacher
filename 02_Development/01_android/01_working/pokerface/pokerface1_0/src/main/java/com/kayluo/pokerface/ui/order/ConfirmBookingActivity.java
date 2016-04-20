@@ -22,12 +22,13 @@ import com.kayluo.pokerface.dataModel.ResponseInfo;
 import com.kayluo.pokerface.dataModel.TeachInfo;
 import com.kayluo.pokerface.dataModel.Order;
 import com.kayluo.pokerface.component.dialog.OnDialogButtonClickListener;
+import com.kayluo.pokerface.ui.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 
-public class ConfirmBookingActivity extends AppCompatActivity implements OnDialogButtonClickListener {
+public class ConfirmBookingActivity extends BaseActivity implements OnDialogButtonClickListener {
 
     private Toolbar mToolbar;
     private String tutorId;
@@ -48,6 +49,8 @@ public class ConfirmBookingActivity extends AppCompatActivity implements OnDialo
     private TextView teachingTimeTextView;
     private TextView teachingAddressTextView;
     private TextView bookingRemarksTextView;
+    private TextView coursePriceTextView;
+    private TextView confirmBookingTextView;
 
     private GetOrderTutorInfoRequestResponse getOrderTutorInfoRequest;
     private AddOrderRequestResponse addOrderRequestResponse;
@@ -107,6 +110,8 @@ public class ConfirmBookingActivity extends AppCompatActivity implements OnDialo
         teachingTimeTextView = (TextView) findViewById(R.id.confirm_booking_teaching_time_text_view);
         teachingAddressTextView = (TextView) findViewById(R.id.confirm_booking_teaching_address_text_view);
         bookingRemarksTextView = (TextView) findViewById(R.id.confirm_booking_remarks_text_view);
+        coursePriceTextView = (TextView) findViewById(R.id.confirm_booking_price_text_view);
+        confirmBookingTextView = (TextView) findViewById(R.id.confirm_booking_add_order_button);
 
 
         selectCourseNameView = (LinearLayout) findViewById(R.id.confirm_booking_select_course_name_view);
@@ -150,6 +155,21 @@ public class ConfirmBookingActivity extends AppCompatActivity implements OnDialo
                 Intent intent = new Intent(ConfirmBookingActivity.this,RemarksActivity.class);
                 intent.putExtra(RemarksActivity.INTENT_KEY_MESSAGE,order.extraInfo);
                 startActivityForResult(intent, EActivityRequestCode.BOOKING_REMAKRS.getValue());
+            }
+        });
+
+        confirmBookingTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addOrderRequestResponse = new AddOrderRequestResponse(order, new RequestResponseBase.ResponseListener() {
+                    @Override
+                    public void onCompleted(ResponseInfo response) {
+                        if (response.returnCode == EReturnCode.SUCCESS.getValue())
+                        {
+
+                        }
+                    }
+                });
             }
         });
     }
@@ -200,7 +220,7 @@ public class ConfirmBookingActivity extends AppCompatActivity implements OnDialo
         ArrayList<String> teachingMethodList = new ArrayList<String>();
         for (TeachInfo.TeachingMethod teachingMethod : getOrderTutorInfoRequest.teachInfo.methodList)
         {
-            teachingMethodList.add(teachingMethod.MethodName);
+            teachingMethodList.add(teachingMethod.methodName);
         }
         Bundle selectTeachingMethodDialogBundle = new Bundle();
         selectTeachingMethodDialogBundle.putStringArrayList(SingleChoiceListDialog.DIALOG_BUNDLE_KEY_ARRAY, teachingMethodList);
@@ -249,6 +269,7 @@ public class ConfirmBookingActivity extends AppCompatActivity implements OnDialo
             RadioButton radioButton = (RadioButton) radioGroup.findViewById(selectedId);
             courseNameTextView.setText(radioButton.getText());
             selectedCourseIndex = radioGroup.indexOfChild(radioButton);
+            updateOrderInfo();
         }else if (dialog == selectTeachingMethodDialog)
         {
             RadioGroup radioGroup = selectTeachingMethodDialog.radioGroup;
@@ -257,7 +278,7 @@ public class ConfirmBookingActivity extends AppCompatActivity implements OnDialo
             RadioButton radioButton = (RadioButton) radioGroup.findViewById(selectedId);
             teachingMethodTextView.setText(radioButton.getText());
             selectedTeachingMethodIndex = radioGroup.indexOfChild(radioButton);
-
+            updateOrderInfo();
         }else if (dialog == selectTeachingDayDialog)
         {
             RadioGroup radioGroup = selectTeachingDayDialog.radioGroup;
@@ -274,8 +295,9 @@ public class ConfirmBookingActivity extends AppCompatActivity implements OnDialo
             int selectedId = radioGroup.getCheckedRadioButtonId();
             // find the radiobutton by returned id
             RadioButton radioButton = (RadioButton) radioGroup.findViewById(selectedId);
-            String text = teachingTimeTextView.getText().toString();
-            teachingTimeTextView.setText(text + ", " + radioButton.getText());
+            String classDay = teachingTimeTextView.getText().toString();
+            order.classTime = classDay + ", " + radioButton.getText();
+            teachingTimeTextView.setText(order.classTime);
             selectedTeachingTimeIndex = radioGroup.indexOfChild(radioButton);
         }
     }
@@ -283,5 +305,36 @@ public class ConfirmBookingActivity extends AppCompatActivity implements OnDialo
     @Override
     public void onDialogNegativeClick(DialogFragment dialog) {
 
+    }
+
+    private void updateOrderInfo()
+    {
+        if (getOrderTutorInfoRequest != null && getOrderTutorInfoRequest.teachInfo.courseList.size() > 0 && getOrderTutorInfoRequest.teachInfo.methodList.size() > 0)
+        {
+            TeachInfo.CourseInfo courseInfo = getOrderTutorInfoRequest.teachInfo.courseList.get(selectedCourseIndex);
+            order.courseId = courseInfo.courseId;
+            TeachInfo.TeachingMethod teachingMethod = getOrderTutorInfoRequest.teachInfo.methodList.get(selectedTeachingMethodIndex);
+            order.methodId = teachingMethod.methodId;
+            switch (teachingMethod.methodKey)
+            {
+                case TeachInfo.TeachingMethod.TEACHING_METHOD_DISCUSSABLE:
+                {
+                    order.price = courseInfo.discussedPlacePrice;
+                    break;
+                }
+                case TeachInfo.TeachingMethod.TEACHING_METHOD_STUDENT:
+                {
+                    order.price = courseInfo.studentPrice;
+                    break;
+                }
+                case TeachInfo.TeachingMethod.TEACHING_METHOD_TEACHER:
+                {
+                    order.price = courseInfo.teacherPrice;
+                    break;
+                }
+            }
+
+            coursePriceTextView.setText("费用: " + "￥" + order.price);
+        }
     }
 }

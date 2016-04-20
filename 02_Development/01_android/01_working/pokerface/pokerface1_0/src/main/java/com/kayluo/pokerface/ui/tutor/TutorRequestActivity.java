@@ -6,8 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import com.kayluo.pokerface.R;
+import com.kayluo.pokerface.ui.base.BaseActivity;
 
-public class TutorRequestActivity extends AppCompatActivity {
+public class TutorRequestActivity extends BaseActivity {
 
     private Toolbar mToolbar;
     @Override
