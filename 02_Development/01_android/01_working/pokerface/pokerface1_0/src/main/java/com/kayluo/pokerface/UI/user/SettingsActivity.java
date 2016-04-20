@@ -151,7 +151,7 @@ public class SettingsActivity extends BaseActivity implements OnDialogButtonClic
                     {
                         UserConfig config = AppManager.shareInstance().settingManager.getUserConfig();
                         config.profile.token = changePasswordRequestResponse.token;
-                        config.saveToStorage(SettingsActivity.this);
+                        config.saveToStorage();
                         Toast.makeText(SettingsActivity.this,"修改成功",Toast.LENGTH_SHORT).show();
                     }
                 }

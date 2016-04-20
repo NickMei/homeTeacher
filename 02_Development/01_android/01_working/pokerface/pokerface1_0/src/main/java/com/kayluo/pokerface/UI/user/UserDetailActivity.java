@@ -163,7 +163,7 @@ public class UserDetailActivity extends BaseActivity {
                 usernameEditText.setText(basicInfo.name);
                 genderEditText.setText(basicInfo.gender);
                 gradeEditText.setText(basicInfo.grade);
-                cityEditText.setText(basicInfo.city_name);
+//                cityEditText.setText(basicInfo.city_name);
                 preferredAddressEditText.setText(basicInfo.address);
                 new BitmapDownloaderTask(headPhotoImageView).execute(basicInfo.head_photo);
                 int selection = gradeSpinnerAdapter.getPosition(basicInfo.grade);
@@ -178,7 +178,7 @@ public class UserDetailActivity extends BaseActivity {
         basicInfo.name = usernameEditText.getText().toString() ;
         basicInfo.gender = genderEditText.getText().toString() ;
         basicInfo.grade = gradeSpinner.getSelectedItem().toString();
-        basicInfo.city_name = AppManager.shareInstance().settingManager.getUserConfig().profile.city.cityName;
+//        basicInfo.city_name = AppManager.shareInstance().settingManager.getUserConfig().profile.city.cityName;
         basicInfo.address = preferredAddressEditText.getText().toString() ;
 
         new SaveStudentBasicInfoRequestResponse(basicInfo, new RequestResponseBase.ResponseListener() {

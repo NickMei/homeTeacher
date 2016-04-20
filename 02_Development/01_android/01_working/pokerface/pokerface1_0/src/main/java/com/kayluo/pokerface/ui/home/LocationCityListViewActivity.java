@@ -11,10 +11,16 @@ import android.widget.TextView;
 
 import com.kayluo.pokerface.R;
 import com.kayluo.pokerface.adapter.LocationListAdapter;
+import com.kayluo.pokerface.api.base.RequestResponseBase;
+import com.kayluo.pokerface.api.location.SetUserLocationInfoRequestResponse;
 import com.kayluo.pokerface.core.AppConfig;
 import com.kayluo.pokerface.core.AppManager;
+import com.kayluo.pokerface.core.UserConfig;
 import com.kayluo.pokerface.dataModel.City;
+import com.kayluo.pokerface.dataModel.ResponseInfo;
+import com.kayluo.pokerface.database.UserProfile;
 import com.kayluo.pokerface.ui.base.BaseActivity;
+import com.kayluo.pokerface.util.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,19 +57,13 @@ public class LocationCityListViewActivity extends BaseActivity {
     private void initSubViews()
     {
         cityList =  new ArrayList<City>();
-        AppConfig appConfig = AppManager.shareInstance().settingManager.getAppConfig();
+        final AppConfig appConfig = AppManager.shareInstance().settingManager.getAppConfig();
         deviceLocationTextView = (TextView) findViewById(R.id.location_view_device_location_city);
-        if (appConfig.locationCity == null)
-        {
-            deviceLocationTextView.setText("定位失败");
-        }
-        else
-        {
-            deviceLocationTextView.setText(appConfig.locationCity.cityName);
-        }
+        deviceLocationTextView.setText(appConfig.locationCity.cityName);
+
         for (City city : appConfig.cityList)
         {
-            if (appConfig.locationCity == null || city.cityID != appConfig.locationCity.cityID)
+            if (!city.cityID.equals(appConfig.locationCity.cityID))
             {
                 cityList.add(city);
             }
@@ -76,8 +76,18 @@ public class LocationCityListViewActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 City city = cityList.get(position);
-                AppConfig appConfig = AppManager.shareInstance().settingManager.getAppConfig();
-                appConfig.locationCity = city;
+                UserConfig userConfig = AppManager.shareInstance().settingManager.getUserConfig();
+                userConfig.profile.city = city;
+                if (Utils.isMemberSignedIn())
+                {
+                    userConfig.saveToStorage();
+                    SetUserLocationInfoRequestResponse setUserLocationInfoRequestResponse = new SetUserLocationInfoRequestResponse(city.cityID, new RequestResponseBase.ResponseListener() {
+                        @Override
+                        public void onCompleted(ResponseInfo response) {
+
+                        }
+                    });
+                }
                 Intent returnIntent = new Intent();
                 setResult(RESULT_OK,returnIntent);
                 finish();
@@ -88,6 +98,12 @@ public class LocationCityListViewActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent returnIntent = new Intent();
                 setResult(RESULT_OK,returnIntent);
+                UserConfig userConfig = AppManager.shareInstance().settingManager.getUserConfig();
+                userConfig.profile.city =  AppManager.shareInstance().settingManager.getAppConfig().locationCity;
+                if(Utils.isMemberSignedIn())
+                {
+                    userConfig.saveToStorage();
+                }
                 finish();
             }
         });

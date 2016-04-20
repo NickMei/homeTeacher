@@ -90,7 +90,7 @@ public class RegisterActivity extends BaseActivity {
                         {
                             UserConfig config = AppManager.shareInstance().settingManager.getUserConfig();
                             config.profile.mobile = mobile;
-                            config.saveToStorage(RegisterActivity.this);
+                            config.saveToStorage();
                             if(createNewAccount)
                             {
                                 token = authMsgCodeRequestResponse.token;

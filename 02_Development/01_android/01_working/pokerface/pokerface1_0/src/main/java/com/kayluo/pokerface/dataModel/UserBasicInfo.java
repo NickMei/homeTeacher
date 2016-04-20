@@ -10,8 +10,6 @@ public class UserBasicInfo {
     public String nickname = "";
     public String gender;
     public String grade;
-    @SerializedName(value = "city")
-    public String city_name;
     public String address;
     public String head_photo;
     public String self_intro = "";

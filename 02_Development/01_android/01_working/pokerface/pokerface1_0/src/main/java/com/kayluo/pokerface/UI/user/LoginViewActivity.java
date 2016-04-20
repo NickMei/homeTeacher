@@ -3,7 +3,6 @@ package com.kayluo.pokerface.ui.user;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -16,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kayluo.pokerface.R;
+import com.kayluo.pokerface.common.EActivityRequestCode;
 import com.kayluo.pokerface.ui.base.BaseActivity;
 import com.kayluo.pokerface.ui.user.register.RegisterActivity;
 import com.kayluo.pokerface.api.auth.LoginRequestResponse;
@@ -26,32 +26,28 @@ import com.kayluo.pokerface.dataModel.ResponseInfo;
 
 public class LoginViewActivity extends BaseActivity {
 
-
-
     // UI references.
     private TextView mEmailView;
     private EditText mPasswordView;
-    private View mLoginFormView;
     private Toolbar mToolbar;
-    private TextView regsisterTextView;
+    private TextView registerTextView;
     private ProgressDialog mProgressDialog;
 
     //API request
-    private LoginRequestResponse authRequestResponse;
+    private LoginRequestResponse loginRequestResponse;
 
-    final static int CREATE_ACCOUNT = 2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_view);
 
-        regsisterTextView = (TextView) findViewById(R.id.register_text_view);
-        regsisterTextView.setOnClickListener(new OnClickListener() {
+        registerTextView = (TextView) findViewById(R.id.register_text_view);
+        registerTextView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginViewActivity.this, RegisterActivity.class);
                 intent.putExtra("createNewAccount",true);
-                LoginViewActivity.this.startActivityForResult(intent,CREATE_ACCOUNT);
+                LoginViewActivity.this.startActivityForResult(intent, EActivityRequestCode.CREATE_ACCOUNT.getValue());
             }
         });
 
@@ -78,7 +74,6 @@ public class LoginViewActivity extends BaseActivity {
             }
         });
 
-        mLoginFormView = findViewById(R.id.login_form);
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setMessage("获取数据...");
         mProgressDialog.setCancelable(false);
@@ -87,7 +82,7 @@ public class LoginViewActivity extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == CREATE_ACCOUNT)
+        if (requestCode == EActivityRequestCode.CREATE_ACCOUNT.getValue())
         {
             if (requestCode == RESULT_OK)
             {
@@ -120,7 +115,7 @@ public class LoginViewActivity extends BaseActivity {
      * errors are presented and no actual login attempt is made.
      */
     public void attemptLogin() {
-        if (authRequestResponse != null) {
+        if (loginRequestResponse != null) {
             return;
         }
 
@@ -162,17 +157,12 @@ public class LoginViewActivity extends BaseActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            authRequestResponse = new LoginRequestResponse(email, password, new RequestResponseBase.ResponseListener() {
+            loginRequestResponse = new LoginRequestResponse(email, password, new RequestResponseBase.ResponseListener() {
                 @Override
                 public void onCompleted(ResponseInfo responseInfo) {
                     showProgress(false);
                     if (responseInfo.returnCode == 0) {
-                        UserConfig userConfig = AppManager.shareInstance().settingManager.getUserConfig();
-                        userConfig.isSignedIn = true;
-                        userConfig.profile.mobile = authRequestResponse.mobile;
-                        userConfig.profile.token = authRequestResponse.token;
-                        userConfig.userId = authRequestResponse.user_id;
-                        userConfig.saveToStorage(LoginViewActivity.this);
+                        AppManager.shareInstance().settingManager.getUserConfig().login(loginRequestResponse,LoginViewActivity.this);
                         Toast.makeText(LoginViewActivity.this, responseInfo.message, Toast.LENGTH_SHORT).show();
                         Intent returnIntent = new Intent();
                         setResult(RESULT_OK, returnIntent);
@@ -180,7 +170,7 @@ public class LoginViewActivity extends BaseActivity {
                     } else {
                         mPasswordView.setError(responseInfo.message);
                         mPasswordView.requestFocus();
-                        authRequestResponse = null;
+                        loginRequestResponse = null;
                     }
                 }
 
@@ -189,28 +179,23 @@ public class LoginViewActivity extends BaseActivity {
         }
     }
 
-
-
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
         return password.length() >= 0;
     }
 
+    public void showProgress(boolean show) {
 
-    public void showProgress(final boolean show) {
-
-        if (show){
-            mProgressDialog.show();
-        }else
+        if(mProgressDialog.isShowing() && !show)
         {
-            mProgressDialog.hide();
+            mProgressDialog.dismiss();
+        }
+        else if (!mProgressDialog.isShowing() && show)
+        {
+            mProgressDialog.show();
         }
 
     }
-
-
-
-
 
 
 }

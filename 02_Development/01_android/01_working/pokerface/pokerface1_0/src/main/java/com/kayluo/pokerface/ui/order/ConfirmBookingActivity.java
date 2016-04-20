@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.kayluo.pokerface.R;
 import com.kayluo.pokerface.api.base.RequestResponseBase;
 import com.kayluo.pokerface.api.order.AddOrderRequestResponse;
@@ -166,7 +168,7 @@ public class ConfirmBookingActivity extends BaseActivity implements OnDialogButt
                     public void onCompleted(ResponseInfo response) {
                         if (response.returnCode == EReturnCode.SUCCESS.getValue())
                         {
-
+                            Toast.makeText(ConfirmBookingActivity.this,"订单已成功提交",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

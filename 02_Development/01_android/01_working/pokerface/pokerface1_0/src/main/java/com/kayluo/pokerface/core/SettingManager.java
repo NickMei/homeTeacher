@@ -1,5 +1,7 @@
 package com.kayluo.pokerface.core;
 
+import android.content.Context;
+
 import java.lang.reflect.InvocationTargetException;
 
 /**
@@ -7,21 +9,22 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class SettingManager {
 
-    public AppConfig getAppConfig() {
+    private UserConfig userConfig;
+    private  AppConfig appConfig;
+
+    public AppConfig getAppConfig()
+    {
         return appConfig;
     }
 
-    private  AppConfig appConfig;
-
-    public UserConfig getUserConfig() {
+    public UserConfig getUserConfig()
+    {
         return userConfig;
     }
 
-    private UserConfig userConfig;
-
-    public SettingManager(AppConfig appConfig,UserConfig userConfig)
+    public SettingManager(Context context)
     {
-            this.appConfig = appConfig;
-            this.userConfig = userConfig;
+            this.appConfig = new AppConfig();
+            this.userConfig = new UserConfig(context);
     }
 }

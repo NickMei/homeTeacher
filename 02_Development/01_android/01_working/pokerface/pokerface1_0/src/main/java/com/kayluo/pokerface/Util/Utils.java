@@ -6,6 +6,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.TypedValue;
 
+import com.kayluo.pokerface.core.AppManager;
+
 /**
  * Created by Nick on 2016-01-06.
  */
@@ -25,6 +27,11 @@ public class Utils {
             imageResource =  context.getResources().getDrawable(id);
         }
         return imageResource;
+    }
+
+    public static Boolean isMemberSignedIn()
+    {
+        return AppManager.shareInstance().settingManager.getUserConfig().isSignedIn;
     }
 
     // baidu API begin

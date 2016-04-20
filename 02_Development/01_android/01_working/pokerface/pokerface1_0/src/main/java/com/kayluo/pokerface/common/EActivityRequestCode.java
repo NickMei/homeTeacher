@@ -5,7 +5,7 @@ package com.kayluo.pokerface.common;
  */
 public enum EActivityRequestCode {
 
-    DISPLAY_LOGIN(0),
+    LOGIN(0),
     SELECT_LOCATION(1),
     SHOW_USER_DETAIL(2),
     SELECT_COURSE(3),
@@ -16,7 +16,8 @@ public enum EActivityRequestCode {
     DISPLAY_TUTOR_DETAIL(8),
     SEARCH_RESULTS(9),
     BOOKING_REMAKRS(10),
-    TEACHING_ADDRESS(11);
+    TEACHING_ADDRESS(11),
+    CREATE_ACCOUNT(12);
 
 
     private final int value;

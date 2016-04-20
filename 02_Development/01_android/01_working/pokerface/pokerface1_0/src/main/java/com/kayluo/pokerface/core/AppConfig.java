@@ -17,4 +17,12 @@ public class AppConfig {
     public List<Stage> stageList;
     public City locationCity;
 
+    public AppConfig()
+    {
+        locationCity = new City();
+//        gradeList = new ArrayList<String>();
+//        cityList = new ArrayList<City>();
+//        stageList = new ArrayList<Stage>();
+    }
+
 }

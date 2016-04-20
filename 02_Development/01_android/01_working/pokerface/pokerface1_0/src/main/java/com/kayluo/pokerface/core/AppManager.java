@@ -20,7 +20,7 @@ public class AppManager extends Application {
     public static final String TAG = AppManager.class
             .getSimpleName();
     public SettingManager settingManager;
-    private static AppManager appManager;
+    private static AppManager sharedInstance;
 
     // volley SDK
     private RequestQueue mRequestQueue;
@@ -33,8 +33,8 @@ public class AppManager extends Application {
     @Override
     public void onCreate(){
         super.onCreate();
-        appManager = this;
-        appManager.settingManager = new SettingManager(new AppConfig(),new UserConfig(this.getBaseContext()));
+        sharedInstance = this;
+        sharedInstance.settingManager = new SettingManager(this.getBaseContext());
 
         /***
          * 初始化定位sdk，建议在Application中创建
@@ -45,7 +45,7 @@ public class AppManager extends Application {
 
     public static synchronized AppManager shareInstance()
     {
-        return appManager;
+        return sharedInstance;
     }
 
     public RequestQueue getRequestQueue() {

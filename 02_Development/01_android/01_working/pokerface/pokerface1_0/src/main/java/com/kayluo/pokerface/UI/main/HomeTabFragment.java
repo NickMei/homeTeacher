@@ -91,30 +91,23 @@ public class HomeTabFragment extends Fragment
 			StringBuffer sb = new StringBuffer(256);
 			if (null != bdLocation && bdLocation.getLocType() != BDLocation.TypeServerError) {
 				AppConfig appConfig = AppManager.shareInstance().settingManager.getAppConfig();
+				appConfig.locationCity.cityName = bdLocation.getCity();
+				for (City city : appConfig.cityList)
+				{
+					if(city.cityName.contains(appConfig.locationCity.cityName))
+					{
+						appConfig.locationCity.cityID = city.cityID;
+					}
+				}
 
-				String locationCity = bdLocation.getCity();
 				UserConfig userConfig = AppManager.shareInstance().settingManager.getUserConfig();
 				if(userConfig.isSignedIn)
 				{
-					selectLocationBtn.setText("[ " + userConfig.profile.city + " ]");
+					selectLocationBtn.setText("[ " + userConfig.profile.city.cityName + " ]");
 				}
 				else
 				{
-					for (City city : appConfig.cityList)
-					{
-						if(city.cityName.contains(locationCity))
-						{
-							appConfig.locationCity = city;
-						}
-					}
-
-					if (appConfig.locationCity == null)
-					{
-						appConfig.locationCity = appConfig.cityList.get(0); // set default value
-					}
-
 					selectLocationBtn.setText("[ " + appConfig.locationCity.cityName + " ]");
-
 					locationService.unregisterListener(mListener); //注销掉监听
 					locationService.stop(); //停止定位服务
 				}

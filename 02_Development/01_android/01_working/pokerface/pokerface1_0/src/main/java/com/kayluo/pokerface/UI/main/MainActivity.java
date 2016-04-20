@@ -18,10 +18,12 @@ import android.view.View.OnClickListener;
 import com.kayluo.pokerface.R;
 import com.kayluo.pokerface.api.GetAllCourseListRequestResponse;
 import com.kayluo.pokerface.api.location.GetOpenCityListRequestResponse;
+import com.kayluo.pokerface.api.location.GetUserLocationInfoRequestResponse;
 import com.kayluo.pokerface.api.studentCenter.GetStudentBasicInfoRequestResponse;
 import com.kayluo.pokerface.api.studentCenter.GetStudentGradeListRequestResponse;
 import com.kayluo.pokerface.api.base.RequestResponseBase;
 import com.kayluo.pokerface.common.EActivityRequestCode;
+import com.kayluo.pokerface.common.EReturnCode;
 import com.kayluo.pokerface.component.NoScrollViewPager;
 import com.kayluo.pokerface.core.AppConfig;
 import com.kayluo.pokerface.core.AppManager;
@@ -29,6 +31,7 @@ import com.kayluo.pokerface.core.UserConfig;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 import com.kayluo.pokerface.database.UserProfile;
 import com.kayluo.pokerface.ui.base.BaseActivity;
+import com.kayluo.pokerface.util.Utils;
 
 public class MainActivity extends BaseActivity {
 	private NoScrollViewPager mViewPager;
@@ -49,6 +52,7 @@ public class MainActivity extends BaseActivity {
 	GetOpenCityListRequestResponse getOpenCityListRequestResponse;
 	GetStudentBasicInfoRequestResponse getStudentBasicInfoRequestResponse;
 	GetAllCourseListRequestResponse getAllCourseListRequestResponse;
+	GetUserLocationInfoRequestResponse getUserLocationInfoRequestResponse;
 
 	private View splashScreen;
 
@@ -76,13 +80,12 @@ public class MainActivity extends BaseActivity {
 			return;
 		}
 
-		final CountDownLatch requestCountDown = new CountDownLatch(4);
+		final CountDownLatch requestCountDown = new CountDownLatch(5);
 		getStudentBasicInfoRequestResponse = new GetStudentBasicInfoRequestResponse(new RequestResponseBase.ResponseListener() {
 			@Override
 			public void onCompleted(ResponseInfo responseInfo) {
-				if (responseInfo.returnCode == 0) {
+				if (responseInfo.returnCode == EReturnCode.SUCCESS.getValue()) {
 					UserProfile userProfile = AppManager.shareInstance().settingManager.getUserConfig().profile;
-					userProfile.city.cityName = getStudentBasicInfoRequestResponse.basicInfo.city_name;
 					userProfile.name = getStudentBasicInfoRequestResponse.basicInfo.name;
 					userProfile.head_photo = getStudentBasicInfoRequestResponse.basicInfo.head_photo;
 				} else {
@@ -91,6 +94,19 @@ public class MainActivity extends BaseActivity {
 				requestCountDown.countDown();
 			}
 
+		});
+
+		getUserLocationInfoRequestResponse = new GetUserLocationInfoRequestResponse(new RequestResponseBase.ResponseListener() {
+			@Override
+			public void onCompleted(ResponseInfo response) {
+				if (response.returnCode == EReturnCode.SUCCESS.getValue())
+				{
+					UserProfile userProfile = AppManager.shareInstance().settingManager.getUserConfig().profile;
+					userProfile.city.cityID = getUserLocationInfoRequestResponse.cityId;
+					userProfile.city.cityName = getUserLocationInfoRequestResponse.cityName;
+				}
+				requestCountDown.countDown();
+			}
 		});
 
 
@@ -160,7 +176,7 @@ public class MainActivity extends BaseActivity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-		if (requestCode == EActivityRequestCode.DISPLAY_LOGIN.getValue()) {
+		if (requestCode == EActivityRequestCode.LOGIN.getValue()) {
 			if (resultCode == RESULT_OK) {
 				UserTabFragment tabUser = (UserTabFragment) mDatas.get(3);
 				tabUser.loadData();
@@ -168,15 +184,9 @@ public class MainActivity extends BaseActivity {
 		} else if (requestCode == EActivityRequestCode.SELECT_LOCATION.getValue()) {
 			// Make sure the request was successful
 			if (resultCode == RESULT_OK) {
-				HomeTabFragment tabHome = (HomeTabFragment) mDatas.get(0);
 				UserConfig userConfig = AppManager.shareInstance().settingManager.getUserConfig();
-				AppConfig appConfig = AppManager.shareInstance().settingManager.getAppConfig();
-				if (userConfig.isSignedIn)
-				{
-					userConfig.profile.city = appConfig.locationCity;
-					userConfig.saveToStorage(this);
-				}
-				tabHome.setLocation(appConfig.locationCity);
+				HomeTabFragment tabHome = (HomeTabFragment) mDatas.get(0);
+				tabHome.setLocation(userConfig.profile.city);
 			}
 		}
 		else if (requestCode ==  EActivityRequestCode.SETTINGS.getValue())

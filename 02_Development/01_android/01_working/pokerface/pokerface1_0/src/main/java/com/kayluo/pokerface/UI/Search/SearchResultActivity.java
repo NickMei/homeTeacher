@@ -147,7 +147,7 @@ public class SearchResultActivity extends Activity {
                 if (!userConfig.profile.searchHistoryList.contains(query))
                 {
                     userConfig.profile.searchHistoryList.add(query);
-                    userConfig.saveToStorage(SearchResultActivity.this);
+                    userConfig.saveToStorage();
                 }
                 Intent intent = new Intent(SearchResultActivity.this, TutorListViewActivity.class);
                 intent.putExtra("search_query", query);
@@ -162,7 +162,7 @@ public class SearchResultActivity extends Activity {
                 searchHistoryView.removeAllViews();
                 UserConfig userConfig =  AppManager.shareInstance().settingManager.getUserConfig();
                 userConfig.profile.searchHistoryList = new ArrayList<String>();
-                userConfig.saveToStorage(SearchResultActivity.this);
+                userConfig.saveToStorage();
 
             }
         });

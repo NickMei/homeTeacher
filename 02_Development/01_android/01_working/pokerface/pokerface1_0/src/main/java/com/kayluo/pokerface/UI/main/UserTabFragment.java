@@ -76,7 +76,7 @@ public class UserTabFragment extends Fragment
 	public Boolean checkMemberInfo(){
 		if (!isMemberSignedIn){
 			Intent intent = new Intent(mContext, LoginViewActivity.class);
-			getActivity().startActivityForResult(intent, EActivityRequestCode.DISPLAY_LOGIN.getValue());
+			getActivity().startActivityForResult(intent, EActivityRequestCode.LOGIN.getValue());
 		}
 		return isMemberSignedIn;
 	}

@@ -59,7 +59,7 @@ public final class UserProfile {
         // Create a new map of values, where column names are the keys
 
 
-        if ((userId) == null)
+        if (!queryUserProfile(userId))
         {
 
             ContentValues values = new ContentValues();
@@ -94,7 +94,7 @@ public final class UserProfile {
 
     }
 
-    private void queryUserProfile(String userID)
+    private Boolean queryUserProfile(String userID)
     {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
         List<String> searchHistoryList = null;
@@ -132,7 +132,7 @@ public final class UserProfile {
             if(cursor.getCount() <= 0)
             {
                 cursor.close();
-                return;
+                return false;
             }
 
             cursor.moveToFirst();
@@ -142,11 +142,13 @@ public final class UserProfile {
             String searchHistory = cursor.getString(cursor.getColumnIndexOrThrow(UserEntity.COLUMN_NAME_SEARCH_HISTORY));
             Type listType = new TypeToken<ArrayList<String>>(){}.getType();
             this.searchHistoryList = new Gson().fromJson(searchHistory,listType);
-            String locationJsobString  = cursor.getString(cursor.getColumnIndexOrThrow(UserEntity.COLUMN_NAME_LOCATION_CITY));
-            this.city = new Gson().fromJson(locationJsobString,City.class);
+            String locationJsonString  = cursor.getString(cursor.getColumnIndexOrThrow(UserEntity.COLUMN_NAME_LOCATION_CITY));
+            this.city = new Gson().fromJson(locationJsonString,City.class);
             cursor.close();
 
         }
+
+        return true;
 
     }
 

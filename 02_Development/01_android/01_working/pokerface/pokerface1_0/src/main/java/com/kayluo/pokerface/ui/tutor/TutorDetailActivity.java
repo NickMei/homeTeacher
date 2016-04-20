@@ -14,8 +14,11 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.kayluo.pokerface.R;
+import com.kayluo.pokerface.common.EActivityRequestCode;
 import com.kayluo.pokerface.ui.base.BaseActivity;
 import com.kayluo.pokerface.ui.order.ConfirmBookingActivity;
+import com.kayluo.pokerface.ui.user.LoginViewActivity;
+import com.kayluo.pokerface.ui.user.UserDetailActivity;
 import com.kayluo.pokerface.ui.user.commentRecord.CommentRecordActivity;
 import com.kayluo.pokerface.util.BitmapDownloaderTask;
 import com.kayluo.pokerface.util.Utils;
@@ -234,6 +237,15 @@ public class TutorDetailActivity extends BaseActivity {
                 bookmarkButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        if (Utils.isMemberSignedIn())
+                        {
+                            //TODO: bookmark feature
+                        }
+                        else
+                        {
+                            Intent intent = new Intent(TutorDetailActivity.this, LoginViewActivity.class);
+                            startActivityForResult(intent, EActivityRequestCode.LOGIN.getValue());
+                        }
 
                     }
                 });
@@ -241,9 +253,19 @@ public class TutorDetailActivity extends BaseActivity {
                 confirmBookingButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(TutorDetailActivity.this, ConfirmBookingActivity.class);
-                        intent.putExtra("tutorID", tutorId);
-                        startActivity(intent);
+
+                        if (Utils.isMemberSignedIn())
+                        {
+                            Intent intent = new Intent(TutorDetailActivity.this, ConfirmBookingActivity.class);
+                            intent.putExtra("tutorID", tutorId);
+                            startActivity(intent);
+                        }
+                        else
+                        {
+                            Intent intent = new Intent(TutorDetailActivity.this, LoginViewActivity.class);
+                            startActivityForResult(intent, EActivityRequestCode.LOGIN.getValue());
+                        }
+
                     }
                 });
 
