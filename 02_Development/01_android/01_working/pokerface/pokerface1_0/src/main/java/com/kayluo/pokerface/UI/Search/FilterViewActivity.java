@@ -3,7 +3,6 @@ package com.kayluo.pokerface.ui.search;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
@@ -13,16 +12,13 @@ import android.widget.RadioGroup;
 import com.google.gson.Gson;
 import com.kayluo.pokerface.R;
 import com.kayluo.pokerface.api.location.GetDistrictListRequestResponse;
+import com.kayluo.pokerface.component.dialog.SingleChoiceListDialog;
 import com.kayluo.pokerface.database.UserProfile;
 import com.kayluo.pokerface.component.dialog.OnDialogButtonClickListener;
 import com.kayluo.pokerface.api.tutorInfo.GetPriceRangeListRequestResponse;
 import com.kayluo.pokerface.api.tutorInfo.GetTutorListRequestResponse;
 import com.kayluo.pokerface.api.base.RequestResponseBase;
 import com.kayluo.pokerface.common.EActivityRequestCode;
-import com.kayluo.pokerface.component.SelectDayDialog;
-import com.kayluo.pokerface.component.SelectDistrictDialog;
-import com.kayluo.pokerface.component.SelectPriceRangeDialog;
-import com.kayluo.pokerface.component.SelectTimeDialog;
 import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.dataModel.Course;
 import com.kayluo.pokerface.dataModel.District;
@@ -33,6 +29,7 @@ import com.kayluo.pokerface.dataModel.SubCourse;
 import com.kayluo.pokerface.ui.base.BaseActivity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FilterViewActivity extends BaseActivity implements OnDialogButtonClickListener {
@@ -58,10 +55,12 @@ public class FilterViewActivity extends BaseActivity implements OnDialogButtonCl
     private Button identityParttimeTeacherBtn;
     private Button filterSubmitBtn;
     private Button priceRangeSelectorBtn;
-    private SelectTimeDialog selectTimeDialog;
-    private SelectDayDialog selectDayDialog;
-    private SelectDistrictDialog selectDistrictDialog;
-    private SelectPriceRangeDialog selectPriceRangeDialog;
+
+
+    private SingleChoiceListDialog selectTimeDialog;
+    private SingleChoiceListDialog selectDayDialog;
+    private SingleChoiceListDialog selectDistrictDialog;
+    private SingleChoiceListDialog selectPriceRangeDialog;
 
     GetTutorListRequestResponse getTutorListRequestResponse;
     GetDistrictListRequestResponse getDistrictListRequestResponse;
@@ -181,8 +180,24 @@ public class FilterViewActivity extends BaseActivity implements OnDialogButtonCl
                 startActivityForResult(intent, EActivityRequestCode.SELECT_COURSE.getValue());
             }
         });
-        selectDayDialog = new SelectDayDialog();
-        selectTimeDialog= new SelectTimeDialog();
+        selectDayDialog = new SingleChoiceListDialog();
+        selectTimeDialog= new SingleChoiceListDialog();
+
+        String[] dayStringArray = getResources().getStringArray(R.array.day_list);
+        ArrayList<String> dayList = new ArrayList<String>(Arrays.asList(dayStringArray));
+        Bundle selectDayDialogBundle = new Bundle();
+        selectDayDialogBundle.putStringArrayList(SingleChoiceListDialog.DIALOG_BUNDLE_KEY_ARRAY, dayList);
+        selectDayDialogBundle.putString(SingleChoiceListDialog.DIALOG_BUNDLE_KEY_TITLE, "选择日期");
+        selectDayDialog.setArguments(selectDayDialogBundle);
+
+        String[] timeStringArray = getResources().getStringArray(R.array.time_list);
+        ArrayList<String> timeList = new ArrayList<String>(Arrays.asList(timeStringArray));
+        Bundle selectTimeDialogDialogBundle = new Bundle();
+        selectTimeDialogDialogBundle.putStringArrayList(SingleChoiceListDialog.DIALOG_BUNDLE_KEY_ARRAY, timeList);
+        selectTimeDialogDialogBundle.putString(SingleChoiceListDialog.DIALOG_BUNDLE_KEY_TITLE, "选择时间段");
+        selectTimeDialog.setArguments(selectTimeDialogDialogBundle);
+
+
         dayInfoSelectorBtn = (Button) findViewById(R.id.filter_view_day_selector_button);
         dayInfoSelectorBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -348,9 +363,11 @@ public class FilterViewActivity extends BaseActivity implements OnDialogButtonCl
                     for (PriceRange priceRange: getPriceRangeListRequestResponse.priceRangeList) {
                         list.add(priceRange.priceRange);
                     }
-                    selectPriceRangeDialog = new SelectPriceRangeDialog();
+                    selectPriceRangeDialog = new SingleChoiceListDialog();
+
                     Bundle bundle = new Bundle();
-                    bundle.putStringArrayList("priceRangeList", list);
+                    bundle.putStringArrayList(SingleChoiceListDialog.DIALOG_BUNDLE_KEY_ARRAY, list);
+                    bundle.putString(SingleChoiceListDialog.DIALOG_BUNDLE_KEY_TITLE, "选择价格区间");
                     selectPriceRangeDialog.setArguments(bundle);
 
                     // show saved state
@@ -383,9 +400,10 @@ public class FilterViewActivity extends BaseActivity implements OnDialogButtonCl
                             districtInfoSelectorBtn.setText(params.district);
                         }
                     }
-                    selectDistrictDialog = new SelectDistrictDialog();
+                    selectDistrictDialog = new SingleChoiceListDialog();
                     Bundle bundle = new Bundle();
-                    bundle.putStringArrayList("districtList", list);
+                    bundle.putStringArrayList(SingleChoiceListDialog.DIALOG_BUNDLE_KEY_ARRAY, list);
+                    bundle.putString(SingleChoiceListDialog.DIALOG_BUNDLE_KEY_TITLE, "选择地区");
                     selectDistrictDialog.setArguments(bundle);
 
 

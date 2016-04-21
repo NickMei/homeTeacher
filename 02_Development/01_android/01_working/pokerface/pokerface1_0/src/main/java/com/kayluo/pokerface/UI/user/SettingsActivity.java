@@ -2,7 +2,6 @@ package com.kayluo.pokerface.ui.user;
 
 import android.app.DialogFragment;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -17,7 +16,7 @@ import com.kayluo.pokerface.ui.base.BaseActivity;
 import com.kayluo.pokerface.ui.user.register.RegisterActivity;
 import com.kayluo.pokerface.api.auth.LogoutRequestResponse;
 import com.kayluo.pokerface.common.EActivityRequestCode;
-import com.kayluo.pokerface.component.ChangePasswordDialog;
+import com.kayluo.pokerface.component.dialog.ChangePasswordDialog;
 import com.kayluo.pokerface.component.dialog.OnDialogButtonClickListener;
 import com.kayluo.pokerface.api.auth.ModifyPasswordRequestResponse;
 import com.kayluo.pokerface.api.base.RequestResponseBase;

@@ -1,4 +1,4 @@
-package com.kayluo.pokerface.component;
+package com.kayluo.pokerface.component.dialog;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -8,14 +8,18 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import com.kayluo.pokerface.R;
-import com.kayluo.pokerface.component.dialog.OnDialogButtonClickListener;
+
 
 /**
- * Created by Nick on 2016-01-07.
+ * Created by cxm170 on 2015/9/26.
  */
-public class FillPriceRangeDialog extends DialogFragment{
+public class ChangePasswordDialog extends DialogFragment {
+
+    public TextView oldPassword;
+    public TextView newPassword;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -23,24 +27,27 @@ public class FillPriceRangeDialog extends DialogFragment{
         // Get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        View customView = inflater.inflate(R.layout.dialog_select_price_range, null);
-        builder.setTitle("选择价格区间")
+        View customView = inflater.inflate(R.layout.dialog_change_password, null);
+        oldPassword = (TextView) customView.findViewById(R.id.old_password);
+        newPassword = (TextView) customView.findViewById(R.id.new_password);
+        builder.setTitle("修改密码")
                 .setView(customView)
                         // Add action buttons
                 .setPositiveButton("确认", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        mListener.onDialogPositiveClick(FillPriceRangeDialog.this);
+                        mListener.onDialogPositiveClick(ChangePasswordDialog.this);
                     }
                 })
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        mListener.onDialogNegativeClick(FillPriceRangeDialog.this);
-                        FillPriceRangeDialog.this.getDialog().cancel();
+                        mListener.onDialogNegativeClick(ChangePasswordDialog.this);
+                        ChangePasswordDialog.this.getDialog().cancel();
                     }
                 });
         return builder.create();
     }
+
 
 
     // Use this instance of the interface to deliver action events
@@ -60,4 +67,6 @@ public class FillPriceRangeDialog extends DialogFragment{
                     + " must implement NoticeDialogListener");
         }
     }
+
+
 }
