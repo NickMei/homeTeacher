@@ -22,7 +22,7 @@ import android.view.View.OnClickListener;
 
 import com.kayluo.pokerface.R;
 import com.kayluo.pokerface.ui.main.MainActivity;
-import com.kayluo.pokerface.ui.StudentInfoFragment;
+import com.kayluo.pokerface.ui.others.StudentInfoFragment;
 
 public class TutorRequest extends FragmentActivity
 {

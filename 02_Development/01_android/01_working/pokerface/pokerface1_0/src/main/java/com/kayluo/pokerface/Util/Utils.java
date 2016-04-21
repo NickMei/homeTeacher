@@ -1,12 +1,15 @@
 package com.kayluo.pokerface.util;
 
 import android.content.Context;
+import android.content.res.ObbInfo;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.TypedValue;
 
 import com.kayluo.pokerface.core.AppManager;
+
+import java.lang.reflect.Field;
 
 /**
  * Created by Nick on 2016-01-06.
@@ -32,6 +35,37 @@ public class Utils {
     public static Boolean isMemberSignedIn()
     {
         return AppManager.shareInstance().settingManager.getUserConfig().isSignedIn;
+    }
+
+    public static Boolean isObjectHasNullVar(Object object) throws IllegalAccessException
+    {
+        for (Field field : object.getClass().getDeclaredFields()) {
+            Class t = field.getType();
+            Object v = field.get(object);
+            if(field.isSynthetic())
+            {
+                continue; // Instant Run feature for android studio 2.0
+            }
+            else if (boolean.class.equals(t) && Boolean.FALSE.equals(v))
+            {
+                continue;
+            }
+            else if (char.class.equals(t) && ((Character) v) != Character.MIN_VALUE)
+            {
+                continue;
+            }
+            else if (t.isPrimitive() && ((Number) v).doubleValue() == 0)
+            {
+                continue;
+            }
+            else if (!t.isPrimitive() && v == null)
+            {
+                return true;
+            }
+
+        }
+
+        return false;
     }
 
     // baidu API begin

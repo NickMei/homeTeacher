@@ -1,4 +1,4 @@
-package com.kayluo.pokerface.ui.main;
+package com.kayluo.pokerface.ui.home;
 
 import android.content.Context;
 import android.content.Intent;

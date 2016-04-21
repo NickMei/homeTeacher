@@ -1,4 +1,4 @@
-package com.kayluo.pokerface.ui.main;
+package com.kayluo.pokerface.ui.search;
 
 import android.content.Context;
 import android.os.Bundle;

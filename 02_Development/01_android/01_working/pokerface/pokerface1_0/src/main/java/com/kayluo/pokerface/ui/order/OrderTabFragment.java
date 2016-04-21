@@ -1,4 +1,4 @@
-package com.kayluo.pokerface.ui.main;
+package com.kayluo.pokerface.ui.order;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.kayluo.pokerface.R;
 
-public class EventTabFragment extends Fragment
+public class OrderTabFragment extends Fragment
 {
 	Context mContext;
 	@Override
@@ -17,7 +17,7 @@ public class EventTabFragment extends Fragment
 			Bundle savedInstanceState)
 	{
 		mContext = inflater.getContext();
-		return inflater.inflate(R.layout.tab_event, container, false);
+		return inflater.inflate(R.layout.tab_order, container, false);
 	}
 
 }

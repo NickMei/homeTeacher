@@ -59,7 +59,7 @@ public final class UserProfile {
         // Create a new map of values, where column names are the keys
 
 
-        if (!queryUserProfile(userId))
+        if (!isEmptyRecord(userId))
         {
 
             ContentValues values = new ContentValues();
@@ -94,10 +94,44 @@ public final class UserProfile {
 
     }
 
-    private Boolean queryUserProfile(String userID)
+    private Boolean isEmptyRecord(String userID)
     {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
-        List<String> searchHistoryList = null;
+        // Define a projection that specifies which columns from the database
+        // you will actually use after this query.
+        String[] projection = {
+                UserEntity.COLUMN_NAME_TOKEN,
+        };
+
+        // Define 'where' part of query.
+        String selection =  UserEntity.COLUMN_NAME_USER_ID + "=?";
+        // Specify arguments in placeholder order.
+        String[] selectionArgs = { String.valueOf(userID) };
+
+        // Issue SQL statement.
+        Cursor cursor = db.query(
+                UserEntity.TABLE_NAME,                  // The table to query
+                projection,                               // The columns to return
+                selection,                                // The columns for the WHERE clause
+                selectionArgs,                            // The values for the WHERE clause
+                null,                                     // don't group the rows
+                null,                                     // don't filter by row groups
+                null                                 // The sort order
+        );
+
+
+        if(cursor == null || cursor.getCount() <= 0)
+        {
+            cursor.close();
+            return false;
+        }
+
+        return true;
+    }
+
+    private void queryUserProfile(String userID)
+    {
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
         // Define a projection that specifies which columns from the database
         // you will actually use after this query.
         String[] projection = {
@@ -113,11 +147,9 @@ public final class UserProfile {
         // Specify arguments in placeholder order.
         String[] selectionArgs = { String.valueOf(userID) };
 
-        // How you want the results sorted in the resulting Cursor
-
         // Issue SQL statement.
         Cursor cursor = db.query(
-                UserEntity.TABLE_NAME,  // The table to query
+                UserEntity.TABLE_NAME,                  // The table to query
                 projection,                               // The columns to return
                 selection,                                // The columns for the WHERE clause
                 selectionArgs,                            // The values for the WHERE clause
@@ -127,12 +159,10 @@ public final class UserProfile {
         );
 
 
-        if (cursor != null)
-        {
-            if(cursor.getCount() <= 0)
+            if(cursor == null || cursor.getCount() <= 0)
             {
                 cursor.close();
-                return false;
+                return;
             }
 
             cursor.moveToFirst();
@@ -146,9 +176,8 @@ public final class UserProfile {
             this.city = new Gson().fromJson(locationJsonString,City.class);
             cursor.close();
 
-        }
 
-        return true;
+
 
     }
 

@@ -1,6 +1,10 @@
 package com.kayluo.pokerface.dataModel;
 
+import android.util.Log;
+
 import com.google.gson.annotations.SerializedName;
+
+import java.lang.reflect.Field;
 
 /**
  * Created by Nick on 2016-04-12.
@@ -25,4 +29,5 @@ public class Order {
     public String extraInfo;
     @SerializedName(value = "class_time")
     public String classTime;
+
 }

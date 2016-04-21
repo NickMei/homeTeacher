@@ -1,4 +1,4 @@
-package com.kayluo.pokerface.ui.main;
+package com.kayluo.pokerface.ui.user;
 
 
 import android.content.Context;

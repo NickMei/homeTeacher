@@ -9,7 +9,6 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.view.View;
@@ -31,7 +30,10 @@ import com.kayluo.pokerface.core.UserConfig;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 import com.kayluo.pokerface.database.UserProfile;
 import com.kayluo.pokerface.ui.base.BaseActivity;
-import com.kayluo.pokerface.util.Utils;
+import com.kayluo.pokerface.ui.home.HomeTabFragment;
+import com.kayluo.pokerface.ui.order.OrderTabFragment;
+import com.kayluo.pokerface.ui.search.SearchTabFragment;
+import com.kayluo.pokerface.ui.user.UserTabFragment;
 
 public class MainActivity extends BaseActivity {
 	private NoScrollViewPager mViewPager;
@@ -233,7 +235,7 @@ public class MainActivity extends BaseActivity {
 		mDatas = new ArrayList<Fragment>();
 
 		HomeTabFragment tabHome = new HomeTabFragment();
-		EventTabFragment tabEvent = new EventTabFragment();
+		OrderTabFragment tabEvent = new OrderTabFragment();
 		SearchTabFragment tabSearch = new SearchTabFragment();
 		UserTabFragment tabUser = new UserTabFragment();
 

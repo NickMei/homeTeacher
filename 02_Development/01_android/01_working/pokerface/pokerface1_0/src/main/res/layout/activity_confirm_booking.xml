@@ -92,10 +92,53 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/confirm_booking_select_teaching_method_view"
+        android:id="@+id/confirm_booking_select_teaching_datetime_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/confirm_booking_select_course_name_view"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:clickable="true">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="授课时段" />
+
+            <TextView
+                android:id="@+id/confirm_booking_teaching_time_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/primaryColor"/>
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_gravity="center|right"
+            android:layout_margin="5dp"
+            android:src="@drawable/forward_blue_96" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/confirm_booking_select_teaching_method_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/confirm_booking_select_teaching_datetime_view"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -179,54 +222,13 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/confirm_booking_select_teaching_datetime_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/confirm_booking_select_teaching_address_view"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/white"
-        android:clickable="true">
 
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="授课时段" />
-
-            <TextView
-                android:id="@+id/confirm_booking_teaching_time_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/primaryColor"/>
-
-        </LinearLayout>
-
-
-        <ImageView
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_gravity="center|right"
-            android:layout_margin="5dp"
-            android:src="@drawable/forward_blue_96" />
-
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/confirm_booking_remarks_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/confirm_booking_select_teaching_datetime_view"
+        android:layout_below="@+id/confirm_booking_select_teaching_address_view"
         android:layout_margin="10dp"
         android:background="@color/white"
         android:clickable="true"

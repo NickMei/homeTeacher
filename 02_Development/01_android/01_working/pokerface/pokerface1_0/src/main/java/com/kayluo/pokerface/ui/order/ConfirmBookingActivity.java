@@ -25,6 +25,7 @@ import com.kayluo.pokerface.dataModel.TeachInfo;
 import com.kayluo.pokerface.dataModel.Order;
 import com.kayluo.pokerface.component.dialog.OnDialogButtonClickListener;
 import com.kayluo.pokerface.ui.base.BaseActivity;
+import com.kayluo.pokerface.util.Utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -163,12 +164,24 @@ public class ConfirmBookingActivity extends BaseActivity implements OnDialogButt
         confirmBookingTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                try {
+                    if (Utils.isObjectHasNullVar(order))
+                    {
+                        Toast.makeText(ConfirmBookingActivity.this,"订单信息不全，请补齐",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
                 addOrderRequestResponse = new AddOrderRequestResponse(order, new RequestResponseBase.ResponseListener() {
                     @Override
                     public void onCompleted(ResponseInfo response) {
                         if (response.returnCode == EReturnCode.SUCCESS.getValue())
                         {
                             Toast.makeText(ConfirmBookingActivity.this,"订单已成功提交",Toast.LENGTH_SHORT).show();
+                            Intent returnIntent = new Intent();
+                            setResult(RESULT_OK, returnIntent);
+                            finish();
                         }
                     }
                 });
@@ -272,7 +285,8 @@ public class ConfirmBookingActivity extends BaseActivity implements OnDialogButt
             courseNameTextView.setText(radioButton.getText());
             selectedCourseIndex = radioGroup.indexOfChild(radioButton);
             updateOrderInfo();
-        }else if (dialog == selectTeachingMethodDialog)
+        }
+        else if (dialog == selectTeachingMethodDialog)
         {
             RadioGroup radioGroup = selectTeachingMethodDialog.radioGroup;
             int selectedId = radioGroup.getCheckedRadioButtonId();
@@ -281,7 +295,9 @@ public class ConfirmBookingActivity extends BaseActivity implements OnDialogButt
             teachingMethodTextView.setText(radioButton.getText());
             selectedTeachingMethodIndex = radioGroup.indexOfChild(radioButton);
             updateOrderInfo();
-        }else if (dialog == selectTeachingDayDialog)
+
+        }
+        else if (dialog == selectTeachingDayDialog)
         {
             RadioGroup radioGroup = selectTeachingDayDialog.radioGroup;
             int selectedId = radioGroup.getCheckedRadioButtonId();
@@ -289,9 +305,10 @@ public class ConfirmBookingActivity extends BaseActivity implements OnDialogButt
             RadioButton radioButton = (RadioButton) radioGroup.findViewById(selectedId);
             teachingTimeTextView.setText(radioButton.getText());
             selectedTeachingDayIndex = radioGroup.indexOfChild(radioButton);
-
             selectTeachingTimeDialog.show(getFragmentManager(),"");
-        }else if (dialog == selectTeachingTimeDialog)
+
+        }
+        else if (dialog == selectTeachingTimeDialog)
         {
             RadioGroup radioGroup = selectTeachingTimeDialog.radioGroup;
             int selectedId = radioGroup.getCheckedRadioButtonId();
@@ -327,11 +344,13 @@ public class ConfirmBookingActivity extends BaseActivity implements OnDialogButt
                 case TeachInfo.TeachingMethod.TEACHING_METHOD_STUDENT:
                 {
                     order.price = courseInfo.studentPrice;
+                    teachingAddressTextView.setText(getOrderTutorInfoRequest.studentBasicInfo.address);
                     break;
                 }
                 case TeachInfo.TeachingMethod.TEACHING_METHOD_TEACHER:
                 {
                     order.price = courseInfo.teacherPrice;
+                    teachingAddressTextView.setText(getOrderTutorInfoRequest.tutorBasicInfo.address);
                     break;
                 }
             }
