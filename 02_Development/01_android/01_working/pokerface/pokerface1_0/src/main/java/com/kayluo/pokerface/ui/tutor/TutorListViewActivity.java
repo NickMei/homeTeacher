@@ -66,7 +66,7 @@ public class TutorListViewActivity extends BaseActivity implements TutorViewHold
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor_list_view);
         initCustomToolBar();
-        setUpView();
+        setUpViews();
         setUpRecView();
     }
 
@@ -102,6 +102,7 @@ public class TutorListViewActivity extends BaseActivity implements TutorViewHold
         searchResultListView = (ListView) findViewById(R.id.tutor_list_search_result_list_view);
         searchResultEditText = (EditText) findViewById(R.id.tutor_list_search_result_edit_text);
         searchCancelButton = (TextView) findViewById(R.id.tutor_list_search_cancel_button);
+        filterOrSortButton = (TextView) findViewById(R.id.filter_and_sort_by_button);
 
         navBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,11 +132,20 @@ public class TutorListViewActivity extends BaseActivity implements TutorViewHold
             }
         });
 
-        // check intent data
-        params  =  new GetTutorListRequestResponse().new Params();
         String query = getIntent().getStringExtra("search_query");
-        if (query != null)
+        if (query == null)
         {
+            Intent data = getIntent();
+            String serializedString = data.getStringExtra("params");
+            int stageIndex = data.getIntExtra("stageIndex", 0);
+            int courseIndex = data.getIntExtra("courseIndex", 0);
+            int subCourseIndex = data.getIntExtra("subCourseIndex", 0);
+            params = new Gson().fromJson(serializedString,GetTutorListRequestResponse.Params.class);
+            setCourseInfo(stageIndex, courseIndex, subCourseIndex);
+            setUpFilterValue();
+        }else
+        {
+            params  =  new GetTutorListRequestResponse().new Params();
             params.tutor_name = query;
             searchResultEditText.setText(query);
         }
@@ -164,7 +174,6 @@ public class TutorListViewActivity extends BaseActivity implements TutorViewHold
         };
 
         searchResultEditText.addTextChangedListener(searchResultEditTextWatcher);
-
         searchResultResponseListener = new RequestResponseBase.ResponseListener() {
             @Override
             public void onCompleted(ResponseInfo data) {
@@ -209,7 +218,7 @@ public class TutorListViewActivity extends BaseActivity implements TutorViewHold
         });
     }
 
-    private void setUpView(){
+    private void setUpViews(){
 
         // handler for get TutorList API callback
         responseListener = new RequestResponseBase.ResponseListener() {
@@ -231,9 +240,8 @@ public class TutorListViewActivity extends BaseActivity implements TutorViewHold
             }
         };
 
-        getTutorListRequestResponse =  new GetTutorListRequestResponse(params,responseListener);
+        setTutorList(params);
 
-        filterOrSortButton = (TextView) findViewById(R.id.filter_and_sort_by_button);
         filterOrSortButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

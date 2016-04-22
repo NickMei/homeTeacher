@@ -1,6 +1,6 @@
 package com.kayluo.pokerface.component.dialog;
 
-import android.app.DialogFragment;
+import android.support.v4.app.DialogFragment;
 
 /**
  * Created by jiweili on 27/9/2015.

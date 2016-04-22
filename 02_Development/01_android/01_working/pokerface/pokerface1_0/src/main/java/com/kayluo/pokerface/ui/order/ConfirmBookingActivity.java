@@ -3,7 +3,6 @@ package com.kayluo.pokerface.ui.order;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -121,7 +120,7 @@ public class ConfirmBookingActivity extends BaseActivity implements OnDialogButt
         selectCourseNameView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectBookingCourseDialog.show(getFragmentManager(),"");
+                selectBookingCourseDialog.show(getSupportFragmentManager(),"");
             }
         });
 
@@ -129,7 +128,7 @@ public class ConfirmBookingActivity extends BaseActivity implements OnDialogButt
         selectTeachingMethodView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectTeachingMethodDialog.show(getFragmentManager(),"");
+                selectTeachingMethodDialog.show(getSupportFragmentManager(),"");
             }
         });
 
@@ -147,7 +146,7 @@ public class ConfirmBookingActivity extends BaseActivity implements OnDialogButt
         selectTeachingDatetimeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectTeachingDayDialog.show(getFragmentManager(),"");
+                selectTeachingDayDialog.show(getSupportFragmentManager(),"");
             }
         });
 
@@ -275,7 +274,7 @@ public class ConfirmBookingActivity extends BaseActivity implements OnDialogButt
     }
 
     @Override
-    public void onDialogPositiveClick(DialogFragment dialog) {
+    public void onDialogPositiveClick(android.support.v4.app.DialogFragment dialog) {
         if (dialog == selectBookingCourseDialog)
         {
             RadioGroup radioGroup = selectBookingCourseDialog.radioGroup;
@@ -305,7 +304,7 @@ public class ConfirmBookingActivity extends BaseActivity implements OnDialogButt
             RadioButton radioButton = (RadioButton) radioGroup.findViewById(selectedId);
             teachingTimeTextView.setText(radioButton.getText());
             selectedTeachingDayIndex = radioGroup.indexOfChild(radioButton);
-            selectTeachingTimeDialog.show(getFragmentManager(),"");
+            selectTeachingTimeDialog.show(getSupportFragmentManager(),"");
 
         }
         else if (dialog == selectTeachingTimeDialog)
@@ -322,7 +321,7 @@ public class ConfirmBookingActivity extends BaseActivity implements OnDialogButt
     }
 
     @Override
-    public void onDialogNegativeClick(DialogFragment dialog) {
+    public void onDialogNegativeClick(android.support.v4.app.DialogFragment dialog) {
 
     }
 

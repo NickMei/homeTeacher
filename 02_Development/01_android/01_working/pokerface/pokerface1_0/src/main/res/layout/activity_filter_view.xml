@@ -29,9 +29,11 @@
                 android:layout_height="wrap_content"
                 android:text="课程" />
 
-            <Button
+            <TextView
+                style="@style/textViewLightButton"
+                android:clickable="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:id="@+id/filter_view_select_course_button"
                 android:text="请选择"/>
 
@@ -42,7 +44,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp">
+                android:layout_height="35dp">
 
                 <Button
                     android:layout_width="wrap_content"
@@ -101,7 +103,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="35dp"
                         >
 
                         <Button
@@ -138,7 +140,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="35dp"
                         >
 
                         <Button
@@ -182,9 +184,10 @@
                         android:text="地区" />
 
                     <Button
+                        style="@style/textViewLightButton"
+                        android:clickable="true"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/button_form"
+                        android:layout_height="35dp"
                         android:text="不限"
                         android:id="@+id/filter_view_district_selector_button"/>
 
@@ -194,10 +197,11 @@
                         android:text="价格"
                         android:gravity="center_vertical" />
 
-                    <Button
+                    <TextView
+                        style="@style/textViewLightButton"
+                        android:clickable="true"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/button_form"
+                        android:layout_height="35dp"
                         android:text="不限"
                         android:id="@+id/filter_view_price_filter_button"/>
 
@@ -206,26 +210,14 @@
                         android:layout_height="wrap_content"
                         android:text="时段：" />
 
-                    <LinearLayout
-                        android:orientation="horizontal"
+                    <TextView
+                        style="@style/textViewLightButton"
+                        android:clickable="true"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="35dp"
+                        android:text="不限"
+                        android:id="@+id/filter_view_datetime_selector_button" />
 
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/filter_view_day_selector_button"
-                            android:background="@drawable/button_form"
-                            android:layout_weight="1"/>
-
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/filter_view_time_selector_button"
-                            android:background="@drawable/button_form"
-                            android:layout_weight="1"/>
-
-                    </LinearLayout>
 
                 </LinearLayout>
 

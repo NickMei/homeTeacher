@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.kayluo.pokerface.R;
@@ -38,10 +39,10 @@ public class FilterViewActivity extends BaseActivity implements OnDialogButtonCl
     private RequestResponseBase.ResponseListener responseListener;
 
     private Toolbar mToolbar;
-    private Button selectCourseButton;
-    private Button dayInfoSelectorBtn;
-    private Button timeInfoSelectorBtn;
-    private Button districtInfoSelectorBtn;
+    private TextView selectCourseButton;
+    private TextView datetimeInfoSelectorBtn;
+    private TextView districtInfoSelectorBtn;
+    private TextView priceRangeSelectorBtn;
     private Button orderByDefaultBtn;
     private Button orderByRatingBtn;
     private Button orderByTotalClassTimeBtn;
@@ -54,7 +55,7 @@ public class FilterViewActivity extends BaseActivity implements OnDialogButtonCl
     private Button identityServiceTeacherBtn;
     private Button identityParttimeTeacherBtn;
     private Button filterSubmitBtn;
-    private Button priceRangeSelectorBtn;
+
 
 
     private SingleChoiceListDialog selectTimeDialog;
@@ -169,7 +170,7 @@ public class FilterViewActivity extends BaseActivity implements OnDialogButtonCl
     }
     private void setUpViews(){
 
-        selectCourseButton = (Button) findViewById(R.id.filter_view_select_course_button);
+        selectCourseButton = (TextView) findViewById(R.id.filter_view_select_course_button);
         selectCourseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -198,19 +199,11 @@ public class FilterViewActivity extends BaseActivity implements OnDialogButtonCl
         selectTimeDialog.setArguments(selectTimeDialogDialogBundle);
 
 
-        dayInfoSelectorBtn = (Button) findViewById(R.id.filter_view_day_selector_button);
-        dayInfoSelectorBtn.setOnClickListener(new View.OnClickListener() {
+        datetimeInfoSelectorBtn = (TextView) findViewById(R.id.filter_view_datetime_selector_button);
+        datetimeInfoSelectorBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectDayDialog.show(getFragmentManager(),"");
-            }
-        });
-        timeInfoSelectorBtn = (Button) findViewById(R.id.filter_view_time_selector_button);
-        timeInfoSelectorBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                selectTimeDialog.show(getFragmentManager(), "");
+                selectDayDialog.show(getSupportFragmentManager(),"");
             }
         });
         districtInfoSelectorBtn = (Button) findViewById(R.id.filter_view_district_selector_button);
@@ -221,18 +214,18 @@ public class FilterViewActivity extends BaseActivity implements OnDialogButtonCl
             public void onClick(View view) {
                 if (selectDistrictDialog != null)
                 {
-                    selectDistrictDialog.show(getFragmentManager(),"");
+                    selectDistrictDialog.show(getSupportFragmentManager(),"");
                 }
 
             }
         });
 
-        priceRangeSelectorBtn = (Button) findViewById(R.id.filter_view_price_filter_button);
+        priceRangeSelectorBtn = (TextView) findViewById(R.id.filter_view_price_filter_button);
         priceRangeSelectorBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                selectPriceRangeDialog.show(getFragmentManager(), "");
+                selectPriceRangeDialog.show(getSupportFragmentManager(), "");
             }
         });
 
@@ -415,15 +408,14 @@ public class FilterViewActivity extends BaseActivity implements OnDialogButtonCl
     }
 
     @Override
-    public void onDialogPositiveClick(DialogFragment dialog) {
+    public void onDialogPositiveClick(android.support.v4.app.DialogFragment dialog) {
         if (dialog == selectDayDialog)
         {
             RadioGroup radioGroup = selectDayDialog.radioGroup;
             int selectedId = radioGroup.getCheckedRadioButtonId();
             // find the radiobutton by returned id
             RadioButton radioButton = (RadioButton) radioGroup.findViewById(selectedId);
-            dayInfoSelectorBtn.setText(radioButton.getText());
-
+            datetimeInfoSelectorBtn.setText(radioButton.getText());
             switch (radioGroup.indexOfChild(radioButton))
             {
                 case 0:
@@ -451,6 +443,7 @@ public class FilterViewActivity extends BaseActivity implements OnDialogButtonCl
                     params.day_eng = "sunday";
                     break;
             }
+            selectTimeDialog.show(getSupportFragmentManager(),"");
         }
         else if (dialog == selectTimeDialog)
         {
@@ -458,7 +451,8 @@ public class FilterViewActivity extends BaseActivity implements OnDialogButtonCl
             int selectedId = radioGroup.getCheckedRadioButtonId();
             // find the radiobutton by returned id
             RadioButton radioButton = (RadioButton) radioGroup.findViewById(selectedId);
-            timeInfoSelectorBtn.setText(radioButton.getText());
+            String day = datetimeInfoSelectorBtn.getText().toString();
+            datetimeInfoSelectorBtn.setText(day + ", " + radioButton.getText().toString());
             switch (radioGroup.indexOfChild(radioButton))
             {
                 case 0:
@@ -523,7 +517,7 @@ public class FilterViewActivity extends BaseActivity implements OnDialogButtonCl
     }
 
     @Override
-    public void onDialogNegativeClick(DialogFragment dialog) {
+    public void onDialogNegativeClick(android.support.v4.app.DialogFragment dialog) {
 
     }
 
@@ -570,9 +564,7 @@ public class FilterViewActivity extends BaseActivity implements OnDialogButtonCl
     private void loadSavedState()
     {
         selectCourseButton.setText(getSelectedCourse());
-        dayInfoSelectorBtn.setText(getDayInfoChinese(params.day_eng));
-        timeInfoSelectorBtn.setText(getPeriodInfoChinese(params.period_eng));
-
+        datetimeInfoSelectorBtn.setText(getDayInfoChinese(params.day_eng) + "," + getPeriodInfoChinese(params.period_eng));
         setSelectdButtonByGender(params.gender_eng);
         setSelectdButtonById(params.career);
         setSelectedButtonByOrder(params.order_by);
@@ -585,7 +577,7 @@ public class FilterViewActivity extends BaseActivity implements OnDialogButtonCl
         identityServiceTeacherBtn.setSelected(false);
         identityCollegeStudentBtn.setSelected(false);
         identityParttimeTeacherBtn.setSelected(false);
-        if (career.equals(""))
+        if (career.length() == 0)
         {
             identityAllBtn.setSelected(true);
         }else if ( params.career.equals(identityServiceTeacherBtn.getText().toString()))
@@ -653,7 +645,7 @@ public class FilterViewActivity extends BaseActivity implements OnDialogButtonCl
         switch (periodEng)
         {
             case "all":
-                text = "任何时间";
+                text = "不限";
                 break;
             case "morning":
                 text = "上午";
@@ -674,7 +666,7 @@ public class FilterViewActivity extends BaseActivity implements OnDialogButtonCl
         switch (dayEng)
         {
             case "all":
-                text = "任何时间";
+                text = "不限";
                 break;
             case "monday":
                 text = "星期一";

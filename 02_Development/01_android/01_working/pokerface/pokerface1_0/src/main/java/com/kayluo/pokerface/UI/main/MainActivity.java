@@ -6,6 +6,7 @@ import java.util.concurrent.CountDownLatch;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -24,6 +25,7 @@ import com.kayluo.pokerface.api.base.RequestResponseBase;
 import com.kayluo.pokerface.common.EActivityRequestCode;
 import com.kayluo.pokerface.common.EReturnCode;
 import com.kayluo.pokerface.component.NoScrollViewPager;
+import com.kayluo.pokerface.component.dialog.OnDialogButtonClickListener;
 import com.kayluo.pokerface.core.AppConfig;
 import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.core.UserConfig;
@@ -35,7 +37,7 @@ import com.kayluo.pokerface.ui.order.OrderTabFragment;
 import com.kayluo.pokerface.ui.search.SearchTabFragment;
 import com.kayluo.pokerface.ui.user.UserTabFragment;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity  implements OnDialogButtonClickListener {
 	private NoScrollViewPager mViewPager;
 	private FragmentPagerAdapter mAdapter;
 	private List<Fragment> mDatas;
@@ -168,7 +170,6 @@ public class MainActivity extends BaseActivity {
 	}
 
 	public void pendingRequestsDidFinished() {
-//		initTabLine();
 		initView();
 		setIconClickListener();
 		splashScreen = findViewById(R.id.splash_screen);
@@ -204,19 +205,16 @@ public class MainActivity extends BaseActivity {
 
 			}
 		}
+		else if (requestCode == EActivityRequestCode.SELECT_COURSE.getValue())
+		{
+			if (resultCode == RESULT_OK)
+			{
+				SearchTabFragment tabSearch = (SearchTabFragment) mDatas.get(2);
+				tabSearch.updateSelectedCourse(data);
+			}
+		}
 	}
 
-
-//	private void initTabLine() {
-//		mTabline = (ImageView) findViewById(R.id.id_iv_tabline);
-//		Display display = getWindow().getWindowManager().getDefaultDisplay();
-//		DisplayMetrics outMetrics = new DisplayMetrics();
-//		display.getMetrics(outMetrics);
-//		mScreen1_4 = outMetrics.widthPixels / 4;
-//		LayoutParams lp = mTabline.getLayoutParams();
-//		lp.width = mScreen1_4;
-//		mTabline.setLayoutParams(lp);
-//	}
 
 	private void initView() {
 
@@ -369,4 +367,15 @@ public class MainActivity extends BaseActivity {
 
 	}
 
+	@Override
+	public void onDialogPositiveClick(DialogFragment dialog) {
+		SearchTabFragment tabSearch = (SearchTabFragment) mDatas.get(2);
+		tabSearch.onDialogPositiveClick(dialog);
+	}
+
+	@Override
+	public void onDialogNegativeClick(DialogFragment dialog) {
+		SearchTabFragment tabSearch = (SearchTabFragment) mDatas.get(2);
+		tabSearch.onDialogNegativeClick(dialog);
+	}
 }

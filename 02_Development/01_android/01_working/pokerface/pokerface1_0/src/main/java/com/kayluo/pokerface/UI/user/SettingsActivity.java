@@ -100,7 +100,7 @@ public class SettingsActivity extends BaseActivity implements OnDialogButtonClic
             @Override
             public void onClick(View v) {
                 ChangePasswordDialog dialog = new ChangePasswordDialog();
-                dialog.show(getFragmentManager(),"changePassword");
+                dialog.show(getSupportFragmentManager(),"changePassword");
             }
         });
 
@@ -138,7 +138,7 @@ public class SettingsActivity extends BaseActivity implements OnDialogButtonClic
     }
 
     @Override
-    public void onDialogPositiveClick(DialogFragment dialog) {
+    public void onDialogPositiveClick(android.support.v4.app.DialogFragment dialog) {
         if (dialog instanceof ChangePasswordDialog)
         {
             String oldPassword = ((ChangePasswordDialog) dialog).oldPassword.getText().toString();
@@ -160,7 +160,7 @@ public class SettingsActivity extends BaseActivity implements OnDialogButtonClic
     }
 
     @Override
-    public void onDialogNegativeClick(DialogFragment dialog) {
+    public void onDialogNegativeClick(android.support.v4.app.DialogFragment dialog) {
 
     }
 }
