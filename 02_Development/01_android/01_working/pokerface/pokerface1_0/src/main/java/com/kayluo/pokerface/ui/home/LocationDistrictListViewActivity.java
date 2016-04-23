@@ -1,6 +1,5 @@
 package com.kayluo.pokerface.ui.home;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,7 +11,7 @@ public class LocationDistrictListViewActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_location_district_list_view);
+        setContentView(R.layout.activity_location_district_list);
     }
 
     @Override

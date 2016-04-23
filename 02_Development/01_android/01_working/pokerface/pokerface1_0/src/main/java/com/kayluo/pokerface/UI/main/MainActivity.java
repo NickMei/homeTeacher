@@ -16,7 +16,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import com.kayluo.pokerface.R;
-import com.kayluo.pokerface.api.GetAllCourseListRequestResponse;
+import com.kayluo.pokerface.api.course.GetAllCourseListRequestResponse;
 import com.kayluo.pokerface.api.location.GetOpenCityListRequestResponse;
 import com.kayluo.pokerface.api.location.GetUserLocationInfoRequestResponse;
 import com.kayluo.pokerface.api.studentCenter.GetStudentBasicInfoRequestResponse;

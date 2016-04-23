@@ -20,9 +20,22 @@ public class AppConfig {
     public AppConfig()
     {
         locationCity = new City();
-//        gradeList = new ArrayList<String>();
-//        cityList = new ArrayList<City>();
-//        stageList = new ArrayList<Stage>();
+    }
+
+    public int getStageIndexByStageName(String stageName)
+    {
+
+        for (int index = 0; index < stageList.size(); index ++)
+        {
+            Stage stage = stageList.get(index);
+            if (stage.name.equals(stageName))
+            {
+                return index;
+            }
+        }
+
+        return 0;
+
     }
 
 }

@@ -27,8 +27,7 @@ public class GetUserLocationInfoRequestResponse extends RequestResponseBase {
     public String cityName;
     public GetUserLocationInfoRequestResponse(ResponseListener responseListener) {
         super(responseListener);
-
-        String url = domain +"location/getCity";
+        this.url = domain +"location/getCity";
         Type jsonType = new TypeToken<ResponseInfo<GetUserLocationInfoRequestResponse>>() {}.getType();
         GsonRequest gsonRequest = new GsonRequest(url, jsonType, null, requestJsonMap, new Response.Listener() {
             @Override

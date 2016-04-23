@@ -275,7 +275,7 @@
         android:layout_above="@+id/confirm_booking_add_order_button"
         android:padding="10dp"
         android:text=""
-        android:textColor="@color/RED"
+        android:textColor="@color/red"
         android:textSize="14dp" />
 
     <TextView

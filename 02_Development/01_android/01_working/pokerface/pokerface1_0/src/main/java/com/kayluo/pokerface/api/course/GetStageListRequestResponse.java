@@ -25,8 +25,7 @@ public class GetStageListRequestResponse extends RequestResponseBase {
     {
         super(responseListener);
 
-        String url = domain +"course/getStageList";
-
+        this.url = domain +"course/getStageList";
         Type jsonType = new TypeToken<ResponseInfo<GetStageListRequestResponse>>() {}.getType();
         GsonRequest gsonRequest = new GsonRequest(url, jsonType, requestJsonMap, new Response.Listener() {
             @Override

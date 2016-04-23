@@ -25,9 +25,8 @@ public class GetCourseListRequestResponse extends RequestResponseBase {
     {
         super(responseListener);
 
-        String url = domain + "course/getCourseList";
-
-        requestJsonMap.put("stage_id",stage.stageId);
+        this.url = domain + "course/getCourseList";
+        this.requestJsonMap.put("stage_id",stage.stageId);
 
         Type jsonType = new TypeToken<ResponseInfo<GetCourseListRequestResponse>>() {}.getType();
         GsonRequest gsonRequest = new GsonRequest(url, jsonType, requestJsonMap, new Response.Listener() {

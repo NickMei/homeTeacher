@@ -3,7 +3,6 @@ package com.kayluo.pokerface.ui.tutor;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -23,8 +22,9 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.kayluo.pokerface.R;
 import com.kayluo.pokerface.adapter.SearchResultListAdapter;
+import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.ui.base.BaseActivity;
-import com.kayluo.pokerface.ui.search.FilterViewActivity;
+import com.kayluo.pokerface.ui.search.AdvancedSearchActivity;
 import com.kayluo.pokerface.adapter.TutorListViewAdapter;
 import com.kayluo.pokerface.adapter.TutorViewHolder;
 import com.kayluo.pokerface.api.tutorInfo.GetTutorListRequestResponse;
@@ -140,7 +140,14 @@ public class TutorListViewActivity extends BaseActivity implements TutorViewHold
             int stageIndex = data.getIntExtra("stageIndex", 0);
             int courseIndex = data.getIntExtra("courseIndex", 0);
             int subCourseIndex = data.getIntExtra("subCourseIndex", 0);
-            params = new Gson().fromJson(serializedString,GetTutorListRequestResponse.Params.class);
+            if (serializedString == null) // genre button click event
+            {
+                params  =  new GetTutorListRequestResponse().new Params();
+                params.stage = AppManager.shareInstance().settingManager.getAppConfig().stageList.get(stageIndex).name;
+            }else
+            {
+                params = new Gson().fromJson(serializedString,GetTutorListRequestResponse.Params.class);
+            }
             setCourseInfo(stageIndex, courseIndex, subCourseIndex);
             setUpFilterValue();
         }else
@@ -245,7 +252,7 @@ public class TutorListViewActivity extends BaseActivity implements TutorViewHold
         filterOrSortButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TutorListViewActivity.this, FilterViewActivity.class);
+                Intent intent = new Intent(TutorListViewActivity.this, AdvancedSearchActivity.class);
                 String serializedString = new Gson().toJson(params);
                 intent.putExtra("params", serializedString);
                 intent.putExtra("stageIndex",stageIndex);

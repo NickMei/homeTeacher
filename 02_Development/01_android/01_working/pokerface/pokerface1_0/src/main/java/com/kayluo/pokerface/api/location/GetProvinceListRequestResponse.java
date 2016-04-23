@@ -25,8 +25,7 @@ public class GetProvinceListRequestResponse extends RequestResponseBase {
     public GetProvinceListRequestResponse(ResponseListener responseListener)
     {
         super(responseListener);
-        String url = domain +"location/getProvinceList";
-
+        this.url = domain +"location/getProvinceList";
         Type jsonType = new TypeToken<ResponseInfo<GetProvinceListRequestResponse>>() {}.getType();
         GsonRequest gsonRequest = new GsonRequest(url, jsonType, null, requestJsonMap, new Response.Listener() {
             @Override

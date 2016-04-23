@@ -13,13 +13,11 @@ import java.util.Map;
  * Created by cxm170 on 2015/5/15.
  */
 public class RequestResponseBase {
-    protected static String domain = "http://112.74.81.48/zhihuieducation/";
+    protected String domain = "http://112.74.81.48/zhihuieducation/";
     protected static Gson gson = new Gson();
-    protected static Map<String,String> headers = new HashMap<>();
-
+    protected Map<String,String> headers = new HashMap<>();
     protected String url;
     protected Map<String,Object> requestJsonMap = new HashMap<String,Object>();
-
     protected ResponseListener listener;
 
     public RequestResponseBase(ResponseListener responseListener) {
@@ -31,8 +29,8 @@ public class RequestResponseBase {
         AppManager.shareInstance().cancelPendingRequests(this.url);
     }
 
-    public static interface ResponseListener {
-        public abstract void onCompleted(ResponseInfo response);
+    public interface ResponseListener {
+       void onCompleted(ResponseInfo response);
 
     }
 

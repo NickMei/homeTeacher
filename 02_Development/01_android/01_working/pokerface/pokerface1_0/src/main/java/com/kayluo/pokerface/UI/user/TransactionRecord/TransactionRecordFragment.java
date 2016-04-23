@@ -64,7 +64,7 @@ public class TransactionRecordFragment extends Fragment implements TransactionRe
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         thisContext = container.getContext();
-        view = inflater.inflate(R.layout.fragment_transaction_record_page, container, false);
+        view = inflater.inflate(R.layout.fragment_transaction_record, container, false);
         int index = getArguments().getInt("index", 0);
         setUpRecView();
         createDataSource(index);

@@ -18,8 +18,7 @@ public class SetUserLocationInfoRequestResponse extends RequestResponseBase {
     public SetUserLocationInfoRequestResponse(String cityId,ResponseListener responseListener) {
         super(responseListener);
 
-        String url = domain + "location/resetCity";
-
+        this.url = domain + "location/resetCity";
         requestJsonMap.put("city_id", cityId);
         Type jsonType = new TypeToken<ResponseInfo<SetUserLocationInfoRequestResponse>>() {
         }.getType();

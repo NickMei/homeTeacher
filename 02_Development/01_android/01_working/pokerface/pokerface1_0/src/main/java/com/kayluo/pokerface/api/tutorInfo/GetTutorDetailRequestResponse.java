@@ -24,11 +24,9 @@ public class GetTutorDetailRequestResponse extends RequestResponseBase {
     {
         super(responseListener);
 
-        String url = domain + "tutorinfo/getTutorDetailInfo";
-
+        this.url = domain + "tutorinfo/getTutorDetailInfo";
         requestJsonMap.put("tutor_id",tutorId);
         requestJsonMap.put("is_app_query",1);
-
         Type jsonType = new TypeToken<ResponseInfo<TutorDetail>>() {}.getType();
         GsonRequest gsonRequest = new GsonRequest(url, jsonType, requestJsonMap, new Response.Listener() {
             @Override

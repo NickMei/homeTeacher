@@ -63,16 +63,8 @@ public class GetTutorListRequestResponse extends RequestResponseBase {
         public Params() {
             UserConfig userConfig = AppManager.shareInstance().settingManager.getUserConfig();
             AppConfig appConfig = AppManager.shareInstance().settingManager.getAppConfig();
-            if (userConfig.isSignedIn)
-            {
-//                city_id = userConfig.profile.city.cityID;
-                city_id = appConfig.locationCity.cityID; // TODO: should be removed after API request is updated
-            }
-            else
-            {
-                city_id = appConfig.locationCity.cityID;
-            }
 
+            city_id = userConfig.isSignedIn ? userConfig.profile.city.cityID : appConfig.locationCity.cityID;
             is_app_query = 1;
             //course type
             stage = "";

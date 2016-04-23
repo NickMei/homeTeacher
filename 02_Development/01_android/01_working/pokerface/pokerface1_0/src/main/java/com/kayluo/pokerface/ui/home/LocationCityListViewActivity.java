@@ -2,7 +2,6 @@ package com.kayluo.pokerface.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,7 +17,6 @@ import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.core.UserConfig;
 import com.kayluo.pokerface.dataModel.City;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
-import com.kayluo.pokerface.database.UserProfile;
 import com.kayluo.pokerface.ui.base.BaseActivity;
 import com.kayluo.pokerface.util.Utils;
 
@@ -35,7 +33,7 @@ public class LocationCityListViewActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_location_city_list_view);
+        setContentView(R.layout.activity_location_city_list);
         initToolBar();
         initSubViews();
     }

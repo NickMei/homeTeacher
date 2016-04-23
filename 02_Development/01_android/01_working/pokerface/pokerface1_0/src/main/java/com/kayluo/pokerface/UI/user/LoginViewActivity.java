@@ -21,7 +21,6 @@ import com.kayluo.pokerface.ui.user.register.RegisterActivity;
 import com.kayluo.pokerface.api.auth.LoginRequestResponse;
 import com.kayluo.pokerface.api.base.RequestResponseBase;
 import com.kayluo.pokerface.core.AppManager;
-import com.kayluo.pokerface.core.UserConfig;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 
 public class LoginViewActivity extends BaseActivity {
@@ -39,7 +38,7 @@ public class LoginViewActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_view);
+        setContentView(R.layout.activity_login);
 
         registerTextView = (TextView) findViewById(R.id.register_text_view);
         registerTextView.setOnClickListener(new OnClickListener() {

@@ -1,19 +1,16 @@
 package com.kayluo.pokerface.ui.user.register;
 
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.kayluo.pokerface.R;
 import com.kayluo.pokerface.api.auth.AuthMsgCodeRequestResponse;
 import com.kayluo.pokerface.api.base.RequestResponseBase;
-import com.kayluo.pokerface.api.SendVerifyMessageRequestResponse;
+import com.kayluo.pokerface.api.auth.SendVerifyMessageRequestResponse;
 import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.core.UserConfig;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
@@ -70,7 +67,7 @@ public class RegisterActivity extends BaseActivity {
                     public void onCompleted(ResponseInfo response) {
                         Toast.makeText(RegisterActivity.this,response.message,Toast.LENGTH_SHORT).show();
                         if (response.returnCode == 0) {
-                            verifyCodeTextEdit.setText(sendVerifyMessageRequestResponse.msgcode);
+                            verifyCodeTextEdit.setText(sendVerifyMessageRequestResponse.messageCode);
                         }
                     }
                 });

@@ -25,9 +25,7 @@ public class GetDistrictListRequestResponse extends RequestResponseBase {
         super(responseListener);
         districtList = new ArrayList<District>();
         this.url = this.domain + "location/getDistrictList";
-
         requestJsonMap.put("city_id",cityID);
-
         Type jsonType = new TypeToken<ResponseInfo<GetDistrictListRequestResponse>>() {}.getType();
         GsonRequest gsonRequest = new GsonRequest(url, jsonType, null, requestJsonMap, new Response.Listener() {
             @Override

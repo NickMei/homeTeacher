@@ -31,7 +31,6 @@ public class UserConfig {
     GetUserLocationInfoRequestResponse getUserLocationInfoRequestResponse;
 
     public void saveToStorage() {
-//        SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString("userId", userId);
         editor.putBoolean("isSignedIn", isSignedIn);
@@ -46,7 +45,7 @@ public class UserConfig {
         this.settings = context.getSharedPreferences(PREFS_NAME, 0);
         userId = settings.getString("userId", "0");
         isSignedIn = settings.getBoolean("isSignedIn", false);
-        // query Database
+        // query user profile from DB by userId
         profile = new UserProfile(context,userId);
     }
 

@@ -24,7 +24,7 @@
             android:text="i家教"
             android:id="@+id/textView3"
             android:textColor="@color/white"
-            android:textSize="22dp"
+            android:textSize="18dp"
             android:layout_gravity="center_vertical"
             android:layout_alignParentRight="false"
             android:layout_alignParentBottom="false"
@@ -44,5 +44,183 @@
             android:layout_marginRight="10dp" />
 
     </RelativeLayout>
+
+    <com.bigkoo.convenientbanner.ConvenientBanner
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/tab_home_ad_banner"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:canLoop="true"
+        />
+
+    <TableLayout
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                style="@style/textViewButton"
+                android:id="@+id/tab_home_primary_school_education_text_view"
+                android:background="#34CCFF"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="小学" />
+
+            <TextView
+                android:layout_width="5dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                style="@style/textViewButton"
+                android:id="@+id/tab_home_middle_school_education_text_view"
+                android:background="#34CCFF"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="初中" />
+
+            <TextView
+                android:layout_width="5dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                style="@style/textViewButton"
+                android:id="@+id/tab_home_high_school_education_text_view"
+                android:background="#34CCFF"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="高中" />
+
+            <TextView
+                android:layout_width="5dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                style="@style/textViewButton"
+                android:id="@+id/tab_home_university_education_text_view"
+                android:background="#34CCFF"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="大学" />
+
+        </TableRow>
+
+        <TableRow android:layout_marginTop="5dp">
+
+            <TextView
+                style="@style/textViewButton"
+                android:id="@+id/tab_home_entering_middle_school_exam_text_view"
+                android:background="#CC9AFF"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="升初" />
+
+            <TextView
+                android:layout_width="5dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                style="@style/textViewButton"
+                android:id="@+id/tab_home_entering_high_school_exam_text_view"
+                android:background="#CC9AFF"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="中考" />
+
+            <TextView
+                android:layout_width="5dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                style="@style/textViewButton"
+                android:id="@+id/tab_home_entering_university_exam_text_view"
+                android:background="#CC9AFF"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="高考" />
+
+            <TextView
+                android:layout_width="5dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                style="@style/textViewButton"
+                android:id="@+id/tab_home_study_abroad_education_text_view"
+                android:background="#CC9AFF"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="留学" />
+
+        </TableRow>
+
+        <TableRow android:layout_marginTop="5dp">
+
+            <TextView
+                style="@style/textViewButton"
+                android:id="@+id/tab_home_foreign_language_education_text_view"
+                android:background="#FF679A"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="外语" />
+
+            <TextView
+                android:layout_width="5dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                style="@style/textViewButton"
+                android:id="@+id/tab_home_art_education_text_view"
+                android:background="#FF679A"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="艺术" />
+
+            <TextView
+                android:layout_width="5dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                style="@style/textViewButton"
+                android:id="@+id/tab_home_psychological_education_text_view"
+                android:background="#FF679A"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="心理" />
+
+            <TextView
+                android:layout_width="5dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                style="@style/textViewButton"
+                android:id="@+id/tab_home_physical_education_text_view"
+                android:background="#FF679A"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="体育" />
+
+        </TableRow>
+
+
+    </TableLayout>
+
+
+
 
 </LinearLayout>
