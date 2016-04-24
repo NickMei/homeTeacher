@@ -38,9 +38,7 @@ public class UserDetailActivity extends BaseActivity {
     private EditText usernameEditText;
     private EditText genderEditText;
     private Spinner gradeSpinner;
-    private Spinner citySpinner;
     private EditText gradeEditText;
-    private EditText cityEditText;
     private EditText preferredAddressEditText;
     private ArrayAdapter<String> gradeSpinnerAdapter;
     private View view;
@@ -117,8 +115,6 @@ public class UserDetailActivity extends BaseActivity {
         genderEditText.setGravity(textGravity);
         gradeSpinner.setVisibility(editable ? View.VISIBLE : View.GONE);
         gradeEditText.setVisibility(editable ? View.GONE : View.VISIBLE);
-        citySpinner.setVisibility(editable ? View.VISIBLE : View.GONE);
-        cityEditText.setVisibility(editable ? View.GONE : View.VISIBLE);
         preferredAddressEditText.setGravity(textGravity);
         usernameEditText.setEnabled(editable);
         genderEditText.setEnabled(editable);
@@ -137,9 +133,7 @@ public class UserDetailActivity extends BaseActivity {
         usernameEditText = (EditText) this.findViewById(R.id.user_detail_usrname);
         genderEditText = (EditText) this.findViewById(R.id.user_detail_gender);
         gradeSpinner = (Spinner) this.findViewById(R.id.user_detail_grade_spinner);
-        citySpinner = (Spinner) this.findViewById(R.id.user_detail_city_spinner);
         gradeEditText = (EditText) this.findViewById(R.id.user_detail_grade);
-        cityEditText = (EditText) this.findViewById(R.id.user_detail_city);
         preferredAddressEditText = (EditText) this.findViewById(R.id.user_detail_preferred_address);
 
         AppConfig appConfig = AppManager.shareInstance().settingManager.getAppConfig();
@@ -163,7 +157,6 @@ public class UserDetailActivity extends BaseActivity {
                 usernameEditText.setText(basicInfo.name);
                 genderEditText.setText(basicInfo.gender);
                 gradeEditText.setText(basicInfo.grade);
-//                cityEditText.setText(basicInfo.city_name);
                 preferredAddressEditText.setText(basicInfo.address);
                 new BitmapDownloaderTask(headPhotoImageView).execute(basicInfo.head_photo);
                 int selection = gradeSpinnerAdapter.getPosition(basicInfo.grade);
@@ -178,8 +171,8 @@ public class UserDetailActivity extends BaseActivity {
         basicInfo.name = usernameEditText.getText().toString() ;
         basicInfo.gender = genderEditText.getText().toString() ;
         basicInfo.grade = gradeSpinner.getSelectedItem().toString();
-//        basicInfo.city_name = AppManager.shareInstance().settingManager.getUserConfig().profile.city.cityName;
         basicInfo.address = preferredAddressEditText.getText().toString() ;
+        basicInfo.cityId = AppManager.shareInstance().settingManager.getUserConfig().profile.city.cityID;
 
         new SaveStudentBasicInfoRequestResponse(basicInfo, new RequestResponseBase.ResponseListener() {
             @Override

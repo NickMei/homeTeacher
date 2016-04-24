@@ -47,11 +47,11 @@ public class TutorListViewAdapter extends RecyclerView.Adapter<TutorViewHolder> 
                 .execute(entity.getHead_photo());
         if (entity.getPrice() != null)
         {
-            tutorViewHolder.price.setText("價格：" + entity.getPrice());
+            tutorViewHolder.price.setText("￥" + entity.getPrice());
         }
         if (entity.getTotal_class_time() != null)
         {
-            tutorViewHolder.totalClassTime.setText("總課時：" + entity.getTotal_class_time());
+            tutorViewHolder.totalClassTime.setText("累计" + entity.getTotal_class_time()+ "课时");
         }
         if (entity.getGender_eng() == "male") {
             tutorViewHolder.sex.setImageResource(R.drawable.male_blue_96);

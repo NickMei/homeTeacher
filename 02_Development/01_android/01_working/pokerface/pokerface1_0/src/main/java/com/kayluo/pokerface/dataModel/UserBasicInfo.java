@@ -11,6 +11,8 @@ public class UserBasicInfo {
     public String gender;
     public String grade;
     public String address;
+    @SerializedName(value = "city_id")
+    public String cityId = "";
     public String head_photo;
     public String self_intro = "";
 }

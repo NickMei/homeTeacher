@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.kayluo.pokerface.R;
@@ -24,6 +25,7 @@ import com.kayluo.pokerface.api.tutorInfo.GetTutorListRequestResponse;
 import com.kayluo.pokerface.common.EActivityRequestCode;
 import com.kayluo.pokerface.component.dialog.SingleChoiceListDialog;
 import com.kayluo.pokerface.core.AppManager;
+import com.kayluo.pokerface.core.UserConfig;
 import com.kayluo.pokerface.dataModel.Course;
 import com.kayluo.pokerface.dataModel.District;
 import com.kayluo.pokerface.dataModel.PriceRange;
@@ -70,7 +72,6 @@ public class SearchTabFragment extends Fragment{
     private SingleChoiceListDialog selectPriceRangeDialog;
 
     GetTutorListRequestResponse getTutorListRequestResponse;
-    GetDistrictListRequestResponse getDistrictListRequestResponse;
     GetPriceRangeListRequestResponse getPriceRangeListRequestResponse;
 
     int stageIndex;
@@ -128,7 +129,7 @@ public class SearchTabFragment extends Fragment{
 
         String[] dayStringArray = getResources().getStringArray(R.array.day_list);
         ArrayList<String> dayList = new ArrayList<String>(Arrays.asList(dayStringArray));
-        Bundle selectDayDialogBundle = new Bundle();
+        final Bundle selectDayDialogBundle = new Bundle();
         selectDayDialogBundle.putStringArrayList(SingleChoiceListDialog.DIALOG_BUNDLE_KEY_ARRAY, dayList);
         selectDayDialogBundle.putString(SingleChoiceListDialog.DIALOG_BUNDLE_KEY_TITLE, "选择日期");
         selectDayDialog.setArguments(selectDayDialogBundle);
@@ -153,11 +154,10 @@ public class SearchTabFragment extends Fragment{
         districtInfoSelectorBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (selectDistrictDialog != null)
-                {
-                    selectDistrictDialog.show(fm,"");
+                createSelectDistrictDialog();
+                if (selectDistrictDialog != null) {
+                    selectDistrictDialog.show(fm, "");
                 }
-
             }
         });
 
@@ -184,7 +184,6 @@ public class SearchTabFragment extends Fragment{
         identityCollegeStudentBtn = (Button) v.findViewById(R.id.tab_search_identity_collage_student);
         identityParttimeTeacherBtn = (Button) v.findViewById(R.id.tab_search_identity_parttime_teacher);
 
-        loadUserDistrictInfo();
         loadPriceRangeList();
 
         Button.OnClickListener orderClickListener = new Button.OnClickListener() {
@@ -323,35 +322,30 @@ public class SearchTabFragment extends Fragment{
         });
     }
 
-    public void loadUserDistrictInfo()
+    public void createSelectDistrictDialog()
     {
-        UserProfile profile = AppManager.shareInstance().settingManager.getUserConfig().profile;
-        getDistrictListRequestResponse = new GetDistrictListRequestResponse(profile.city.cityID, new RequestResponseBase.ResponseListener() {
-            @Override
-            public void onCompleted(ResponseInfo response) {
-                if (response.returnCode == 0)
-                {
-                    ArrayList<String> list = new ArrayList<String>();
-                    list.add("全部");
-                    for (District district: getDistrictListRequestResponse.districtList) {
-                        list.add(district.name);
-                        if (params.district.equals(district.name))
-                        {
-                            districtInfoSelectorBtn.setText(params.district);
-                        }
-                    }
-                    selectDistrictDialog = new SingleChoiceListDialog();
-                    Bundle bundle = new Bundle();
-                    bundle.putStringArrayList(SingleChoiceListDialog.DIALOG_BUNDLE_KEY_ARRAY, list);
-                    bundle.putString(SingleChoiceListDialog.DIALOG_BUNDLE_KEY_TITLE, "选择地区");
-                    selectDistrictDialog.setArguments(bundle);
+        UserConfig userConfig = AppManager.shareInstance().settingManager.getUserConfig();
 
+        if (userConfig.districtList == null)
+        {
+            Toast.makeText(mContext,"暂不支持当前地区",Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-
-
-                }
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("全部");
+        for (District district: userConfig.districtList) {
+            list.add(district.name);
+            if (params.district.equals(district.name))
+            {
+                districtInfoSelectorBtn.setText(params.district);
             }
-        });
+        }
+        selectDistrictDialog = new SingleChoiceListDialog();
+        Bundle bundle = new Bundle();
+        bundle.putStringArrayList(SingleChoiceListDialog.DIALOG_BUNDLE_KEY_ARRAY, list);
+        bundle.putString(SingleChoiceListDialog.DIALOG_BUNDLE_KEY_TITLE, "选择地区");
+        selectDistrictDialog.setArguments(bundle);
     }
 
     public void updateSelectedCourse(Intent data)
@@ -627,7 +621,7 @@ public class SearchTabFragment extends Fragment{
             RadioButton radioButton = (RadioButton) radioGroup.findViewById(selectedId);
             districtInfoSelectorBtn.setText(radioButton.getText());
             int index = radioGroup.indexOfChild(radioButton);
-            if (getDistrictListRequestResponse.districtList != null)
+            if (AppManager.shareInstance().settingManager.getUserConfig().districtList != null)
             {
                 if (index == 0)
                 {
@@ -635,7 +629,7 @@ public class SearchTabFragment extends Fragment{
                 }
                 else
                 {
-                    District district = getDistrictListRequestResponse.districtList.get(index);
+                    District district = AppManager.shareInstance().settingManager.getUserConfig().districtList.get(index);
                     params.district  = district.name;
                 }
 

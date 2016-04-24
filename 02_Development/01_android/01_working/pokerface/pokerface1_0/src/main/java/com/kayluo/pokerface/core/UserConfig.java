@@ -2,13 +2,17 @@ package com.kayluo.pokerface.core;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 
 import com.kayluo.pokerface.api.auth.LoginRequestResponse;
 import com.kayluo.pokerface.api.base.RequestResponseBase;
+import com.kayluo.pokerface.api.location.GetDistrictListRequestResponse;
 import com.kayluo.pokerface.api.location.GetUserLocationInfoRequestResponse;
 import com.kayluo.pokerface.api.studentCenter.GetStudentBasicInfoRequestResponse;
 import com.kayluo.pokerface.common.EReturnCode;
+import com.kayluo.pokerface.component.dialog.SingleChoiceListDialog;
 import com.kayluo.pokerface.dataModel.City;
+import com.kayluo.pokerface.dataModel.District;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 import com.kayluo.pokerface.dataModel.UserBasicInfo;
 import com.kayluo.pokerface.database.UserProfile;
@@ -26,9 +30,11 @@ public class UserConfig {
     public String userId;
     public UserProfile profile;
     public boolean isSignedIn;
+    public List<District> districtList;
     private SharedPreferences settings;
     GetStudentBasicInfoRequestResponse getStudentBasicInfoRequestResponse;
     GetUserLocationInfoRequestResponse getUserLocationInfoRequestResponse;
+    GetDistrictListRequestResponse getDistrictListRequestResponse;
 
     public void saveToStorage() {
         SharedPreferences.Editor editor = settings.edit();
@@ -90,6 +96,16 @@ public class UserConfig {
                     UserProfile userProfile = AppManager.shareInstance().settingManager.getUserConfig().profile;
                     userProfile.city.cityID = getUserLocationInfoRequestResponse.cityId;
                     userProfile.city.cityName = getUserLocationInfoRequestResponse.cityName;
+                }
+            }
+        });
+
+        getDistrictListRequestResponse = new GetDistrictListRequestResponse(profile.city.cityID, new RequestResponseBase.ResponseListener() {
+            @Override
+            public void onCompleted(ResponseInfo response) {
+                if (response.returnCode == EReturnCode.SUCCESS.getValue())
+                {
+                    districtList =  getDistrictListRequestResponse.districtList;
                 }
             }
         });

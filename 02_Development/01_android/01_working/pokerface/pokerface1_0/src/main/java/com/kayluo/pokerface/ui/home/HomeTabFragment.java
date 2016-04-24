@@ -156,7 +156,9 @@ public class HomeTabFragment extends Fragment
 			public LocalImageHolderView createHolder() {
 				return new LocalImageHolderView();
 			}
-		}, localImages).setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT);
+		}, localImages)
+				.setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT)
+		.startTurning(2000);
 		//设置翻页的效果，不需要翻页效果可用不设
 		//.setPageTransformer(Transformer.DefaultTransformer);    集成特效之后会有白屏现象，新版已经分离，如果要集成特效的例子可以看Demo的点击响应。
 //        convenientBanner.setManualPageable(false);//设置不能手动影响
@@ -211,7 +213,7 @@ public class HomeTabFragment extends Fragment
 				}
 
 				UserConfig userConfig = AppManager.shareInstance().settingManager.getUserConfig();
-				if(userConfig.isSignedIn)
+				if(userConfig.isSignedIn && !userConfig.profile.city.cityID.equals("0"))
 				{
 					selectLocationBtn.setText("[ " + userConfig.profile.city.cityName + " ]");
 				}

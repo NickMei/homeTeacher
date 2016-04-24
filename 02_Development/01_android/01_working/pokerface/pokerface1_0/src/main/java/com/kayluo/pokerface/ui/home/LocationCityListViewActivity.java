@@ -2,6 +2,7 @@ package com.kayluo.pokerface.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,7 +12,9 @@ import android.widget.TextView;
 import com.kayluo.pokerface.R;
 import com.kayluo.pokerface.adapter.LocationListAdapter;
 import com.kayluo.pokerface.api.base.RequestResponseBase;
+import com.kayluo.pokerface.api.location.GetDistrictListRequestResponse;
 import com.kayluo.pokerface.api.location.SetUserLocationInfoRequestResponse;
+import com.kayluo.pokerface.common.EReturnCode;
 import com.kayluo.pokerface.core.AppConfig;
 import com.kayluo.pokerface.core.AppManager;
 import com.kayluo.pokerface.core.UserConfig;
@@ -23,7 +26,7 @@ import com.kayluo.pokerface.util.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LocationCityListViewActivity extends BaseActivity {
+public class LocationCityListViewActivity extends AppCompatActivity {
 
     private ListView mListView;
     private Toolbar mToolbar;
@@ -86,6 +89,19 @@ public class LocationCityListViewActivity extends BaseActivity {
                         }
                     });
                 }
+
+                // update districtList when city is changed.
+                new GetDistrictListRequestResponse(city.cityID, new RequestResponseBase.ResponseListener() {
+                    @Override
+                    public void onCompleted(ResponseInfo response) {
+                        if (response.returnCode == EReturnCode.SUCCESS.getValue())
+                        {
+                            UserConfig userConfig = AppManager.shareInstance().settingManager.getUserConfig();
+                            GetDistrictListRequestResponse mResponse = (GetDistrictListRequestResponse)response.response;
+                            userConfig.districtList =  mResponse.districtList;
+                        }
+                    }
+                });
                 Intent returnIntent = new Intent();
                 setResult(RESULT_OK,returnIntent);
                 finish();
