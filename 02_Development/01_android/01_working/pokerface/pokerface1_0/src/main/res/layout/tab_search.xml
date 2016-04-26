@@ -6,7 +6,7 @@
     <RelativeLayout
         android:id="@+id/tab_search_tool_bar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="?android:attr/actionBarSize"
         android:background="@color/primaryColor">
 
         <TextView

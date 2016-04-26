@@ -9,7 +9,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="?android:attr/actionBarSize"
         android:background="@color/primaryColor">
 
         <EditText
@@ -25,7 +25,7 @@
             android:layout_weight="1"
             android:hint="搜索老师"
             android:textSize="14dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             />
 
         <TextView
