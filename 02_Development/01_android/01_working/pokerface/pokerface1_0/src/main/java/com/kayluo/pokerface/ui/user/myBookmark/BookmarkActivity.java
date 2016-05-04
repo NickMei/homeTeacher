@@ -79,10 +79,7 @@ public class BookmarkActivity extends BaseActivity implements TutorViewHolder.On
                     tutor_list = getStudentBookmarkListRequestResponse.list;
                     recListAdapter.updateList(tutor_list);
                     recListAdapter.notifyDataSetChanged();
-                    if (tutor_list.size() == 0)
-                    {
-                        Toast.makeText(BookmarkActivity.this, "无结果！", Toast.LENGTH_SHORT).show();
-                    }
+                    //TODO: handle no result found case
                 }
             }
         });

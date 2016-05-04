@@ -47,7 +47,7 @@ public class TutorListViewAdapter extends RecyclerView.Adapter<TutorViewHolder> 
                 .execute(entity.getHead_photo());
         if (entity.getPrice() != null)
         {
-            tutorViewHolder.price.setText("￥" + entity.getPrice());
+            tutorViewHolder.price.setText("￥" + entity.getPrice() + " 起");
         }
         if (entity.getTotal_class_time() != null)
         {

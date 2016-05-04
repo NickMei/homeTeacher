@@ -1,6 +1,5 @@
 package com.kayluo.pokerface.ui.search;
 
-import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +18,6 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.kayluo.pokerface.R;
 import com.kayluo.pokerface.api.base.RequestResponseBase;
-import com.kayluo.pokerface.api.location.GetDistrictListRequestResponse;
 import com.kayluo.pokerface.api.tutorInfo.GetPriceRangeListRequestResponse;
 import com.kayluo.pokerface.api.tutorInfo.GetTutorListRequestResponse;
 import com.kayluo.pokerface.common.EActivityRequestCode;
@@ -32,7 +30,6 @@ import com.kayluo.pokerface.dataModel.PriceRange;
 import com.kayluo.pokerface.dataModel.ResponseInfo;
 import com.kayluo.pokerface.dataModel.Stage;
 import com.kayluo.pokerface.dataModel.SubCourse;
-import com.kayluo.pokerface.database.UserProfile;
 import com.kayluo.pokerface.ui.tutor.TutorListViewActivity;
 
 import java.util.ArrayList;
@@ -63,7 +60,7 @@ public class SearchTabFragment extends Fragment{
     private Button identityAllBtn;
     private Button identityCollegeStudentBtn;
     private Button identityServiceTeacherBtn;
-    private Button identityParttimeTeacherBtn;
+    private Button identityPartTimeTeacherBtn;
     private Button filterSubmitBtn;
 
     private SingleChoiceListDialog selectTimeDialog;
@@ -182,7 +179,7 @@ public class SearchTabFragment extends Fragment{
         identityAllBtn = (Button) v.findViewById(R.id.tab_search_identity_all);
         identityServiceTeacherBtn = (Button) v.findViewById(R.id.tab_search_identity_service_teacher);
         identityCollegeStudentBtn = (Button) v.findViewById(R.id.tab_search_identity_collage_student);
-        identityParttimeTeacherBtn = (Button) v.findViewById(R.id.tab_search_identity_parttime_teacher);
+        identityPartTimeTeacherBtn = (Button) v.findViewById(R.id.tab_search_identity_parttime_teacher);
 
         loadPriceRangeList();
 
@@ -229,7 +226,7 @@ public class SearchTabFragment extends Fragment{
                 identityAllBtn.setSelected(false);
                 identityServiceTeacherBtn.setSelected(false);
                 identityCollegeStudentBtn.setSelected(false);
-                identityParttimeTeacherBtn.setSelected(false);
+                identityPartTimeTeacherBtn.setSelected(false);
                 ((Button)view).setSelected(true);
                 if (view == identityAllBtn)
                 {
@@ -245,7 +242,7 @@ public class SearchTabFragment extends Fragment{
         identityAllBtn.setOnClickListener(identityClickListener);
         identityServiceTeacherBtn.setOnClickListener(identityClickListener);
         identityCollegeStudentBtn.setOnClickListener(identityClickListener);
-        identityParttimeTeacherBtn.setOnClickListener(identityClickListener);
+        identityPartTimeTeacherBtn.setOnClickListener(identityClickListener);
 
         Button.OnClickListener genderClickListener = new Button.OnClickListener() {
 
@@ -334,12 +331,9 @@ public class SearchTabFragment extends Fragment{
 
         ArrayList<String> list = new ArrayList<String>();
         list.add("全部");
-        for (District district: userConfig.districtList) {
+        for (District district: userConfig.districtList)
+        {
             list.add(district.name);
-            if (params.district.equals(district.name))
-            {
-                districtInfoSelectorBtn.setText(params.district);
-            }
         }
         selectDistrictDialog = new SingleChoiceListDialog();
         Bundle bundle = new Bundle();
@@ -423,6 +417,9 @@ public class SearchTabFragment extends Fragment{
     {
         selectCourseButton.setText(getSelectedCourse());
         datetimeInfoSelectorBtn.setText(getDayInfoChinese(params.day_eng) + "," + getPeriodInfoChinese(params.period_eng));
+        if (!params.district.equals("")) {
+            districtInfoSelectorBtn.setText(params.district);
+        }
         setSelectdButtonByGender(params.gender_eng);
         setSelectdButtonById(params.career);
         setSelectedButtonByOrder(params.order_by);
@@ -434,7 +431,7 @@ public class SearchTabFragment extends Fragment{
         identityAllBtn.setSelected(false);
         identityServiceTeacherBtn.setSelected(false);
         identityCollegeStudentBtn.setSelected(false);
-        identityParttimeTeacherBtn.setSelected(false);
+        identityPartTimeTeacherBtn.setSelected(false);
         if (career.length() == 0)
         {
             identityAllBtn.setSelected(true);
@@ -444,9 +441,9 @@ public class SearchTabFragment extends Fragment{
         }else if ( params.career.equals(identityCollegeStudentBtn.getText().toString()))
         {
             identityCollegeStudentBtn.setSelected(true);
-        }else if ( params.career.equals(identityParttimeTeacherBtn.getText().toString()))
+        }else if ( params.career.equals(identityPartTimeTeacherBtn.getText().toString()))
         {
-            identityParttimeTeacherBtn.setSelected(true);
+            identityPartTimeTeacherBtn.setSelected(true);
         }
 
     }
@@ -625,11 +622,11 @@ public class SearchTabFragment extends Fragment{
             {
                 if (index == 0)
                 {
-                    params.district  = "all";
+                    params.district  = "";
                 }
                 else
                 {
-                    District district = AppManager.shareInstance().settingManager.getUserConfig().districtList.get(index);
+                    District district = AppManager.shareInstance().settingManager.getUserConfig().districtList.get(index - 1);
                     params.district  = district.name;
                 }
 

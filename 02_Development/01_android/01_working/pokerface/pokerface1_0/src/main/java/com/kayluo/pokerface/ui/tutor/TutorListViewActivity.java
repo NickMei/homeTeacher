@@ -54,6 +54,7 @@ public class TutorListViewActivity extends BaseActivity implements TutorViewHold
     private ImageButton navBackButton;
     private EditText searchResultEditText;
     private TextView searchCancelButton;
+    private TextView noResultTextView;
     private ListView searchResultListView;
     private LinearLayout searchResultView;
     private SearchResultListAdapter searchResultListAdapter;
@@ -103,6 +104,7 @@ public class TutorListViewActivity extends BaseActivity implements TutorViewHold
         searchResultEditText = (EditText) findViewById(R.id.tutor_list_search_result_edit_text);
         searchCancelButton = (TextView) findViewById(R.id.tutor_list_search_cancel_button);
         filterOrSortButton = (TextView) findViewById(R.id.filter_and_sort_by_button);
+        noResultTextView = (TextView) findViewById(R.id.tutor_list_no_result_found_text_view);
 
         navBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -238,11 +240,7 @@ public class TutorListViewActivity extends BaseActivity implements TutorViewHold
                     tutorList = mResponse.tutorList;
                     recListAdapter.updateList(tutorList);
                     recListAdapter.notifyDataSetChanged();
-                    if (tutorList.size() == 0)
-                    {
-                        Toast.makeText(TutorListViewActivity.this,"无结果",Toast.LENGTH_SHORT).show();
-
-                    }
+                    noResultTextView.setVisibility((tutorList.size() == 0)?View.VISIBLE:View.INVISIBLE);
                 }
             }
         };

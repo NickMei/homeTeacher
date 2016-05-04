@@ -61,10 +61,6 @@ public class CommentRecordActivityFragment extends Fragment implements CommentRe
                 {
                     recListAdapter.updateList(getCommentListRequestResponse.list);
                     recListAdapter.notifyDataSetChanged();
-                    if (getCommentListRequestResponse.list.size() == 0)
-                    {
-                        Toast.makeText(thisContext, "无结果！", Toast.LENGTH_SHORT).show();
-                    }
                 }
             }
         });

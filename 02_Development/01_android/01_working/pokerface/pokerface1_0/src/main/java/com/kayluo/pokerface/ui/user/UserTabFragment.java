@@ -19,9 +19,6 @@ import com.kayluo.pokerface.R;
 import com.kayluo.pokerface.database.UserProfile;
 import com.kayluo.pokerface.ui.user.myBookmark.BookmarkActivity;
 import com.kayluo.pokerface.ui.user.commentRecord.CommentRecordActivity;
-import com.kayluo.pokerface.ui.user.LoginViewActivity;
-import com.kayluo.pokerface.ui.user.SettingsActivity;
-import com.kayluo.pokerface.ui.user.UserDetailActivity;
 import com.kayluo.pokerface.ui.user.transactionRecord.UserTransactionRecordActivity;
 import com.kayluo.pokerface.util.BitmapDownloaderTask;
 import com.kayluo.pokerface.util.Utils;
@@ -51,7 +48,7 @@ public class UserTabFragment extends Fragment
 	private Boolean isMemberSignedIn;
 
 	private LinearLayout orderWaitPayment;
-	private LinearLayout orderExcuting;
+	private LinearLayout orderExecuting;
 	private LinearLayout orderFinished;
 
 	private GetStudentCourseRecordRequestResponse getStudentCourseRecordRequestResponse;
@@ -95,7 +92,7 @@ public class UserTabFragment extends Fragment
 		commentView =  (LinearLayout) view.findViewById(R.id.tab_user_comment_view);
 		bookmarkView = (LinearLayout) view.findViewById(R.id.tab_user_bookmark_view);
 		orderWaitPayment = (LinearLayout) view.findViewById(R.id.tab_user_order_wait_payment);
-		orderExcuting = (LinearLayout) view.findViewById(R.id.tab_user_order_executing);
+		orderExecuting = (LinearLayout) view.findViewById(R.id.tab_user_order_executing);
 		orderFinished = (LinearLayout) view.findViewById(R.id.tab_user_order_finished);
 
 		basicInfoView.setOnClickListener(new View.OnClickListener() {
@@ -165,7 +162,7 @@ public class UserTabFragment extends Fragment
 		});
 
 
-		orderExcuting.setOnClickListener(new View.OnClickListener() {
+		orderExecuting.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				if (checkMemberInfo()) {

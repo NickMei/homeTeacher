@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 import com.kayluo.pokerface.R;
 import com.kayluo.pokerface.api.location.GetDistrictListRequestResponse;
 import com.kayluo.pokerface.component.dialog.SingleChoiceListDialog;
-import com.kayluo.pokerface.database.UserProfile;
+import com.kayluo.pokerface.core.UserConfig;
 import com.kayluo.pokerface.component.dialog.OnDialogButtonClickListener;
 import com.kayluo.pokerface.api.tutorInfo.GetPriceRangeListRequestResponse;
 import com.kayluo.pokerface.api.tutorInfo.GetTutorListRequestResponse;
@@ -55,15 +55,12 @@ public class AdvancedSearchActivity extends BaseActivity implements OnDialogButt
     private Button identityParttimeTeacherBtn;
     private Button filterSubmitBtn;
 
-
-
     private SingleChoiceListDialog selectTimeDialog;
     private SingleChoiceListDialog selectDayDialog;
     private SingleChoiceListDialog selectDistrictDialog;
     private SingleChoiceListDialog selectPriceRangeDialog;
 
     GetTutorListRequestResponse getTutorListRequestResponse;
-    GetDistrictListRequestResponse getDistrictListRequestResponse;
     GetPriceRangeListRequestResponse getPriceRangeListRequestResponse;
 
     int stageIndex;
@@ -211,6 +208,7 @@ public class AdvancedSearchActivity extends BaseActivity implements OnDialogButt
         districtInfoSelectorBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                createDistrictListDialog();
                 if (selectDistrictDialog != null)
                 {
                     selectDistrictDialog.show(getSupportFragmentManager(),"");
@@ -243,7 +241,6 @@ public class AdvancedSearchActivity extends BaseActivity implements OnDialogButt
         identityCollegeStudentBtn = (Button) findViewById(R.id.filter_view_identity_collage_student);
         identityParttimeTeacherBtn = (Button) findViewById(R.id.filter_view_identity_parttime_teacher);
 
-        loadUserDistrictInfo();
         loadPriceRangeList();
 
         Button.OnClickListener orderClickListener = new Button.OnClickListener() {
@@ -375,35 +372,20 @@ public class AdvancedSearchActivity extends BaseActivity implements OnDialogButt
         });
     }
 
-    public void loadUserDistrictInfo()
+    public void createDistrictListDialog()
     {
-        UserProfile profile = AppManager.shareInstance().settingManager.getUserConfig().profile;
-        getDistrictListRequestResponse = new GetDistrictListRequestResponse(profile.city.cityID, new RequestResponseBase.ResponseListener() {
-            @Override
-            public void onCompleted(ResponseInfo response) {
-                if (response.returnCode == 0)
-                {
-                    ArrayList<String> list = new ArrayList<String>();
-                    list.add("全部");
-                    for (District district: getDistrictListRequestResponse.districtList) {
-                        list.add(district.name);
-                        if (params.district.equals(district.name))
-                        {
-                            districtInfoSelectorBtn.setText(params.district);
-                        }
-                    }
-                    selectDistrictDialog = new SingleChoiceListDialog();
-                    Bundle bundle = new Bundle();
-                    bundle.putStringArrayList(SingleChoiceListDialog.DIALOG_BUNDLE_KEY_ARRAY, list);
-                    bundle.putString(SingleChoiceListDialog.DIALOG_BUNDLE_KEY_TITLE, "选择地区");
-                    selectDistrictDialog.setArguments(bundle);
+        UserConfig userConfig = AppManager.shareInstance().settingManager.getUserConfig();
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("全部");
+        for (District district: userConfig.districtList) {
+            list.add(district.name);
+        }
+        selectDistrictDialog = new SingleChoiceListDialog();
+        Bundle bundle = new Bundle();
+        bundle.putStringArrayList(SingleChoiceListDialog.DIALOG_BUNDLE_KEY_ARRAY, list);
+        bundle.putString(SingleChoiceListDialog.DIALOG_BUNDLE_KEY_TITLE, "选择地区");
+        selectDistrictDialog.setArguments(bundle);
 
-
-
-
-                }
-            }
-        });
     }
 
     @Override
@@ -476,15 +458,15 @@ public class AdvancedSearchActivity extends BaseActivity implements OnDialogButt
             RadioButton radioButton = (RadioButton) radioGroup.findViewById(selectedId);
             districtInfoSelectorBtn.setText(radioButton.getText());
             int index = radioGroup.indexOfChild(radioButton);
-            if (getDistrictListRequestResponse.districtList != null)
+            if (AppManager.shareInstance().settingManager.getUserConfig().districtList != null)
             {
                 if (index == 0)
                 {
-                    params.district  = "all";
+                    params.district  = "";
                 }
                 else
                 {
-                    District district = getDistrictListRequestResponse.districtList.get(index);
+                    District district = AppManager.shareInstance().settingManager.getUserConfig().districtList.get(index - 1);
                     params.district  = district.name;
                 }
 
@@ -564,13 +546,16 @@ public class AdvancedSearchActivity extends BaseActivity implements OnDialogButt
     {
         selectCourseButton.setText(getSelectedCourse());
         datetimeInfoSelectorBtn.setText(getDayInfoChinese(params.day_eng) + "," + getPeriodInfoChinese(params.period_eng));
-        setSelectdButtonByGender(params.gender_eng);
-        setSelectdButtonById(params.career);
+        if (!params.district.equals("")) {
+            districtInfoSelectorBtn.setText(params.district);
+        }
+        setSelectedButtonByGender(params.gender_eng);
+        setSelectedButtonById(params.career);
         setSelectedButtonByOrder(params.order_by);
 
     }
 
-    private void setSelectdButtonById(String career)
+    private void setSelectedButtonById(String career)
     {
         identityAllBtn.setSelected(false);
         identityServiceTeacherBtn.setSelected(false);
@@ -592,7 +577,7 @@ public class AdvancedSearchActivity extends BaseActivity implements OnDialogButt
 
     }
 
-    private void setSelectdButtonByGender(String genderEng)
+    private void setSelectedButtonByGender(String genderEng)
     {
         genderAllBtn.setSelected(false);
         genderFemaleBtn.setSelected(false);

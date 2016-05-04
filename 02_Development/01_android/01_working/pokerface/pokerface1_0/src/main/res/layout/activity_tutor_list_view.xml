@@ -80,7 +80,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_toRightOf="@+id/tutor_list_search_result_view"
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -95,15 +95,26 @@
                 android:clickable="true"
                 android:background="@color/primaryTextColor"
                 android:textColor="@color/white"
-                android:gravity="center_horizontal" />
+                android:gravity="center_horizontal"
+                android:layout_alignParentTop="true" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/tutorList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#e0e0e0" />
+                android:background="#e0e0e0"
+                android:layout_below="@+id/filter_and_sort_by_button" />
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/tutor_list_no_result_found_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="无结果"
+                android:textSize="18dp"
+                android:visibility="invisible"
+                android:layout_centerInParent="true" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 

@@ -1,6 +1,7 @@
 package com.kayluo.pokerface.ui.tutor;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.kayluo.pokerface.R;
 import com.kayluo.pokerface.common.EActivityRequestCode;
+import com.kayluo.pokerface.common.EReturnCode;
 import com.kayluo.pokerface.ui.base.BaseActivity;
 import com.kayluo.pokerface.ui.order.ConfirmBookingActivity;
 import com.kayluo.pokerface.ui.user.LoginViewActivity;
@@ -97,12 +99,17 @@ public class TutorDetailActivity extends BaseActivity {
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent returnIntent = new Intent();
-                setResult(RESULT_CANCELED, returnIntent);
-                finish();
+                navBack();
             }
         });
 
+    }
+
+    private void navBack()
+    {
+        Intent returnIntent = new Intent();
+        setResult(RESULT_CANCELED, returnIntent);
+        finish();
     }
 
     private void setUpViews()
@@ -151,7 +158,20 @@ public class TutorDetailActivity extends BaseActivity {
     {
         getTutorDetailRequestResponse = new GetTutorDetailRequestResponse(this.tutorId, new RequestResponseBase.ResponseListener() {
             @Override
-            public void onCompleted(ResponseInfo data) {
+            public void onCompleted(ResponseInfo responseInfo) {
+                if (responseInfo.returnCode != EReturnCode.SUCCESS.getValue())
+                {
+                    progressDialog.setMessage("获取教师详情失败...");
+                    progressDialog.setCancelable(true);
+                    progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public void onCancel(DialogInterface dialogInterface) {
+                            navBack();
+                        }
+                    });
+                    return;
+                }
+
                 final TutorDetail detail = getTutorDetailRequestResponse.tutorDetail;
                 new BitmapDownloaderTask(tutorPic)
                         .execute(detail.basic_info.head_photo);
